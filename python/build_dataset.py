@@ -603,7 +603,7 @@ def build_dataset(
 
         start_date, end_date = get_season_dates(season)
 
-        print(f"Fetching schedule {start_date} → {end_date}...")
+        print(f"Fetching schedule {start_date} -> {end_date}...")
         try:
             games = fetch_schedule(start_date, end_date)
         except Exception as exc:

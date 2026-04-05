@@ -187,6 +187,24 @@ export function computeEdge(
   };
 }
 
+// ─── The Odds API live lines loader ──────────────────────────────────────────
+
+/**
+ * Load live MLB moneylines from The Odds API for a given date.
+ * Returns a Map keyed by "{awayAbbr}@{homeAbbr}" (e.g. "STL@DET").
+ * Returns an empty Map if THE_ODDS_API_KEY is not configured.
+ *
+ * @param _date  YYYY-MM-DD — reserved for future date-filtered requests;
+ *               The Odds API free tier always returns today's games.
+ */
+export async function loadOddsApiLines(
+  _date: string
+): Promise<Map<string, { homeML: number; awayML: number }>> {
+  // Lazy import to avoid circular dependencies and keep this module side-effect-free
+  const { fetchOddsApiLines } = await import('../api/oddsApiClient.js');
+  return fetchOddsApiLines();
+}
+
 // ─── Vegas lines loader ───────────────────────────────────────────────────────
 
 /** Cache to avoid re-reading from disk on every call */

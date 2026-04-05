@@ -3,7 +3,7 @@ name: Morning Briefing (6 AM ET)
 on:
   schedule:
     - cron: '0 10 * * *'   # 10:00 UTC = 6:00 AM ET (EDT, Mar–Nov)
-  workflow_dispatch:         # Allow manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   morning:
@@ -14,6 +14,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Get today's date (ET)
+        id: date
+        run: echo "date=$(TZ='America/New_York' date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -23,25 +27,38 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Restore persistent DB — carries Elo ratings + bet history across days
+      - name: Restore DB cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/mlb_oracle.db
+          key: mlb-oracle-db-${{ steps.date.outputs.date }}
+          restore-keys: mlb-oracle-db-
+
       - name: Run pipeline + bet engine + send morning Discord
         env:
           KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
           KALSHI_PAPER_TRADING: 'true'
-          KALSHI_BET_SIZE: '10'
           KALSHI_MIN_PROB: '0.65'
           KALSHI_MIN_EDGE: '0.05'
           KALSHI_CASHOUT_LOSS_PCT: '0.20'
+          KALSHI_MIN_TEAM_GAMES: '10'
           DB_PATH: './data/mlb_oracle.db'
           CACHE_DIR: './cache'
           CACHE_TTL_HOURS: '1'
           LOG_LEVEL: 'info'
         run: node --loader ts-node/esm src/actions/morning.ts
 
-      - name: Upload DB artifact (for EOD job to read)
-        uses: actions/upload-artifact@v4
+      # Save DB with today's date key — monitor + EOD jobs restore from here
+      - name: Save DB to cache
+        uses: actions/cache/save@v4
+        if: always()
         with:
-          name: mlb-oracle-db-${{ github.run_id }}
           path: data/mlb_oracle.db
-          retention-days: 1
+          key: mlb-oracle-db-${{ steps.date.outputs.date }}

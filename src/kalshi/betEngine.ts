@@ -13,7 +13,12 @@ import {
 } from './kalshiClient.js';
 import { matchPredictionsToMarkets, type MatchedBet } from './marketMatcher.js';
 import { sendBetPlacedAlert, sendNoBetsAlert } from '../alerts/discord.js';
+import { getTeamGamesPlayed } from '../api/mlbClient.js';
 import { logger } from '../logger.js';
+
+// ─── Early-season threshold ───────────────────────────────────────────────────
+
+const KALSHI_MIN_TEAM_GAMES = parseInt(process.env.KALSHI_MIN_TEAM_GAMES ?? '10', 10);
 
 export interface KalshiBetRecord {
   id?: number;
@@ -186,6 +191,30 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
     if (balanceDollars < BET_SIZE_DOLLARS) {
       logger.warn({ balance: balanceDollars }, 'Insufficient balance — stopping');
       break;
+    }
+
+    // ── Early-season data reliability check ───────────────────────────────
+    const homeTeam = candidate.prediction.home_team;
+    const awayTeam = candidate.prediction.away_team;
+    const matchup = `${awayTeam} @ ${homeTeam}`;
+
+    try {
+      const [homeGP, awayGP] = await Promise.all([
+        getTeamGamesPlayed(homeTeam),
+        getTeamGamesPlayed(awayTeam),
+      ]);
+
+      if (homeGP < KALSHI_MIN_TEAM_GAMES || awayGP < KALSHI_MIN_TEAM_GAMES) {
+        const minGP = Math.min(homeGP, awayGP);
+        logger.info(
+          { matchup, homeGP, awayGP, minRequired: KALSHI_MIN_TEAM_GAMES },
+          `Skipping ${matchup} — early season (${minGP} games played)`
+        );
+        continue;
+      }
+    } catch (err) {
+      // If we can't verify games played, log and continue (don't block bets)
+      logger.warn({ err, matchup }, 'Could not verify games played — skipping early-season check');
     }
 
     // Check edge if Vegas lines are loaded (optional guard)

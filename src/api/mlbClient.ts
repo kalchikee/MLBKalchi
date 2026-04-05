@@ -336,6 +336,45 @@ export async function fetchTeamStats(teamId: number, season: number = new Date()
   };
 }
 
+// ─── Games played helper ──────────────────────────────────────────────────────
+
+/**
+ * Get the number of games a team has played this season.
+ * Reads from cached team stats to avoid extra API calls.
+ *
+ * @param teamAbbr  Three-letter team abbreviation (e.g. "DET")
+ * @returns         Games played this season, or 0 if stats unavailable
+ */
+export async function getTeamGamesPlayed(teamAbbr: string): Promise<number> {
+  // Reverse-lookup teamId from abbreviation
+  const teamId = Object.entries(TEAM_ID_TO_ABBR).find(
+    ([, abbr]) => abbr === teamAbbr
+  )?.[0];
+
+  if (!teamId) {
+    logger.warn({ teamAbbr }, 'getTeamGamesPlayed: unknown team abbreviation');
+    return 0;
+  }
+
+  const season = new Date().getFullYear();
+  const hitUrl = `${MLB_BASE}/teams/${teamId}/stats?stats=season&season=${season}&group=hitting`;
+
+  let data: Record<string, unknown>;
+  try {
+    data = await fetchWithRetry<Record<string, unknown>>(hitUrl);
+  } catch {
+    logger.warn({ teamAbbr }, 'getTeamGamesPlayed: failed to fetch team stats');
+    return 0;
+  }
+
+  const stats = (data as any)?.stats;
+  if (!Array.isArray(stats) || stats.length === 0) return 0;
+  const splits = stats[0]?.splits;
+  if (!Array.isArray(splits) || splits.length === 0) return 0;
+  const gp = parseFloat(String(splits[0]?.stat?.gamesPlayed ?? '0'));
+  return isNaN(gp) ? 0 : Math.floor(gp);
+}
+
 // ─── Recent game log fetcher ──────────────────────────────────────────────────
 
 export async function fetchRecentGameLog(

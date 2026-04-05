@@ -5,9 +5,10 @@
 
 import 'dotenv/config';
 import { runPipeline } from '../pipeline.js';
-import { initDb, closeDb } from '../db/database.js';
+import { initDb, closeDb, getPredictionsByDate } from '../db/database.js';
 import { runBetEngine, ensureKalshiBetsTable } from '../kalshi/betEngine.js';
 import { sendMorningBriefing } from '../alerts/discord.js';
+import { sendMorningBriefingEmail } from '../alerts/email.js';
 import { logger } from '../logger.js';
 
 const date = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
@@ -26,6 +27,12 @@ try {
 
   // 3. Single Discord message
   await sendMorningBriefing(date, bets);
+
+  // 4. Email briefing via Resend (graceful no-op if keys not configured)
+  const predictions = getPredictionsByDate(date);
+  await sendMorningBriefingEmail(date, predictions).catch(err =>
+    logger.warn({ err }, '[Morning Action] Email briefing failed — continuing')
+  );
 
   logger.info({ date, bets: bets.length }, '[Morning Action] Complete');
 } catch (err) {

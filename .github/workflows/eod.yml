@@ -3,7 +3,7 @@ name: EOD Summary (11 PM ET)
 on:
   schedule:
     - cron: '0 3 * * *'    # 03:00 UTC = 11:00 PM ET (EDT, Mar–Nov)
-  workflow_dispatch:         # Allow manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   eod:
@@ -14,6 +14,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Get today's date (ET)
+        id: date
+        run: echo "date=$(TZ='America/New_York' date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -23,22 +27,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Download DB from morning run (if available)
-        uses: actions/download-artifact@v4
-        continue-on-error: true   # OK if morning artifact expired or wasn't uploaded
+      # Restore DB written by monitor job (has stop-loss records + settled bets)
+      - name: Restore DB cache
+        uses: actions/cache/restore@v4
         with:
-          pattern: mlb-oracle-db-*
-          merge-multiple: true
-          path: data/
+          path: data/mlb_oracle.db
+          key: mlb-oracle-db-${{ steps.date.outputs.date }}
+          restore-keys: mlb-oracle-db-
 
-      - name: Check positions for stop-losses + send EOD Discord summary
+      - name: Final position check + send EOD Discord summary
         env:
           KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
           KALSHI_PAPER_TRADING: 'true'
           KALSHI_CASHOUT_LOSS_PCT: '0.20'
           DB_PATH: './data/mlb_oracle.db'
-          CACHE_DIR: './cache'
           LOG_LEVEL: 'info'
         run: node --loader ts-node/esm src/actions/eod.ts
+
+      # Save final DB for next day's morning job to restore (carries Elo forward)
+      - name: Save final DB to cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: data/mlb_oracle.db
+          key: mlb-oracle-db-${{ steps.date.outputs.date }}-final

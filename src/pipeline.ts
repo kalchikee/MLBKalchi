@@ -10,7 +10,7 @@ import { runFullMonteCarlo } from './models/monteCarlo.js';
 import { upsertPrediction, initDb } from './db/database.js';
 import { preloadStatcastData } from './api/statcastClient.js';
 import { loadModel, predict as mlPredict, isModelLoaded, getModelInfo } from './models/metaModel.js';
-import { computeEdgeFromFile, formatEdge } from './features/marketEdge.js';
+import { computeEdgeFromFile, formatEdge, loadOddsApiLines } from './features/marketEdge.js';
 import { getOddsForGame, hasAnyOdds } from './api/oddsClient.js';
 import type { Game, Prediction, PipelineOptions } from './types.js';
 
@@ -68,14 +68,25 @@ export async function runPipeline(options: PipelineOptions = {}): Promise<Predic
 
   logger.info({ gameDate, games: games.length }, 'Games fetched');
 
-  // 6. Process each game
+  // 6. Fetch live moneylines from The Odds API (30-min cached)
+  let oddsApiMap: Map<string, { homeML: number; awayML: number }> = new Map();
+  try {
+    oddsApiMap = await loadOddsApiLines(gameDate);
+    if (oddsApiMap.size > 0) {
+      logger.info({ games: oddsApiMap.size }, 'The Odds API lines loaded');
+    }
+  } catch (err) {
+    logger.warn({ err }, 'Failed to load Odds API lines — continuing without live odds');
+  }
+
+  // 7. Process each game
   const predictions: Prediction[] = [];
   let processed = 0;
   let failed = 0;
 
   for (const game of games) {
     try {
-      const pred = await processGame(game, gameDate, modelLoaded);
+      const pred = await processGame(game, gameDate, modelLoaded, oddsApiMap);
       if (pred) {
         predictions.push(pred);
         processed++;
@@ -93,7 +104,7 @@ export async function runPipeline(options: PipelineOptions = {}): Promise<Predic
 
   logger.info({ processed, failed, total: games.length }, 'Pipeline complete');
 
-  // 7. Print formatted predictions
+  // 8. Print formatted predictions
   if (options.verbose !== false) {
     printPredictions(predictions, gameDate, modelLoaded);
   }
@@ -107,6 +118,7 @@ async function processGame(
   game: Game,
   gameDate: string,
   modelLoaded: boolean,
+  oddsApiMap: Map<string, { homeML: number; awayML: number }> = new Map(),
 ): Promise<Prediction | null> {
   const homeAbbr = game.homeTeam.abbreviation ?? TEAM_ID_TO_ABBR[game.homeTeam.id] ?? 'UNK';
   const awayAbbr = game.awayTeam.abbreviation ?? TEAM_ID_TO_ABBR[game.awayTeam.id] ?? 'UNK';
@@ -150,8 +162,8 @@ async function processGame(
     );
   }
 
-  // ── Step D: Market edge computation (Phase 3) ──────────────────────────────
-  // getOddsForGame() checks manual lines first, then data/vegas_lines.json
+  // ── Step D: Market edge computation (Phase 3 + Odds API) ─────────────────
+  // Priority: manual lines / vegas_lines.json → The Odds API live feed
   let vegas_prob: number | undefined;
   let edge: number | undefined;
 
@@ -166,6 +178,24 @@ async function processGame(
         { gamePk: game.gamePk, matchup: `${awayAbbr} @ ${homeAbbr}` },
         formatEdge(edgeResult)
       );
+    }
+  } else {
+    // Fall back to The Odds API live lines
+    const oddsKey = `${awayAbbr}@${homeAbbr}`;
+    const apiLine = oddsApiMap.get(oddsKey);
+    if (apiLine) {
+      try {
+        const { computeEdge } = await import('./features/marketEdge.js');
+        const edgeResult = computeEdge(calibrated_prob, apiLine.homeML, apiLine.awayML);
+        vegas_prob = edgeResult.vegasProb;
+        edge = edgeResult.edge;
+        logger.info(
+          { gamePk: game.gamePk, matchup: oddsKey, source: 'OddsAPI' },
+          formatEdge(edgeResult)
+        );
+      } catch (err) {
+        logger.warn({ err, gamePk: game.gamePk }, 'Failed to compute edge from Odds API line');
+      }
     }
   }
 

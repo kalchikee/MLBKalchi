@@ -7,6 +7,7 @@ import { initDb, closeDb } from '../db/database.js';
 import { ensureKalshiBetsTable, getOpenBets, getAllBetsForDate, updateBetClosed } from '../kalshi/betEngine.js';
 import { getMarket, PAPER_TRADING, CASHOUT_LOSS_PCT } from '../kalshi/kalshiClient.js';
 import { sendEODSummaryAlert } from '../alerts/discord.js';
+import { sendEODSummaryEmail } from '../alerts/email.js';
 import { logger } from '../logger.js';
 
 const date = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
@@ -65,6 +66,11 @@ try {
   const open       = allBets.filter(b => b.status === 'open').length;
 
   await sendEODSummaryAlert(date, allBets, { totalCost, totalPnl, wins, losses, open }, PAPER_TRADING);
+
+  // Email summary via Resend (graceful no-op if keys not configured)
+  await sendEODSummaryEmail(date, allBets, { totalCost, totalPnl, wins, losses, open }, PAPER_TRADING).catch(err =>
+    logger.warn({ err }, '[EOD Action] Email summary failed — continuing')
+  );
 
   logger.info({ date, bets: allBets.length, pnl: totalPnl.toFixed(2) }, '[EOD Action] Complete');
 } catch (err) {
