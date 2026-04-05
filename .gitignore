@@ -6,7 +6,7 @@ data/*.db-journal
 cache/
 logs/
 data/statcast/
-data/model/
+# data/model/ — committed so GitHub Actions can use the trained model
 data/historical_features.csv
 data/build_checkpoint.json
 data/backtest_results.json

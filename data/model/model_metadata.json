@@ -1,0 +1,91 @@
+{
+  "version": "4.0.0",
+  "model_type": "logistic_regression_calibrated",
+  "calibration_method": "isotonic",
+  "feature_names": [
+    "elo_diff",
+    "sp_xfip_diff",
+    "sp_kbb_diff",
+    "sp_siera_diff",
+    "sp_csw_diff",
+    "sp_rolling_gs_diff",
+    "bullpen_strength_diff",
+    "lineup_woba_diff",
+    "lineup_wrc_plus_diff",
+    "team_10d_woba_diff",
+    "team_10d_fip_diff",
+    "pythagorean_diff",
+    "log5_prob",
+    "drs_diff",
+    "catcher_framing_diff",
+    "park_factor",
+    "wind_out_cf",
+    "wind_in_cf",
+    "temperature",
+    "umpire_run_factor",
+    "rest_days_diff",
+    "travel_tz_shift",
+    "day_after_night",
+    "is_home",
+    "statcast_xba_diff",
+    "statcast_barrel_diff",
+    "statcast_hardhit_diff",
+    "statcast_ev_diff",
+    "gb_rate_diff",
+    "sci_adjusted_diff"
+  ],
+  "n_features": 30,
+  "train_dates": "2018-04-01 to 2024-10-31",
+  "test_dates": "2022\u20132025 (walk-forward CV)",
+  "cv_results": [
+    {
+      "label": "2022",
+      "train_rows": 7303,
+      "test_rows": 2466,
+      "brier": 0.2393019092533756,
+      "log_loss": 0.6725351798319678,
+      "accuracy": 0.5908353609083536,
+      "high_conf_accuracy": 0.6555183946488294,
+      "high_conf_count": 1196
+    },
+    {
+      "label": "2023",
+      "train_rows": 9769,
+      "test_rows": 2450,
+      "brier": 0.2405985802737786,
+      "log_loss": 0.6738368071504558,
+      "accuracy": 0.5808163265306122,
+      "high_conf_accuracy": 0.6332684824902723,
+      "high_conf_count": 1028
+    },
+    {
+      "label": "2024",
+      "train_rows": 12219,
+      "test_rows": 2417,
+      "brier": 0.2405623136846904,
+      "log_loss": 0.6748511585584615,
+      "accuracy": 0.5817128671907323,
+      "high_conf_accuracy": 0.6540803897685749,
+      "high_conf_count": 821
+    },
+    {
+      "label": "2025",
+      "train_rows": 14636,
+      "test_rows": 2409,
+      "brier": 0.24043513630464067,
+      "log_loss": 0.6733513326735204,
+      "accuracy": 0.5699460356994603,
+      "high_conf_accuracy": 0.6403402187120292,
+      "high_conf_count": 823
+    }
+  ],
+  "avg_brier": 0.2402244848791213,
+  "avg_accuracy": 0.5808276475822897,
+  "trained_at": "2026-04-04T23:36:50.491822",
+  "sklearn_params": {
+    "C": 1.0,
+    "max_iter": 1000,
+    "solver": "lbfgs",
+    "calibration_cv": 5
+  }
+}

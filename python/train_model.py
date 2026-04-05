@@ -112,7 +112,7 @@ def load_data(csv_path: Path) -> tuple[pd.DataFrame, np.ndarray, np.ndarray, pd.
     df = df.sort_values("game_date").reset_index(drop=True)
 
     print(f"Loaded {len(df)} rows from {csv_path}")
-    print(f"Date range: {df['game_date'].min().date()} → {df['game_date'].max().date()}")
+    print(f"Date range: {df['game_date'].min().date()} -> {df['game_date'].max().date()}")
     print(f"Seasons: {sorted(df['game_date'].dt.year.unique())}")
     print(f"Home win rate: {df['label'].mean():.3f}")
 
@@ -279,7 +279,7 @@ def train_final_model(
     raw_lr.fit(X_scaled[:-holdout_size], y_train_full[:-holdout_size])
     raw_probs = raw_lr.predict_proba(X_cal)[:, 1]
 
-    # Fit isotonic regression: maps raw probabilities → calibrated probabilities
+    # Fit isotonic regression: maps raw probabilities -> calibrated probabilities
     iso_reg = IsotonicRegression(out_of_bounds="clip")
     iso_reg.fit(raw_probs, y_cal)
 
@@ -361,7 +361,7 @@ def print_feature_importance(model: Any, feature_names: list[str], top_n: int = 
         print(f"{'Feature':<30} {'Coefficient':>12} {'Direction'}")
         print("-" * 55)
         for feat, coef in importance[:top_n]:
-            direction = "→ home +" if coef > 0 else "→ away +"
+            direction = "-> home +" if coef > 0 else "-> away +"
             print(f"{feat:<30} {coef:>12.4f}  {direction}")
 
     except Exception as exc:
@@ -488,6 +488,8 @@ def save_model_artifacts(
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main() -> None:
+    global MODEL_DIR
+
     parser = argparse.ArgumentParser(
         description="MLB Oracle v4.0 — ML Model Trainer",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -518,7 +520,6 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    global MODEL_DIR
     MODEL_DIR = args.output_dir
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
 

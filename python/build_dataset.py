@@ -648,9 +648,11 @@ def build_dataset(
                     team_cache[cache_key] = {}
 
         # Remap team_cache to use integer keys (as the function expects)
-        for (tid, s), stats in list(team_cache.items()):
-            if s == season:
-                team_cache[tid] = stats  # also store by team_id for this season
+        for key, stats in list(team_cache.items()):
+            if isinstance(key, tuple):
+                tid, s = key
+                if s == season:
+                    team_cache[tid] = stats  # also store by team_id for this season
 
         print(f"Processing {len(completed_games)} games...")
         for game in tqdm(completed_games, desc=f"Season {season}", unit="game"):
