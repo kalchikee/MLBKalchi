@@ -411,6 +411,108 @@ export async function fetchRecentGameLog(
   return results;
 }
 
+// ─── Pitcher actual recent form (last N starts game log) ─────────────────────
+
+/**
+ * Fetch a pitcher's actual last-N-starts average game score from the game log.
+ * Falls back to the estimated value if no game log entries are found.
+ *
+ * Game score formula (simplified): 50 + (K*2) - (BB*4) - (H*2) - (ER*6)
+ * MLB API doesn't return game score directly, so we compute it from the log splits.
+ */
+export async function fetchPitcherRecentForm(
+  playerId: number,
+  season: number = new Date().getFullYear(),
+  nStarts: number = 5,
+): Promise<number | null> {
+  if (!playerId || playerId <= 0) return null;
+
+  const url = `${MLB_BASE}/people/${playerId}/stats?stats=gameLog&season=${season}&group=pitching`;
+  let data: Record<string, unknown>;
+  try {
+    data = await fetchWithRetry<Record<string, unknown>>(url);
+  } catch {
+    return null;
+  }
+
+  const stats = (data as any)?.stats;
+  if (!Array.isArray(stats) || stats.length === 0) return null;
+
+  // Game log splits are newest-first
+  const splits: Record<string, unknown>[] = (stats[0]?.splits ?? []) as Record<string, unknown>[];
+  if (splits.length === 0) return null;
+
+  // Filter to starts only (gamesStarted > 0 or inningsPitched > 1)
+  const startSplits = splits.filter((s: any) =>
+    safeNum(s?.stat?.gamesStarted, 0) > 0 || safeNum(s?.stat?.inningsPitched, 0) >= 1
+  ).slice(0, nStarts);
+
+  if (startSplits.length === 0) return null;
+
+  const scores = startSplits.map((s: any) => {
+    const stat = s?.stat ?? {};
+    const k  = safeNum(stat.strikeOuts, 0);
+    const bb = safeNum(stat.baseOnBalls, 0);
+    const h  = safeNum(stat.hits, 0);
+    const er = safeNum(stat.earnedRuns, 0);
+    const ip = safeNum(stat.inningsPitched, 1);
+    // Scale to roughly 6-inning outing (fair comparison across starts)
+    const scale = Math.min(1.5, ip / 6);
+    const raw = 50 + (k * 2) - (bb * 4) - (h * 2) - (er * 6);
+    return Math.max(10, Math.min(90, raw * scale));
+  });
+
+  const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+  return Math.max(10, Math.min(90, avg));
+}
+
+// ─── IL/Injury roster fetch ───────────────────────────────────────────────────
+
+export interface ILPlayer {
+  playerId: number;
+  playerName: string;
+  position: string;   // 'P' (pitcher), 'C', '1B', '2B', '3B', 'SS', 'OF', 'DH', etc.
+  ilType: '10-Day' | '15-Day' | '60-Day' | 'Other';
+}
+
+/**
+ * Fetch the current 10-day + 60-day IL roster for a team.
+ * Returns an empty array if the API call fails.
+ */
+export async function fetchTeamILPlayers(teamId: number): Promise<ILPlayer[]> {
+  const url = `${MLB_BASE}/teams/${teamId}/roster?rosterType=40Man`;
+  let data: Record<string, unknown>;
+  try {
+    data = await fetchWithRetry<Record<string, unknown>>(url);
+  } catch {
+    return [];
+  }
+
+  const roster: unknown[] = (data as any)?.roster ?? [];
+  const ilPlayers: ILPlayer[] = [];
+
+  for (const entry of roster) {
+    const e = entry as any;
+    const status = (e?.status?.description ?? '').toLowerCase();
+    if (!status.includes('il') && !status.includes('injured')) continue;
+
+    const posCode: string = e?.position?.abbreviation ?? e?.position?.code ?? 'UNK';
+    let ilType: ILPlayer['ilType'] = 'Other';
+    if (status.includes('60')) ilType = '60-Day';
+    else if (status.includes('15')) ilType = '15-Day';
+    else if (status.includes('10')) ilType = '10-Day';
+
+    ilPlayers.push({
+      playerId: e?.person?.id ?? 0,
+      playerName: e?.person?.fullName ?? '',
+      position: posCode,
+      ilType,
+    });
+  }
+
+  return ilPlayers;
+}
+
 // ─── Rolling stats computation ────────────────────────────────────────────────
 
 export async function computeRollingStats(

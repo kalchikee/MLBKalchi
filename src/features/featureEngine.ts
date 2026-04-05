@@ -11,7 +11,8 @@ import type {
   ParkFactor, SPScore, WindAdjustment, DrsTeam
 } from '../types.js';
 import {
-  fetchPitcherStats, fetchTeamStats, computeRollingStats, TEAM_ID_TO_ABBR
+  fetchPitcherStats, fetchTeamStats, computeRollingStats, TEAM_ID_TO_ABBR,
+  fetchPitcherRecentForm, fetchTeamILPlayers, type ILPlayer,
 } from '../api/mlbClient.js';
 import { fetchParkWeather } from '../api/weatherClient.js';
 import {
@@ -170,8 +171,8 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
 
   const year = new Date(gameDate).getFullYear();
 
-  // Fetch pitcher stats and team stats in parallel
-  const [homeSPStats, awaySPStats, homeTeamStats, awayTeamStats] = await Promise.all([
+  // Fetch pitcher stats, team stats, IL rosters, and recent form in parallel
+  const [homeSPStats, awaySPStats, homeTeamStats, awayTeamStats, homeIL, awayIL] = await Promise.all([
     game.homeTeam.probablePitcher?.id
       ? fetchPitcherStats(game.homeTeam.probablePitcher.id)
       : Promise.resolve(null),
@@ -180,13 +181,66 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
       : Promise.resolve(null),
     fetchTeamStats(game.homeTeam.id),
     fetchTeamStats(game.awayTeam.id),
+    fetchTeamILPlayers(game.homeTeam.id).catch(() => [] as ILPlayer[]),
+    fetchTeamILPlayers(game.awayTeam.id).catch(() => [] as ILPlayer[]),
   ]);
 
-  // Rolling stats
-  const [homeRolling, awayRolling] = await Promise.all([
+  // ── IL/Injury adjustments ─────────────────────────────────────────────────
+  // Check if either team's probable SP is on the IL
+  const homeSPOnIL = homeIL.some(p =>
+    p.position === 'P' && game.homeTeam.probablePitcher?.id === p.playerId
+  );
+  const awaySPOnIL = awayIL.some(p =>
+    p.position === 'P' && game.awayTeam.probablePitcher?.id === p.playerId
+  );
+
+  if (homeSPOnIL) {
+    logger.warn({ pitcher: game.homeTeam.probablePitcher?.fullName, team: homeAbbr }, '[IL] Home SP on IL — using league avg');
+  }
+  if (awaySPOnIL) {
+    logger.warn({ pitcher: game.awayTeam.probablePitcher?.fullName, team: awayAbbr }, '[IL] Away SP on IL — using league avg');
+  }
+
+  // Count position players on IL (rough offensive impact estimate)
+  const positionCodes = new Set(['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'OF', 'DH', 'UT']);
+  const homeILBatters = homeIL.filter(p => positionCodes.has(p.position) && p.ilType !== '60-Day').length;
+  const awayILBatters = awayIL.filter(p => positionCodes.has(p.position) && p.ilType !== '60-Day').length;
+
+  // Each IL batter costs roughly 0.005 wOBA (avg batter ≈ 0.320; replacement ≈ 0.280)
+  const IL_WOBA_COST_PER_PLAYER = 0.005;
+  const homeILWobaAdj = homeILBatters * IL_WOBA_COST_PER_PLAYER;
+  const awayILWobaAdj = awayILBatters * IL_WOBA_COST_PER_PLAYER;
+
+  if (homeILBatters > 0 || awayILBatters > 0) {
+    logger.info({ homeILBatters, awayILBatters }, '[IL] Lineup adjustments applied');
+  }
+
+  // Rolling stats + actual pitcher recent form (in parallel)
+  const [homeRolling, awayRolling, homeSPRecentForm, awaySPRecentForm] = await Promise.all([
     computeRollingStats(game.homeTeam.id, gameDate),
     computeRollingStats(game.awayTeam.id, gameDate),
+    game.homeTeam.probablePitcher?.id && !homeSPOnIL
+      ? fetchPitcherRecentForm(game.homeTeam.probablePitcher.id, year).catch(() => null)
+      : Promise.resolve(null),
+    game.awayTeam.probablePitcher?.id && !awaySPOnIL
+      ? fetchPitcherRecentForm(game.awayTeam.probablePitcher.id, year).catch(() => null)
+      : Promise.resolve(null),
   ]);
+
+  // Upgrade rollingGameScore with actual last-5-starts if available
+  if (homeSPStats && homeSPRecentForm !== null) {
+    homeSPStats.rollingGameScore = homeSPRecentForm;
+    logger.debug({ pitcher: game.homeTeam.probablePitcher?.fullName, recentForm: homeSPRecentForm.toFixed(1) }, '[SP] Using actual recent game scores');
+  }
+  if (awaySPStats && awaySPRecentForm !== null) {
+    awaySPStats.rollingGameScore = awaySPRecentForm;
+    logger.debug({ pitcher: game.awayTeam.probablePitcher?.fullName, recentForm: awaySPRecentForm.toFixed(1) }, '[SP] Using actual recent game scores');
+  }
+
+  // If SP is on IL, reset to league average so model doesn't overrate a missing pitcher
+  const defaultSPFallback = getDefaultSPStats();
+  const effectiveHomeSP = homeSPOnIL ? null : homeSPStats;
+  const effectiveAwaySP = awaySPOnIL ? null : awaySPStats;
 
   // Park factor
   const park = getParkFactor(game.venue.name) ?? getParkFactorByTeam(homeAbbr);
@@ -297,9 +351,8 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
   const awayDrsAdj = awayDrs / 162;
 
   // SP scores (computed for suppression multiplier; component stats used directly in features)
-  const defaultSPStats = getDefaultSPStats();
-  const _homeSP = computeSPScore(homeSPStats ?? defaultSPStats);
-  const _awaySP = computeSPScore(awaySPStats ?? defaultSPStats);
+  const _homeSP = computeSPScore(effectiveHomeSP ?? defaultSPFallback);
+  const _awaySP = computeSPScore(effectiveAwaySP ?? defaultSPFallback);
   void _homeSP; void _awaySP; // suppress unused variable warning — SP scores reserved for Phase 5
 
   // Team run rates for pythagorean
@@ -312,9 +365,13 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
   const awayPythPct = pythagoreanWinPct(awayRPG, awayRA);
   const log5 = log5Probability(homePythPct, awayPythPct);
 
-  // wOBA and wRC+
-  const homeWoba = estimateLineupWoba(homeTeamStats ?? getDefaultTeamStats(homeAbbr));
-  const awayWoba = estimateLineupWoba(awayTeamStats ?? getDefaultTeamStats(awayAbbr));
+  // wOBA and wRC+ — adjusted for IL position players
+  const homeWoba = Math.max(0.260,
+    estimateLineupWoba(homeTeamStats ?? getDefaultTeamStats(homeAbbr)) - homeILWobaAdj
+  );
+  const awayWoba = Math.max(0.260,
+    estimateLineupWoba(awayTeamStats ?? getDefaultTeamStats(awayAbbr)) - awayILWobaAdj
+  );
   const homeWrcPlus = estimateLineupWrcPlus(homeTeamStats ?? getDefaultTeamStats(homeAbbr));
   const awayWrcPlus = estimateLineupWrcPlus(awayTeamStats ?? getDefaultTeamStats(awayAbbr));
 
@@ -343,13 +400,13 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
   const awayGB = awayTeamStats?.gbRate ?? 0.43;
 
   const features: FeatureVector = {
-    // Pitcher differentials
+    // Pitcher differentials (uses effectiveSP which is null if pitcher is on IL → falls back to league avg)
     elo_diff: getEloDiff(homeAbbr, awayAbbr),
-    sp_xfip_diff: (homeSPStats?.xfip ?? 4.20) - (awaySPStats?.xfip ?? 4.20),
-    sp_kbb_diff: (homeSPStats?.kBBPct ?? 0.14) - (awaySPStats?.kBBPct ?? 0.14),
-    sp_siera_diff: (homeSPStats?.siera ?? 4.20) - (awaySPStats?.siera ?? 4.20),
-    sp_csw_diff: (homeSPStats?.cswRate ?? 0.28) - (awaySPStats?.cswRate ?? 0.28),
-    sp_rolling_gs_diff: (homeSPStats?.rollingGameScore ?? 50) - (awaySPStats?.rollingGameScore ?? 50),
+    sp_xfip_diff: (effectiveHomeSP?.xfip ?? 4.20) - (effectiveAwaySP?.xfip ?? 4.20),
+    sp_kbb_diff: (effectiveHomeSP?.kBBPct ?? 0.14) - (effectiveAwaySP?.kBBPct ?? 0.14),
+    sp_siera_diff: (effectiveHomeSP?.siera ?? 4.20) - (effectiveAwaySP?.siera ?? 4.20),
+    sp_csw_diff: (effectiveHomeSP?.cswRate ?? 0.28) - (effectiveAwaySP?.cswRate ?? 0.28),
+    sp_rolling_gs_diff: (effectiveHomeSP?.rollingGameScore ?? 50) - (effectiveAwaySP?.rollingGameScore ?? 50),
 
     // Bullpen & lineup
     bullpen_strength_diff: bullpenStrengthDiff,
