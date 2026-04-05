@@ -1,0 +1,44 @@
+name: EOD Summary (11 PM ET)
+
+on:
+  schedule:
+    - cron: '0 3 * * *'    # 03:00 UTC = 11:00 PM ET (EDT, Mar–Nov)
+  workflow_dispatch:         # Allow manual trigger from GitHub UI
+
+jobs:
+  eod:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download DB from morning run (if available)
+        uses: actions/download-artifact@v4
+        continue-on-error: true   # OK if morning artifact expired or wasn't uploaded
+        with:
+          pattern: mlb-oracle-db-*
+          merge-multiple: true
+          path: data/
+
+      - name: Check positions for stop-losses + send EOD Discord summary
+        env:
+          KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          KALSHI_PAPER_TRADING: 'true'
+          KALSHI_CASHOUT_LOSS_PCT: '0.20'
+          DB_PATH: './data/mlb_oracle.db'
+          CACHE_DIR: './cache'
+          LOG_LEVEL: 'info'
+        run: node --loader ts-node/esm src/actions/eod.ts

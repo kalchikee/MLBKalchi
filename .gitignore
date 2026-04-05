@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+data/*.db
+data/*.db-journal
+cache/
+logs/
+data/statcast/
+data/model/
+data/historical_features.csv
+data/build_checkpoint.json
+data/backtest_results.json
+*.log

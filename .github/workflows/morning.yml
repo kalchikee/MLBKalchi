@@ -1,0 +1,47 @@
+name: Morning Briefing (6 AM ET)
+
+on:
+  schedule:
+    - cron: '0 10 * * *'   # 10:00 UTC = 6:00 AM ET (EDT, Mar–Nov)
+  workflow_dispatch:         # Allow manual trigger from GitHub UI
+
+jobs:
+  morning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run pipeline + bet engine + send morning Discord
+        env:
+          KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          KALSHI_PAPER_TRADING: 'true'
+          KALSHI_BET_SIZE: '10'
+          KALSHI_MIN_PROB: '0.65'
+          KALSHI_MIN_EDGE: '0.05'
+          KALSHI_CASHOUT_LOSS_PCT: '0.20'
+          DB_PATH: './data/mlb_oracle.db'
+          CACHE_DIR: './cache'
+          CACHE_TTL_HOURS: '1'
+          LOG_LEVEL: 'info'
+        run: node --loader ts-node/esm src/actions/morning.ts
+
+      - name: Upload DB artifact (for EOD job to read)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-oracle-db-${{ github.run_id }}
+          path: data/mlb_oracle.db
+          retention-days: 1
