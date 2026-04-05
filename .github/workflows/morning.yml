@@ -45,7 +45,7 @@ jobs:
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
           RESEND_TO: ${{ secrets.RESEND_TO }}
           KALSHI_PAPER_TRADING: 'true'
-          KALSHI_MIN_PROB: '0.65'
+          KALSHI_MIN_PROB: '0.70'
           KALSHI_MIN_EDGE: '0.05'
           KALSHI_CASHOUT_LOSS_PCT: '0.20'
           KALSHI_MIN_TEAM_GAMES: '10'
