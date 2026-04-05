@@ -247,11 +247,28 @@ def print_pnl_table(pnl_results: list[dict], edge_assumption: float = 0.07) -> N
     print("=" * 85)
 
 
+# ─── Structural bet-eligibility filter ───────────────────────────────────────
+# Mirrors the filters in betEngine.ts — only games the system would actually bet.
+
+MIN_PYTH_DIFF = 0.03   # |pythagorean_diff| — skip toss-ups
+MIN_ELO_DIFF  = 25.0   # |elo_diff|         — skip equal-quality matchups
+SKIP_MONTH    = 10     # October            — small sample, playoff chaos
+
+
+def build_eligible_mask(df_slice: pd.DataFrame) -> np.ndarray:
+    """Return boolean mask of games that pass the structural quality filters."""
+    pyth_ok  = df_slice["pythagorean_diff"].abs() >= MIN_PYTH_DIFF
+    elo_ok   = df_slice["elo_diff"].abs()          >= MIN_ELO_DIFF
+    month_ok = pd.to_datetime(df_slice["game_date"]).dt.month != SKIP_MONTH
+    return (pyth_ok & elo_ok & month_ok).values
+
+
 def walk_forward_cv(
     X: np.ndarray,
     y: np.ndarray,
     dates: pd.Series,
     cv_splits: list[dict],
+    df: pd.DataFrame | None = None,   # needed for structural filter features
 ) -> list[dict]:
     """
     Time-series (walk-forward) cross-validation.
@@ -266,6 +283,7 @@ def walk_forward_cv(
     results = []
     all_proba: list[float] = []
     all_outcomes: list[int] = []
+    all_eligible: list[bool] = []   # True = game passes structural filters
 
     print("\n" + "=" * 65)
     print("Walk-Forward Cross-Validation")
@@ -338,6 +356,13 @@ def walk_forward_cv(
         all_proba.extend(y_proba.tolist())
         all_outcomes.extend(y_test.tolist())
 
+        # Build structural eligibility mask for this test split
+        if df is not None:
+            eligible = build_eligible_mask(df.loc[test_mask])
+        else:
+            eligible = np.ones(len(y_test), dtype=bool)
+        all_eligible.extend(eligible.tolist())
+
         hc_str = f"  (HC: {hc_acc:.3f}, n={high_conf_mask.sum()})" if high_conf_mask.sum() > 0 else ""
         print(
             f"{split['label']:<8} {len(X_train):<12} {len(X_test):<11} "
@@ -356,21 +381,49 @@ def walk_forward_cv(
         print(f"\nBrier reference: 0.2500 (random 50/50)")
         print(f"LogLoss reference: 0.6931 (random 50/50)")
 
-    # Full P&L simulation across all test splits combined
+    # ── P&L simulation: all games vs structurally filtered games ─────────────
     if all_proba:
-        pnl_results = simulate_kalshi_pnl(
-            np.array(all_proba),
-            np.array(all_outcomes),
+        proba_arr   = np.array(all_proba)
+        outcome_arr = np.array(all_outcomes)
+        eligible_arr = np.array(all_eligible)
+
+        filt_pct = eligible_arr.mean() * 100
+        print(f"\nStructural filter ({MIN_PYTH_DIFF} pyth gap, {MIN_ELO_DIFF:.0f} Elo gap, no Oct):")
+        print(f"  {eligible_arr.sum():,} / {len(eligible_arr):,} test games pass ({filt_pct:.1f}%)")
+
+        # Overall accuracy on filtered vs unfiltered at HC threshold
+        hc_thr = 0.60
+        for label, arr_p, arr_o in [
+            ("All games    ", proba_arr, outcome_arr),
+            ("Filtered only", proba_arr[eligible_arr], outcome_arr[eligible_arr]),
+        ]:
+            hc_mask = (arr_p >= hc_thr) | (arr_p <= 1 - hc_thr)
+            if hc_mask.sum() > 0:
+                hc_acc = ((arr_p[hc_mask] >= 0.5).astype(int) == arr_o[hc_mask]).mean()
+                print(f"  {label}: {hc_mask.sum():,} HC bets — {hc_acc:.1%} accuracy")
+
+        # P&L for ALL games
+        print("\n-- ALL GAMES --------------------------------------------------")
+        pnl_all = simulate_kalshi_pnl(
+            proba_arr, outcome_arr,
             thresholds=[0.55, 0.60, 0.65, 0.70, 0.75],
             edge_assumption=0.07,
         )
-        print_pnl_table(pnl_results)
+        print_pnl_table(pnl_all)
 
-        # Attach aggregate P&L to results for metadata saving
+        # P&L for FILTERED games only
+        print("\n-- FILTERED GAMES ONLY (bettable per structural rules) --------")
+        pnl_filtered = simulate_kalshi_pnl(
+            proba_arr[eligible_arr], outcome_arr[eligible_arr],
+            thresholds=[0.55, 0.60, 0.65, 0.70, 0.75],
+            edge_assumption=0.07,
+        )
+        print_pnl_table(pnl_filtered)
+
+        # Attach to results for metadata saving
         for r in results:
-            r["pnl_simulation"] = [
-                p for p in pnl_results if p["threshold"] == 0.65
-            ]
+            r["pnl_all_65"]      = next((p for p in pnl_all      if p["threshold"] == 0.65 and p["scenario"] == "realistic"), None)
+            r["pnl_filtered_65"] = next((p for p in pnl_filtered if p["threshold"] == 0.65 and p["scenario"] == "realistic"), None)
 
     return results
 
@@ -687,7 +740,7 @@ def main() -> None:
         sys.exit(1)
 
     # Walk-forward cross-validation
-    cv_results = walk_forward_cv(X, y, dates, CV_SPLITS)
+    cv_results = walk_forward_cv(X, y, dates, CV_SPLITS, df=df)
 
     if args.evaluate_only or args.no_save:
         print("\n--evaluate-only: skipping model training and artifact saving.")

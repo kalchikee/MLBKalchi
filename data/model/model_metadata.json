@@ -47,30 +47,28 @@
       "accuracy": 0.5908353609083536,
       "high_conf_accuracy": 0.6555183946488294,
       "high_conf_count": 1196,
-      "pnl_simulation": [
-        {
-          "threshold": 0.65,
-          "scenario": "conservative",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": -71.56,
-          "total_spent": 1430.56,
-          "roi_pct": -5.0,
-          "pnl_per_100_bets_10usd": -35.3
-        },
-        {
-          "threshold": 0.65,
-          "scenario": "realistic",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": 70.33,
-          "total_spent": 1288.67,
-          "roi_pct": 5.46,
-          "pnl_per_100_bets_10usd": 34.7
-        }
-      ]
+      "pnl_all_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 2027,
+        "wins": 1359,
+        "win_rate": 0.6704489393191909,
+        "total_pnl_per_contract": 70.33,
+        "total_spent": 1288.67,
+        "roi_pct": 5.46,
+        "pnl_per_100_bets_10usd": 34.7
+      },
+      "pnl_filtered_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 1359,
+        "wins": 947,
+        "win_rate": 0.6968359087564385,
+        "total_pnl_per_contract": 77.17,
+        "total_spent": 869.83,
+        "roi_pct": 8.87,
+        "pnl_per_100_bets_10usd": 56.78
+      }
     },
     {
       "label": "2023",
@@ -81,30 +79,28 @@
       "accuracy": 0.5808163265306122,
       "high_conf_accuracy": 0.6332684824902723,
       "high_conf_count": 1028,
-      "pnl_simulation": [
-        {
-          "threshold": 0.65,
-          "scenario": "conservative",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": -71.56,
-          "total_spent": 1430.56,
-          "roi_pct": -5.0,
-          "pnl_per_100_bets_10usd": -35.3
-        },
-        {
-          "threshold": 0.65,
-          "scenario": "realistic",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": 70.33,
-          "total_spent": 1288.67,
-          "roi_pct": 5.46,
-          "pnl_per_100_bets_10usd": 34.7
-        }
-      ]
+      "pnl_all_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 2027,
+        "wins": 1359,
+        "win_rate": 0.6704489393191909,
+        "total_pnl_per_contract": 70.33,
+        "total_spent": 1288.67,
+        "roi_pct": 5.46,
+        "pnl_per_100_bets_10usd": 34.7
+      },
+      "pnl_filtered_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 1359,
+        "wins": 947,
+        "win_rate": 0.6968359087564385,
+        "total_pnl_per_contract": 77.17,
+        "total_spent": 869.83,
+        "roi_pct": 8.87,
+        "pnl_per_100_bets_10usd": 56.78
+      }
     },
     {
       "label": "2024",
@@ -115,30 +111,28 @@
       "accuracy": 0.5817128671907323,
       "high_conf_accuracy": 0.6540803897685749,
       "high_conf_count": 821,
-      "pnl_simulation": [
-        {
-          "threshold": 0.65,
-          "scenario": "conservative",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": -71.56,
-          "total_spent": 1430.56,
-          "roi_pct": -5.0,
-          "pnl_per_100_bets_10usd": -35.3
-        },
-        {
-          "threshold": 0.65,
-          "scenario": "realistic",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": 70.33,
-          "total_spent": 1288.67,
-          "roi_pct": 5.46,
-          "pnl_per_100_bets_10usd": 34.7
-        }
-      ]
+      "pnl_all_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 2027,
+        "wins": 1359,
+        "win_rate": 0.6704489393191909,
+        "total_pnl_per_contract": 70.33,
+        "total_spent": 1288.67,
+        "roi_pct": 5.46,
+        "pnl_per_100_bets_10usd": 34.7
+      },
+      "pnl_filtered_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 1359,
+        "wins": 947,
+        "win_rate": 0.6968359087564385,
+        "total_pnl_per_contract": 77.17,
+        "total_spent": 869.83,
+        "roi_pct": 8.87,
+        "pnl_per_100_bets_10usd": 56.78
+      }
     },
     {
       "label": "2025",
@@ -149,35 +143,33 @@
       "accuracy": 0.5699460356994603,
       "high_conf_accuracy": 0.6403402187120292,
       "high_conf_count": 823,
-      "pnl_simulation": [
-        {
-          "threshold": 0.65,
-          "scenario": "conservative",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": -71.56,
-          "total_spent": 1430.56,
-          "roi_pct": -5.0,
-          "pnl_per_100_bets_10usd": -35.3
-        },
-        {
-          "threshold": 0.65,
-          "scenario": "realistic",
-          "bets": 2027,
-          "wins": 1359,
-          "win_rate": 0.6704489393191909,
-          "total_pnl_per_contract": 70.33,
-          "total_spent": 1288.67,
-          "roi_pct": 5.46,
-          "pnl_per_100_bets_10usd": 34.7
-        }
-      ]
+      "pnl_all_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 2027,
+        "wins": 1359,
+        "win_rate": 0.6704489393191909,
+        "total_pnl_per_contract": 70.33,
+        "total_spent": 1288.67,
+        "roi_pct": 5.46,
+        "pnl_per_100_bets_10usd": 34.7
+      },
+      "pnl_filtered_65": {
+        "threshold": 0.65,
+        "scenario": "realistic",
+        "bets": 1359,
+        "wins": 947,
+        "win_rate": 0.6968359087564385,
+        "total_pnl_per_contract": 77.17,
+        "total_spent": 869.83,
+        "roi_pct": 8.87,
+        "pnl_per_100_bets_10usd": 56.78
+      }
     }
   ],
   "avg_brier": 0.2402244848791213,
   "avg_accuracy": 0.5808276475822897,
-  "trained_at": "2026-04-04T23:47:36.172229",
+  "trained_at": "2026-04-04T23:56:52.705257",
   "sklearn_params": {
     "C": 1.0,
     "max_iter": 1000,
