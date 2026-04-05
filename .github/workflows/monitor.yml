@@ -1,0 +1,52 @@
+name: Position Monitor (1 PM – 11 PM ET)
+
+on:
+  schedule:
+    - cron: '0 17 * * *'   # 17:00 UTC = 1:00 PM ET (EDT, Mar–Nov)
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 600   # 10 hours max — more than enough to cover all games
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download DB from morning run
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: mlb-oracle-db-*
+          merge-multiple: true
+          path: data/
+
+      - name: Run position monitor (loops every 2 min until 11 PM ET)
+        env:
+          KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          KALSHI_PAPER_TRADING: 'true'
+          KALSHI_CASHOUT_LOSS_PCT: '0.20'
+          KALSHI_MONITOR_INTERVAL_MS: '120000'
+          DB_PATH: './data/mlb_oracle.db'
+          LOG_LEVEL: 'info'
+        run: node --loader ts-node/esm src/actions/monitor.ts
+
+      - name: Upload updated DB for EOD job
+        if: always()   # upload even if monitor exits early
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-oracle-db-monitor-${{ github.run_id }}
+          path: data/mlb_oracle.db
+          retention-days: 1
