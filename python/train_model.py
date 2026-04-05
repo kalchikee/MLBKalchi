@@ -134,6 +134,119 @@ def load_data(csv_path: Path) -> tuple[pd.DataFrame, np.ndarray, np.ndarray, pd.
 
 # ─── Walk-forward cross-validation ───────────────────────────────────────────
 
+def simulate_kalshi_pnl(
+    all_proba: np.ndarray,
+    all_outcomes: np.ndarray,
+    thresholds: list[float] | None = None,
+    edge_assumption: float = 0.07,
+) -> list[dict]:
+    """
+    Simulate Kalshi-style P&L on the combined test predictions.
+
+    Two pricing scenarios per threshold:
+      Conservative  — pay the model's own probability (no market discount)
+      Realistic     — pay (model_prob - edge_assumption), simulating buying
+                      when the market underprices by ~edge_assumption
+
+    Kalshi mechanics per 1 contract:
+      YES at price P:  win (1-P) if correct, lose P if wrong
+      NO  at price P:  same math from the other side
+
+    Returns list of result dicts for printing/saving.
+    """
+    if thresholds is None:
+        thresholds = [0.55, 0.60, 0.65, 0.70, 0.75]
+
+    results = []
+    for thr in thresholds:
+        for scenario, entry_fn in [
+            ("conservative", lambda p: p),
+            ("realistic",    lambda p: max(0.30, p - edge_assumption)),
+        ]:
+            bets_taken = 0
+            wins = 0
+            total_spent = 0.0
+            total_pnl = 0.0
+
+            for prob, outcome in zip(all_proba, all_outcomes):
+                # --- Home bet ---
+                if prob >= thr:
+                    entry = entry_fn(prob)
+                    cost = entry
+                    pnl = (1.0 - entry) if outcome == 1 else -entry
+                    total_spent += cost
+                    total_pnl += pnl
+                    bets_taken += 1
+                    if outcome == 1:
+                        wins += 1
+                # --- Away bet ---
+                elif prob <= (1.0 - thr):
+                    away_entry = entry_fn(1.0 - prob)
+                    cost = away_entry
+                    pnl = (1.0 - away_entry) if outcome == 0 else -away_entry
+                    total_spent += cost
+                    total_pnl += pnl
+                    bets_taken += 1
+                    if outcome == 0:
+                        wins += 1
+
+            win_rate = wins / bets_taken if bets_taken else 0.0
+            roi = (total_pnl / total_spent * 100) if total_spent > 0 else 0.0
+
+            results.append({
+                "threshold": thr,
+                "scenario": scenario,
+                "bets": bets_taken,
+                "wins": wins,
+                "win_rate": win_rate,
+                "total_pnl_per_contract": round(total_pnl, 2),
+                "total_spent": round(total_spent, 2),
+                "roi_pct": round(roi, 2),
+                # Scale to $10/bet for readability
+                "pnl_per_100_bets_10usd": round((total_pnl / max(1, bets_taken)) * 10 * 100, 2),
+            })
+
+    return results
+
+
+def print_pnl_table(pnl_results: list[dict], edge_assumption: float = 0.07) -> None:
+    """Print a formatted P&L table showing simulated Kalshi returns."""
+    print("\n" + "=" * 85)
+    print("  SIMULATED KALSHI P&L  (1 contract per bet)")
+    print(f"  Conservative = paying model's own probability (fair value)")
+    print(f"  Realistic    = paying model prob - {edge_assumption:.0%} (buying with edge over market)")
+    print("=" * 85)
+    print(f"{'Threshold':<11} {'Scenario':<14} {'Bets':>6} {'Win%':>7} {'P&L/contract':>14} {'ROI':>7}  {'P&L/100 bets@$10':>18}")
+    print("-" * 85)
+
+    prev_thr = None
+    for r in pnl_results:
+        if prev_thr is not None and r["threshold"] != prev_thr:
+            print()
+        prev_thr = r["threshold"]
+        pnl_sign = "+" if r["total_pnl_per_contract"] >= 0 else ""
+        roi_sign = "+" if r["roi_pct"] >= 0 else ""
+        scale_sign = "+" if r["pnl_per_100_bets_10usd"] >= 0 else ""
+        print(
+            f"  >={r['threshold']:.0%}    {r['scenario']:<14} {r['bets']:>6,} "
+            f"{r['win_rate']:>6.1%}  "
+            f"{pnl_sign}{r['total_pnl_per_contract']:>10.2f}    "
+            f"{roi_sign}{r['roi_pct']:>5.1f}%  "
+            f"{scale_sign}${r['pnl_per_100_bets_10usd']:>14.2f}"
+        )
+
+    print("-" * 85)
+    print("  P&L/contract: cumulative dollars won/lost across all test bets (1 contract each)")
+    print("  P&L/100 bets @ $10: what $10/bet sizing earns per 100 bets at this threshold")
+    print()
+
+    # Highlight best ROI
+    best = max(pnl_results, key=lambda r: r["roi_pct"])
+    print(f"  Best ROI: {best['scenario']} at >={best['threshold']:.0%} threshold "
+          f"({best['roi_pct']:+.1f}% ROI, {best['bets']:,} bets)")
+    print("=" * 85)
+
+
 def walk_forward_cv(
     X: np.ndarray,
     y: np.ndarray,
@@ -146,11 +259,13 @@ def walk_forward_cv(
     For each split:
       1. Train LogisticRegression on all data up to train_end
       2. Evaluate on data in [test_start, test_end]
-      3. Record Brier score, log-loss, accuracy
+      3. Record Brier score, log-loss, accuracy, and P&L simulation
 
     Returns list of per-split metric dicts.
     """
     results = []
+    all_proba: list[float] = []
+    all_outcomes: list[int] = []
 
     print("\n" + "=" * 65)
     print("Walk-Forward Cross-Validation")
@@ -193,6 +308,20 @@ def walk_forward_cv(
         high_conf_mask = np.abs(y_proba - 0.5) >= 0.10
         hc_acc = accuracy_score(y_test[high_conf_mask], y_pred[high_conf_mask]) if high_conf_mask.sum() > 0 else float("nan")
 
+        # Quick P&L preview for this split at 65% threshold
+        hc65_mask = (y_proba >= 0.65) | (y_proba <= 0.35)
+        if hc65_mask.sum() > 0:
+            split_pnl = sum(
+                ((1.0 - y_proba[i]) if (y_proba[i] >= 0.65 and y_test[i] == 1) else
+                 (-y_proba[i])       if (y_proba[i] >= 0.65 and y_test[i] == 0) else
+                 ((y_proba[i])       if (y_proba[i] <= 0.35 and y_test[i] == 0) else
+                 -(1.0 - y_proba[i])))
+                for i in np.where(hc65_mask)[0]
+            )
+            pnl_str = f"  P&L@65%: {split_pnl:+.1f}¢/contract ({hc65_mask.sum()} bets)"
+        else:
+            pnl_str = ""
+
         split_result = {
             "label": split["label"],
             "train_rows": len(X_train),
@@ -205,11 +334,17 @@ def walk_forward_cv(
         }
         results.append(split_result)
 
+        # Accumulate for combined P&L analysis
+        all_proba.extend(y_proba.tolist())
+        all_outcomes.extend(y_test.tolist())
+
         hc_str = f"  (HC: {hc_acc:.3f}, n={high_conf_mask.sum()})" if high_conf_mask.sum() > 0 else ""
         print(
             f"{split['label']:<8} {len(X_train):<12} {len(X_test):<11} "
             f"{brier:<8.4f} {ll:<10.4f} {acc:<10.3f}{hc_str}"
         )
+        if pnl_str:
+            print(f"{'':>8}{pnl_str}")
 
     if results:
         avg_brier = np.mean([r["brier"] for r in results])
@@ -220,6 +355,22 @@ def walk_forward_cv(
         print("=" * 65)
         print(f"\nBrier reference: 0.2500 (random 50/50)")
         print(f"LogLoss reference: 0.6931 (random 50/50)")
+
+    # Full P&L simulation across all test splits combined
+    if all_proba:
+        pnl_results = simulate_kalshi_pnl(
+            np.array(all_proba),
+            np.array(all_outcomes),
+            thresholds=[0.55, 0.60, 0.65, 0.70, 0.75],
+            edge_assumption=0.07,
+        )
+        print_pnl_table(pnl_results)
+
+        # Attach aggregate P&L to results for metadata saving
+        for r in results:
+            r["pnl_simulation"] = [
+                p for p in pnl_results if p["threshold"] == 0.65
+            ]
 
     return results
 
