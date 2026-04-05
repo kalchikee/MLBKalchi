@@ -11,9 +11,9 @@ import {
   MIN_MODEL_PROB,
   MIN_EDGE,
 } from './kalshiClient.js';
-import { matchPredictionsToMarkets, type MatchedBet } from './marketMatcher.js';
-import { sendBetPlacedAlert, sendNoBetsAlert } from '../alerts/discord.js';
-import { getTeamGamesPlayed } from '../api/mlbClient.js';
+import { matchPredictionsToMarkets } from './marketMatcher.js';
+import { sendNoBetsAlert } from '../alerts/discord.js';
+import { getTeamGamesPlayed, fetchSchedule } from '../api/mlbClient.js';
 import { logger } from '../logger.js';
 
 // ─── Thresholds (all configurable via env) ────────────────────────────────────
@@ -29,6 +29,9 @@ const KALSHI_MIN_PYTH_DIFF = parseFloat(process.env.KALSHI_MIN_PYTH_DIFF ?? '0.0
 // Below this there's no meaningful quality separation.
 // Segment analysis: |elo_diff| < 25 → 56.3% accuracy vs 68.1% for clear favourites.
 const KALSHI_MIN_ELO_DIFF = parseFloat(process.env.KALSHI_MIN_ELO_DIFF ?? '25');
+
+// Maximum dollars to risk on any single bet (hard cap on Kelly sizing).
+const KALSHI_MAX_BET_DOLLARS = parseFloat(process.env.KALSHI_MAX_BET_DOLLARS ?? '1');
 
 export interface KalshiBetRecord {
   id?: number;
@@ -193,7 +196,17 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
     return [];
   }
 
-  // 5. Place bets
+  // 5. Fetch live schedule for day-of SP change detection
+  let liveGames = new Map<number, import('../types.js').Game>();
+  try {
+    const gameList = await fetchSchedule(date);
+    for (const g of gameList) liveGames.set(g.gamePk, g);
+    logger.info({ games: liveGames.size }, 'Live schedule loaded for SP verification');
+  } catch (err) {
+    logger.warn({ err }, 'Could not fetch live schedule — SP change check disabled');
+  }
+
+  // 6. Place bets
   const placed: KalshiBetRecord[] = [];
 
   for (const candidate of candidates) {
@@ -259,6 +272,21 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
       continue;
     }
 
+    // 4. SP change detection — skip if either pitcher is now TBD
+    const liveGame = liveGames.get(candidate.prediction.game_pk);
+    if (liveGame) {
+      const homeHasSP = !!liveGame.homeTeam.probablePitcher;
+      const awayHasSP = !!liveGame.awayTeam.probablePitcher;
+      if (!homeHasSP || !awayHasSP) {
+        const missing = [!homeHasSP && 'home', !awayHasSP && 'away'].filter(Boolean).join('+');
+        logger.info(
+          { matchup, missing },
+          `Skipping — ${missing} SP is now TBD (probable pitcher changed day-of)`
+        );
+        continue;
+      }
+    }
+
     // Check edge if Vegas lines are loaded (optional guard)
     const edge = candidate.prediction.edge ?? 0;
     if (candidate.prediction.vegas_prob !== undefined && candidate.prediction.vegas_prob > 0) {
@@ -268,8 +296,19 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
       }
     }
 
-    // Always bet exactly 1 contract per game
-    const contracts = 1;
+    // Kelly Criterion sizing (quarter Kelly, capped at KALSHI_MAX_BET_DOLLARS)
+    // b = (100 - price) / price  (payoff ratio per dollar risked)
+    // f* = (p*b - (1-p)) / b     (full Kelly fraction of bankroll)
+    const priceCents = candidate.entryPriceCents;
+    const p = candidate.modelProb;
+    const b = (100 - priceCents) / priceCents;
+    const kellyFraction = Math.max(0, (p * b - (1 - p)) / b);
+    const quarterKelly = kellyFraction * 0.25;
+    const betDollars = Math.min(
+      KALSHI_MAX_BET_DOLLARS,
+      Math.max(BET_SIZE_DOLLARS, quarterKelly * balanceDollars),
+    );
+    const contracts = Math.max(1, Math.round(betDollars / (priceCents / 100)));
 
     try {
       const result = await placeOrder(

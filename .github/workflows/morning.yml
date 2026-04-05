@@ -51,6 +51,7 @@ jobs:
           KALSHI_MIN_TEAM_GAMES: '10'
           KALSHI_MIN_PYTH_DIFF: '0.03'
           KALSHI_MIN_ELO_DIFF: '25'
+          KALSHI_MAX_BET_DOLLARS: '1'
           DB_PATH: './data/mlb_oracle.db'
           CACHE_DIR: './cache'
           CACHE_TTL_HOURS: '1'

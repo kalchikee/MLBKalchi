@@ -43,6 +43,7 @@ FEATURE_COLUMNS = [
     "umpire_run_factor", "rest_days_diff", "travel_tz_shift", "day_after_night",
     "is_home", "statcast_xba_diff", "statcast_barrel_diff", "statcast_hardhit_diff",
     "statcast_ev_diff", "gb_rate_diff", "sci_adjusted_diff",
+    "vegas_home_prob",
 ]
 
 MIN_SEGMENT_SIZE = 50   # skip segments with fewer games (too noisy)

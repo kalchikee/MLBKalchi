@@ -198,6 +198,10 @@ export interface FeatureVector {
   // Advanced
   gb_rate_diff: number;
   sci_adjusted_diff: number;
+
+  // Vegas closing moneyline (normalized, vig-removed)
+  // 0.0 when odds not available (treated as prior ~0.5)
+  vegas_home_prob: number;
 }
 
 export interface SPScore {

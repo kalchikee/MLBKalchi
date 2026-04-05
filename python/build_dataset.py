@@ -71,6 +71,183 @@ ESTIMATED_FEATURES = {
     "gb_rate_diff",         # Statcast only
 }
 
+# ─── SBR Vegas odds constants ─────────────────────────────────────────────────
+
+SBR_BASE = "https://www.sportsbookreviewsonline.com/scoresoddsarchives/mlb"
+SBR_ODDS_DIR = DATA_DIR / "sbr_odds"
+SBR_ODDS_DIR.mkdir(parents=True, exist_ok=True)
+
+# SBR team name → MLB abbreviation mapping
+SBR_TEAM_TO_ABBR: dict[str, str] = {
+    "Angels": "LAA", "LA Angels": "LAA",
+    "Diamondbacks": "ARI", "Arizona": "ARI", "D-backs": "ARI",
+    "Orioles": "BAL", "Baltimore": "BAL",
+    "Red Sox": "BOS", "Boston": "BOS",
+    "Cubs": "CHC", "Chi Cubs": "CHC", "Chicago Cubs": "CHC",
+    "Reds": "CIN", "Cincinnati": "CIN",
+    "Indians": "CLE", "Guardians": "CLE", "Cleveland": "CLE",
+    "Rockies": "COL", "Colorado": "COL",
+    "Tigers": "DET", "Detroit": "DET",
+    "Astros": "HOU", "Houston": "HOU",
+    "Royals": "KC", "Kansas City": "KC",
+    "Dodgers": "LAD", "LA Dodgers": "LAD", "Los Angeles": "LAD",
+    "Nationals": "WSH", "Washington": "WSH",
+    "Mets": "NYM", "NY Mets": "NYM", "New York Mets": "NYM",
+    "Athletics": "OAK", "Oakland": "OAK",
+    "Pirates": "PIT", "Pittsburgh": "PIT",
+    "Padres": "SD", "San Diego": "SD",
+    "Mariners": "SEA", "Seattle": "SEA",
+    "Giants": "SF", "San Francisco": "SF",
+    "Cardinals": "STL", "St. Louis": "STL", "St Louis": "STL",
+    "Rays": "TB", "Tampa Bay": "TB",
+    "Rangers": "TEX", "Texas": "TEX",
+    "Blue Jays": "TOR", "Toronto": "TOR",
+    "Twins": "MIN", "Minnesota": "MIN",
+    "Phillies": "PHI", "Philadelphia": "PHI",
+    "Braves": "ATL", "Atlanta": "ATL",
+    "White Sox": "CWS", "Chi White Sox": "CWS", "Chicago White Sox": "CWS",
+    "Marlins": "MIA", "Miami": "MIA", "Florida": "MIA",
+    "Yankees": "NYY", "NY Yankees": "NYY", "New York Yankees": "NYY",
+    "Brewers": "MIL", "Milwaukee": "MIL",
+}
+
+
+def moneyline_to_prob(ml: float) -> float:
+    """Convert American moneyline to implied win probability."""
+    if ml > 0:
+        return 100.0 / (ml + 100.0)
+    else:
+        return abs(ml) / (abs(ml) + 100.0)
+
+
+def load_sbr_odds(season: int) -> dict[str, dict[str, float]]:
+    """
+    Download and parse SBR MLB odds for a season.
+    Returns dict keyed by "YYYY-MM-DD|HOME_ABBR" -> {"home_prob": float}
+    Returns empty dict on failure (odds become 0.0 = unknown in features).
+    """
+    cache_file = SBR_ODDS_DIR / f"mlb_odds_{season}.parquet"
+
+    # Check local cache first
+    if cache_file.exists():
+        try:
+            df = pd.read_parquet(cache_file)
+            return {row["key"]: {"home_prob": row["home_prob"]} for _, row in df.iterrows()}
+        except Exception:
+            pass
+
+    # Download the Excel file
+    url = f"{SBR_BASE}/mlb%20odds%20{season}.xlsx"
+    try:
+        print(f"  Downloading SBR odds for {season}...")
+        resp = requests.get(url, timeout=30, headers={"User-Agent": "MLBOracle/4.0"})
+        resp.raise_for_status()
+        excel_path = SBR_ODDS_DIR / f"mlb_odds_{season}.xlsx"
+        excel_path.write_bytes(resp.content)
+    except Exception as exc:
+        print(f"  WARNING: Could not download SBR odds for {season}: {exc}")
+        return {}
+
+    # Parse the Excel
+    try:
+        df = pd.read_excel(excel_path, header=0)
+        df.columns = [str(c).strip() for c in df.columns]
+
+        # Normalize column names (SBR varies slightly year to year)
+        col_map = {}
+        for c in df.columns:
+            cl = c.lower()
+            if "date" in cl:
+                col_map[c] = "Date"
+            elif cl in ("vh", "v/h"):
+                col_map[c] = "VH"
+            elif "team" in cl:
+                col_map[c] = "Team"
+            elif cl in ("close", "ml", "moneyline"):
+                col_map[c] = "Close"
+        df = df.rename(columns=col_map)
+
+        if not all(c in df.columns for c in ("Date", "VH", "Team", "Close")):
+            print(f"  WARNING: SBR file for {season} missing expected columns. Got: {list(df.columns)}")
+            return {}
+
+        # Parse dates (SBR stores as YYYYMMDD integer)
+        def parse_sbr_date(d) -> str:
+            s = str(int(d)).zfill(8)
+            return f"{s[:4]}-{s[4:6]}-{s[6:8]}"
+
+        results: dict[str, dict[str, float]] = {}
+
+        # Process pairs: visitor (V) row followed by home (H) row
+        df = df.dropna(subset=["VH", "Team"]).reset_index(drop=True)
+        i = 0
+        while i < len(df) - 1:
+            v_row = df.iloc[i]
+            h_row = df.iloc[i + 1]
+
+            # Validate it's a V/H pair
+            v_vh = str(v_row.get("VH", "")).strip().upper()
+            h_vh = str(h_row.get("VH", "")).strip().upper()
+            if v_vh != "V" or h_vh != "H":
+                i += 1
+                continue
+
+            try:
+                game_date = parse_sbr_date(v_row["Date"])
+                home_team_raw = str(h_row["Team"]).strip()
+                away_team_raw = str(v_row["Team"]).strip()
+
+                home_abbr = SBR_TEAM_TO_ABBR.get(home_team_raw)
+                away_abbr = SBR_TEAM_TO_ABBR.get(away_team_raw)
+                if not home_abbr or not away_abbr:
+                    # Try partial match
+                    for name, abbr in SBR_TEAM_TO_ABBR.items():
+                        if home_team_raw in name or name in home_team_raw:
+                            home_abbr = abbr
+                        if away_team_raw in name or name in away_team_raw:
+                            away_abbr = abbr
+
+                if not home_abbr or not away_abbr:
+                    i += 2
+                    continue
+
+                home_ml_raw = h_row.get("Close", "NL")
+                away_ml_raw = v_row.get("Close", "NL")
+
+                if str(home_ml_raw) in ("NL", "nan", "") or str(away_ml_raw) in ("NL", "nan", ""):
+                    i += 2
+                    continue
+
+                home_ml = float(home_ml_raw)
+                away_ml = float(away_ml_raw)
+
+                # Normalize: remove vig
+                home_implied = moneyline_to_prob(home_ml)
+                away_implied = moneyline_to_prob(away_ml)
+                total_implied = home_implied + away_implied
+                home_prob_norm = home_implied / total_implied if total_implied > 0 else 0.5
+
+                key = f"{game_date}|{home_abbr}"
+                results[key] = {"home_prob": round(home_prob_norm, 4)}
+            except Exception:
+                pass
+
+            i += 2
+
+        # Cache to parquet
+        if results:
+            cache_df = pd.DataFrame([
+                {"key": k, "home_prob": v["home_prob"]} for k, v in results.items()
+            ])
+            cache_df.to_parquet(cache_file, index=False)
+            print(f"  Loaded {len(results)} games of odds for {season}")
+        return results
+
+    except Exception as exc:
+        print(f"  WARNING: Could not parse SBR odds for {season}: {exc}")
+        return {}
+
+
 # Team abbreviation mapping (MLB Stats API team IDs → 3-letter abbr)
 TEAM_ID_TO_ABBR: dict[int, str] = {
     108: "LAA", 109: "ARI", 110: "BAL", 111: "BOS", 112: "CHC",
@@ -249,6 +426,74 @@ def fetch_pitcher_stats(player_id: int, season: int) -> dict:
         return defaults
 
 
+def fetch_pitcher_game_logs(player_id: int, season: int) -> list[dict]:
+    """
+    Fetch per-start game log for a pitcher via MLB Stats API.
+    Returns list of start dicts sorted by date ascending.
+    Each start has: date (str YYYY-MM-DD), ip_outs (int), k, bb, h, er.
+    """
+    if player_id <= 0:
+        return []
+    try:
+        url = f"{MLB_API_BASE}/people/{player_id}/stats"
+        params = {"stats": "gameLog", "season": season, "group": "pitching", "sportId": 1}
+        data = api_get(url, params)
+        splits = data.get("stats", [{}])[0].get("splits", [])
+        starts = []
+        for sp in splits:
+            s = sp.get("stat", {})
+            if int(s.get("gamesStarted", 0) or 0) < 1:
+                continue  # skip relief appearances
+            game_date = sp.get("date", "")[:10]
+            if not game_date:
+                continue
+            ip_raw = float(s.get("inningsPitched", 0) or 0)
+            # Convert MLB IP format (e.g. 6.1 = 6 innings + 1 out = 19 outs)
+            ip_full = int(ip_raw)
+            ip_extra = round((ip_raw - ip_full) * 10)
+            ip_outs = ip_full * 3 + ip_extra
+            starts.append({
+                "date": game_date,
+                "ip_outs": ip_outs,
+                "k": int(s.get("strikeOuts", 0) or 0),
+                "bb": int(s.get("baseOnBalls", 0) or 0),
+                "h": int(s.get("hits", 0) or 0),
+                "er": int(s.get("earnedRuns", 0) or 0),
+            })
+        starts.sort(key=lambda x: x["date"])
+        return starts
+    except Exception:
+        return []
+
+
+def compute_game_score(start: dict) -> float:
+    """
+    Compute Bill James game score for a single start.
+    GS = 50 + ip_outs - 2*h - 4*er - 2*bb + k
+    Clamped to [10, 100].
+    """
+    gs = 50 + start["ip_outs"] - 2 * start["h"] - 4 * start["er"] - 2 * start["bb"] + start["k"]
+    return float(max(10, min(100, gs)))
+
+
+def rolling_game_score(player_id: int, game_date: str, season: int, gl_cache: dict, n_starts: int = 5) -> float:
+    """
+    Compute average game score over the pitcher's last n_starts before game_date.
+    Returns a float in [10, 100]; defaults to 55.0 if insufficient data.
+    """
+    cache_key = (player_id, season)
+    if cache_key not in gl_cache:
+        gl_cache[cache_key] = fetch_pitcher_game_logs(player_id, season)
+    logs = gl_cache[cache_key]
+
+    # Filter to starts strictly before game_date
+    prior = [s for s in logs if s["date"] < game_date]
+    if not prior:
+        return 55.0  # league average game score
+    recent = prior[-n_starts:]
+    return float(np.mean([compute_game_score(s) for s in recent]))
+
+
 def fetch_team_stats(team_id: int, season: int) -> dict:
     """
     Fetch team-level season hitting + pitching stats.
@@ -311,10 +556,14 @@ def compute_sp_features(
     away_pitcher_id: int,
     season: int,
     sp_cache: dict,
+    game_date: str = "",
+    gl_cache: dict | None = None,
 ) -> dict[str, float]:
     """
     Compute starting pitcher differential features.
     xFIP ≈ FIP estimate; SIERA ≈ ERA-based estimate; K-BB% from K/9 and BB/9.
+    sp_rolling_gs_diff uses actual game logs when gl_cache is provided,
+    otherwise falls back to ERA-based estimate.
     """
     def get_sp(pid: int) -> dict:
         if pid not in sp_cache:
@@ -325,7 +574,6 @@ def compute_sp_features(
     ap = get_sp(away_pitcher_id)
 
     # Approximate xFIP from ERA (no fly ball rate historically)
-    # xFIP ≈ ERA * 0.88 (pitchers with good stuff tend to outperform ERA)
     home_xfip = hp["era"] * 0.88
     away_xfip = ap["era"] * 0.88
 
@@ -340,14 +588,18 @@ def compute_sp_features(
     home_kbb = home_k_pct - home_bb_pct
     away_kbb = away_k_pct - away_bb_pct
 
-    # Rolling game score: approximate from ERA (better ERA → higher score)
-    # Clamp to [30, 75] range
-    home_gs = max(30.0, min(75.0, 75.0 - (hp["era"] - 3.0) * 8.0))
-    away_gs = max(30.0, min(75.0, 75.0 - (ap["era"] - 3.0) * 8.0))
+    # Rolling game score: use actual last-5-starts game logs when available
+    if gl_cache is not None and game_date:
+        home_gs = rolling_game_score(home_pitcher_id, game_date, season, gl_cache)
+        away_gs = rolling_game_score(away_pitcher_id, game_date, season, gl_cache)
+    else:
+        # Fallback: estimate from season ERA (clamp to [30, 75])
+        home_gs = max(30.0, min(75.0, 75.0 - (hp["era"] - 3.0) * 8.0))
+        away_gs = max(30.0, min(75.0, 75.0 - (ap["era"] - 3.0) * 8.0))
 
     return {
         # Home minus Away (positive = home SP advantage)
-        "sp_xfip_diff": away_xfip - home_xfip,     # lower ERA is better for pitcher; away - home
+        "sp_xfip_diff": away_xfip - home_xfip,
         "sp_kbb_diff": home_kbb - away_kbb,
         "sp_siera_diff": away_siera - home_siera,
         "sp_csw_diff": 0.0,                          # ESTIMATED — not available historically
@@ -449,6 +701,8 @@ def build_feature_row(
     sp_cache: dict,
     team_cache: dict,
     park_factors: dict[str, float],
+    gl_cache: dict | None = None,
+    sbr_odds: dict | None = None,
 ) -> dict | None:
     """
     Build a single feature row for one completed game.
@@ -497,8 +751,11 @@ def build_feature_row(
         home_sp_id = home_sp.get("id", 0) or 0
         away_sp_id = away_sp.get("id", 0) or 0
 
-        # Compute all features
-        sp_features = compute_sp_features(home_sp_id, away_sp_id, season, sp_cache)
+        # Compute all features (use actual game logs when gl_cache is available)
+        sp_features = compute_sp_features(
+            home_sp_id, away_sp_id, season, sp_cache,
+            game_date=game_date, gl_cache=gl_cache,
+        )
         team_features = compute_team_features(
             home_id, away_id, home_abbr, away_abbr, season, team_cache, park_factors
         )
@@ -520,6 +777,15 @@ def build_feature_row(
         }
         row.update(sp_features)
         row.update(team_features)
+
+        # Vegas closing moneyline (vig-removed home win probability)
+        vegas_home_prob = 0.0
+        if sbr_odds is not None:
+            sbr_key = f"{game_date}|{home_abbr}"
+            odds_entry = sbr_odds.get(sbr_key)
+            if odds_entry:
+                vegas_home_prob = odds_entry["home_prob"]
+        row["vegas_home_prob"] = vegas_home_prob
 
         # Label: 1 = home win, 0 = away win
         row["label"] = 1 if home_score > away_score else 0
@@ -583,9 +849,11 @@ def build_dataset(
 
     # Elo system persists across seasons (applies season regression at start of each)
     elo_system = EloSystem()
-    # SP/team stats caches — keyed by (player_id, season) and (team_id, season)
+    # SP/team stats caches — keyed by player_id/team_id (season-scoped, reset per season)
     sp_cache: dict = {}
     team_cache: dict = {}
+    # Pitcher game log cache — keyed by (player_id, season)
+    gl_cache: dict = {}
 
     for season in sorted(seasons):
         if season in completed_seasons:
@@ -600,6 +868,9 @@ def build_dataset(
         print(f"{'='*60}")
 
         elo_system.season_regress(season)
+
+        # Load SBR Vegas odds for this season (cached after first download)
+        sbr_odds = load_sbr_odds(season)
 
         start_date, end_date = get_season_dates(season)
 
@@ -665,7 +936,8 @@ def build_dataset(
 
             try:
                 row = build_feature_row(
-                    game, season, elo_system, sp_cache, team_cache, park_factors
+                    game, season, elo_system, sp_cache, team_cache, park_factors,
+                    gl_cache=gl_cache, sbr_odds=sbr_odds,
                 )
                 if row is not None:
                     season_rows.append(row)

@@ -449,6 +449,10 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
     // Advanced
     gb_rate_diff: homeGB - awayGB,
     sci_adjusted_diff: homeSCI - awaySCI,
+
+    // Vegas closing probability — set at inference time by prediction pipeline
+    // when live odds are available; 0.0 = no odds loaded
+    vegas_home_prob: 0,
   };
 
   logger.debug({ gamePk: game.gamePk, features }, 'Features computed');

@@ -34,6 +34,12 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import StandardScaler
 
+try:
+    from xgboost import XGBClassifier
+    HAS_XGBOOST = True
+except ImportError:
+    HAS_XGBOOST = False
+
 warnings.filterwarnings("ignore")  # suppress convergence warnings during CV
 
 # ─── Paths ────────────────────────────────────────────────────────────────────
@@ -78,6 +84,7 @@ FEATURE_COLUMNS = [
     "statcast_ev_diff",
     "gb_rate_diff",
     "sci_adjusted_diff",
+    "vegas_home_prob",
 ]
 
 # Walk-forward CV splits: (train_seasons, test_season)
@@ -281,15 +288,17 @@ def walk_forward_cv(
     Returns list of per-split metric dicts.
     """
     results = []
-    all_proba: list[float] = []
+    all_proba: list[float] = []        # LR probabilities
+    all_proba_xgb: list[float] = []    # XGBoost probabilities
     all_outcomes: list[int] = []
     all_eligible: list[bool] = []   # True = game passes structural filters
 
-    print("\n" + "=" * 65)
-    print("Walk-Forward Cross-Validation")
-    print("=" * 65)
-    print(f"{'Split':<8} {'Train rows':<12} {'Test rows':<11} {'Brier':<8} {'LogLoss':<10} {'Accuracy':<10}")
-    print("-" * 65)
+    model_label = "XGB" if HAS_XGBOOST else "LR"
+    print("\n" + "=" * 75)
+    print(f"Walk-Forward Cross-Validation  (LR vs {model_label})")
+    print("=" * 75)
+    print(f"{'Split':<8} {'Train rows':<12} {'Test rows':<11} {'LR Brier':<10} {'LR Acc':<9} {'XGB Brier':<11} {'XGB Acc'}")
+    print("-" * 75)
 
     for split in cv_splits:
         train_mask = dates <= split["train_end"]
@@ -310,35 +319,33 @@ def walk_forward_cv(
         X_train_scaled = scaler.fit_transform(X_train)
         X_test_scaled = scaler.transform(X_test)
 
-        # Train Logistic Regression
-        model = LogisticRegression(C=1.0, max_iter=1000, random_state=42, solver="lbfgs")
-        model.fit(X_train_scaled, y_train)
-
-        # Predictions
-        y_proba = model.predict_proba(X_test_scaled)[:, 1]  # P(home win)
+        # ── Logistic Regression ────────────────────────────────────────────
+        lr_model = LogisticRegression(C=1.0, max_iter=1000, random_state=42, solver="lbfgs")
+        lr_model.fit(X_train_scaled, y_train)
+        y_proba = lr_model.predict_proba(X_test_scaled)[:, 1]  # P(home win)
         y_pred = (y_proba >= 0.5).astype(int)
-
         brier = brier_score_loss(y_test, y_proba)
         ll = log_loss(y_test, y_proba)
         acc = accuracy_score(y_test, y_pred)
 
-        # High-confidence subset (>60% predicted probability)
-        high_conf_mask = np.abs(y_proba - 0.5) >= 0.10
-        hc_acc = accuracy_score(y_test[high_conf_mask], y_pred[high_conf_mask]) if high_conf_mask.sum() > 0 else float("nan")
-
-        # Quick P&L preview for this split at 65% threshold
-        hc65_mask = (y_proba >= 0.65) | (y_proba <= 0.35)
-        if hc65_mask.sum() > 0:
-            split_pnl = sum(
-                ((1.0 - y_proba[i]) if (y_proba[i] >= 0.65 and y_test[i] == 1) else
-                 (-y_proba[i])       if (y_proba[i] >= 0.65 and y_test[i] == 0) else
-                 ((y_proba[i])       if (y_proba[i] <= 0.35 and y_test[i] == 0) else
-                 -(1.0 - y_proba[i])))
-                for i in np.where(hc65_mask)[0]
+        # ── XGBoost (tree-based — no scaling needed) ────────────────────────
+        xgb_brier, xgb_acc = float("nan"), float("nan")
+        y_proba_xgb = y_proba  # fallback: same as LR
+        if HAS_XGBOOST:
+            xgb = XGBClassifier(
+                n_estimators=200, max_depth=4, learning_rate=0.05,
+                subsample=0.8, colsample_bytree=0.8,
+                eval_metric="logloss", random_state=42, verbosity=0,
             )
-            pnl_str = f"  P&L@65%: {split_pnl:+.1f}¢/contract ({hc65_mask.sum()} bets)"
-        else:
-            pnl_str = ""
+            xgb.fit(X_train, y_train)
+            y_proba_xgb = xgb.predict_proba(X_test)[:, 1]
+            xgb_brier = brier_score_loss(y_test, y_proba_xgb)
+            xgb_acc = accuracy_score(y_test, (y_proba_xgb >= 0.5).astype(int))
+
+        # High-confidence subset (>60% predicted probability, using best model)
+        best_proba = y_proba_xgb if HAS_XGBOOST else y_proba
+        high_conf_mask = np.abs(best_proba - 0.5) >= 0.10
+        hc_acc = accuracy_score(y_test[high_conf_mask], (best_proba[high_conf_mask] >= 0.5).astype(int)) if high_conf_mask.sum() > 0 else float("nan")
 
         split_result = {
             "label": split["label"],
@@ -349,11 +356,14 @@ def walk_forward_cv(
             "accuracy": acc,
             "high_conf_accuracy": hc_acc,
             "high_conf_count": int(high_conf_mask.sum()),
+            "xgb_brier": xgb_brier,
+            "xgb_accuracy": xgb_acc,
         }
         results.append(split_result)
 
-        # Accumulate for combined P&L analysis
+        # Accumulate for combined P&L analysis (use XGBoost probs if available)
         all_proba.extend(y_proba.tolist())
+        all_proba_xgb.extend(y_proba_xgb.tolist())
         all_outcomes.extend(y_test.tolist())
 
         # Build structural eligibility mask for this test split
@@ -363,29 +373,46 @@ def walk_forward_cv(
             eligible = np.ones(len(y_test), dtype=bool)
         all_eligible.extend(eligible.tolist())
 
-        hc_str = f"  (HC: {hc_acc:.3f}, n={high_conf_mask.sum()})" if high_conf_mask.sum() > 0 else ""
+        xgb_str = f"{xgb_brier:<11.4f} {xgb_acc:.3f}" if not np.isnan(xgb_brier) else "  (no xgboost) "
         print(
             f"{split['label']:<8} {len(X_train):<12} {len(X_test):<11} "
-            f"{brier:<8.4f} {ll:<10.4f} {acc:<10.3f}{hc_str}"
+            f"{brier:<10.4f} {acc:<9.3f} {xgb_str}"
         )
-        if pnl_str:
-            print(f"{'':>8}{pnl_str}")
 
     if results:
         avg_brier = np.mean([r["brier"] for r in results])
         avg_ll = np.mean([r["log_loss"] for r in results])
         avg_acc = np.mean([r["accuracy"] for r in results])
-        print("-" * 65)
-        print(f"{'AVERAGE':<8} {'':<12} {'':<11} {avg_brier:<8.4f} {avg_ll:<10.4f} {avg_acc:<10.3f}")
-        print("=" * 65)
-        print(f"\nBrier reference: 0.2500 (random 50/50)")
-        print(f"LogLoss reference: 0.6931 (random 50/50)")
+        xgb_results = [r for r in results if not np.isnan(r.get("xgb_brier", float("nan")))]
+        avg_xgb_brier = np.mean([r["xgb_brier"] for r in xgb_results]) if xgb_results else float("nan")
+        avg_xgb_acc = np.mean([r["xgb_accuracy"] for r in xgb_results]) if xgb_results else float("nan")
+        xgb_avg_str = f"{avg_xgb_brier:<11.4f} {avg_xgb_acc:.3f}" if not np.isnan(avg_xgb_brier) else ""
+        print("-" * 75)
+        print(f"{'AVERAGE':<8} {'':<12} {'':<11} {avg_brier:<10.4f} {avg_acc:<9.3f} {xgb_avg_str}")
+        print("=" * 75)
+        if HAS_XGBOOST and not np.isnan(avg_xgb_brier):
+            winner = "XGBoost" if avg_xgb_brier < avg_brier else "LogReg"
+            print(f"  Winner: {winner}  (LR Brier={avg_brier:.4f}, XGB Brier={avg_xgb_brier:.4f})")
 
     # ── P&L simulation: all games vs structurally filtered games ─────────────
     if all_proba:
         proba_arr   = np.array(all_proba)
         outcome_arr = np.array(all_outcomes)
         eligible_arr = np.array(all_eligible)
+
+        # Use XGBoost probs for P&L if they're better (lower Brier on filtered games)
+        use_xgb_for_pnl = False
+        if all_proba_xgb and HAS_XGBOOST:
+            proba_xgb_arr = np.array(all_proba_xgb)
+            xgb_brier_filt = brier_score_loss(outcome_arr[eligible_arr], proba_xgb_arr[eligible_arr])
+            lr_brier_filt  = brier_score_loss(outcome_arr[eligible_arr], proba_arr[eligible_arr])
+            use_xgb_for_pnl = xgb_brier_filt < lr_brier_filt
+            pnl_proba = proba_xgb_arr if use_xgb_for_pnl else proba_arr
+            model_name = "XGBoost" if use_xgb_for_pnl else "LogReg"
+            print(f"\nP&L simulation using: {model_name} (LR filt Brier={lr_brier_filt:.4f}, XGB filt Brier={xgb_brier_filt:.4f})")
+        else:
+            pnl_proba = proba_arr
+            model_name = "LogReg"
 
         filt_pct = eligible_arr.mean() * 100
         print(f"\nStructural filter ({MIN_PYTH_DIFF} pyth gap, {MIN_ELO_DIFF:.0f} Elo gap, no Oct):")
@@ -394,8 +421,8 @@ def walk_forward_cv(
         # Overall accuracy on filtered vs unfiltered at HC threshold
         hc_thr = 0.60
         for label, arr_p, arr_o in [
-            ("All games    ", proba_arr, outcome_arr),
-            ("Filtered only", proba_arr[eligible_arr], outcome_arr[eligible_arr]),
+            ("All games    ", pnl_proba, outcome_arr),
+            ("Filtered only", pnl_proba[eligible_arr], outcome_arr[eligible_arr]),
         ]:
             hc_mask = (arr_p >= hc_thr) | (arr_p <= 1 - hc_thr)
             if hc_mask.sum() > 0:
@@ -403,18 +430,18 @@ def walk_forward_cv(
                 print(f"  {label}: {hc_mask.sum():,} HC bets — {hc_acc:.1%} accuracy")
 
         # P&L for ALL games
-        print("\n-- ALL GAMES --------------------------------------------------")
+        print(f"\n-- ALL GAMES ({model_name}) ------------------------------------------")
         pnl_all = simulate_kalshi_pnl(
-            proba_arr, outcome_arr,
+            pnl_proba, outcome_arr,
             thresholds=[0.55, 0.60, 0.65, 0.70, 0.75],
             edge_assumption=0.07,
         )
         print_pnl_table(pnl_all)
 
         # P&L for FILTERED games only
-        print("\n-- FILTERED GAMES ONLY (bettable per structural rules) --------")
+        print(f"\n-- FILTERED GAMES ONLY ({model_name}, bettable per structural rules) --")
         pnl_filtered = simulate_kalshi_pnl(
-            proba_arr[eligible_arr], outcome_arr[eligible_arr],
+            pnl_proba[eligible_arr], outcome_arr[eligible_arr],
             thresholds=[0.55, 0.60, 0.65, 0.70, 0.75],
             edge_assumption=0.07,
         )
@@ -434,65 +461,63 @@ def train_final_model(
     X: np.ndarray,
     y: np.ndarray,
     dates: pd.Series,
-) -> tuple[CalibratedClassifierCV, StandardScaler, IsotonicRegression]:
+) -> tuple:
     """
-    Train the final production model on 2018–2024 data.
+    Train the final production model on 2018-2024 data.
 
-    Steps:
-    1. Filter to training window (2018–2024)
-    2. Fit StandardScaler
-    3. Train CalibratedClassifierCV with LogisticRegression base + isotonic calibration
-    4. Fit a standalone IsotonicRegression on a holdout for calibration curve plotting
-    5. Return (calibrated_model, scaler, iso_reg)
+    Primary: XGBoost (if available) — captures non-linear feature interactions.
+    Fallback: CalibratedClassifierCV with LogisticRegression.
+
+    Returns (calibrated_model, scaler, iso_reg, raw_lr, xgb_model_or_None)
     """
-    # Final training window: 2018–2024 (exclude 2025 which is live/current)
+    # Final training window: 2018-2024 (exclude 2025 which is live/current)
     train_mask = dates.dt.year <= 2024
     X_train_full = X[train_mask]
     y_train_full = y[train_mask]
 
-    print(f"\nFinal model training: {len(X_train_full)} rows (2018–2024)")
+    print(f"\nFinal model training: {len(X_train_full)} rows (2018-2024)")
 
     if len(X_train_full) < 50:
         print("WARNING: Very few training rows. Model may perform poorly.")
 
-    # StandardScaler: fit on full training data
+    # StandardScaler: fit on full training data (used for LR fallback)
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X_train_full)
 
-    # ── CalibratedClassifierCV (primary approach) ──────────────────────────
-    # Uses cross-validation internally to fit isotonic calibration, preventing
-    # overfitting the calibration to training data.
+    # ── XGBoost (primary, if available) ───────────────────────────────────
+    final_xgb = None
+    if HAS_XGBOOST:
+        print("Training XGBoost (n_estimators=200, max_depth=4, lr=0.05)...")
+        final_xgb = XGBClassifier(
+            n_estimators=200, max_depth=4, learning_rate=0.05,
+            subsample=0.8, colsample_bytree=0.8,
+            eval_metric="logloss", random_state=42, verbosity=0,
+        )
+        final_xgb.fit(X_train_full, y_train_full)
+        print("XGBoost trained successfully")
+
+    # ── CalibratedClassifierCV (LR fallback) ──────────────────────────────
     base_lr = LogisticRegression(C=1.0, max_iter=1000, random_state=42, solver="lbfgs")
-    calibrated_model = CalibratedClassifierCV(
-        base_lr,
-        method="isotonic",
-        cv=5,           # 5-fold CV for calibration fitting
-    )
+    calibrated_model = CalibratedClassifierCV(base_lr, method="isotonic", cv=5)
     calibrated_model.fit(X_scaled, y_train_full)
-    print("CalibratedClassifierCV (isotonic, cv=5) trained successfully")
+    print("CalibratedClassifierCV (isotonic, cv=5) trained as LR fallback")
 
     # ── Standalone IsotonicRegression on 10% holdout ──────────────────────
-    # Also fit a standalone isotonic regression for calibration curve plotting
-    # and for saving explicit x_thresholds/y_thresholds to JSON.
     holdout_size = max(100, int(len(X_train_full) * 0.10))
     X_cal = X_scaled[-holdout_size:]
     y_cal = y_train_full[-holdout_size:]
 
-    # Get raw logistic regression probabilities on holdout
     raw_lr = LogisticRegression(C=1.0, max_iter=1000, random_state=42, solver="lbfgs")
     raw_lr.fit(X_scaled[:-holdout_size], y_train_full[:-holdout_size])
     raw_probs = raw_lr.predict_proba(X_cal)[:, 1]
 
-    # Fit isotonic regression: maps raw probabilities -> calibrated probabilities
     iso_reg = IsotonicRegression(out_of_bounds="clip")
     iso_reg.fit(raw_probs, y_cal)
 
     print(f"IsotonicRegression fitted on {len(X_cal)} holdout samples")
-
-    # Print calibration curve (predicted vs actual in 5% probability bands)
     print_calibration_curve(raw_probs, y_cal, iso_reg)
 
-    return calibrated_model, scaler, iso_reg, raw_lr
+    return calibrated_model, scaler, iso_reg, raw_lr, final_xgb
 
 
 # ─── Calibration curve ────────────────────────────────────────────────────────
@@ -581,16 +606,19 @@ def save_model_artifacts(
     iso_reg: IsotonicRegression,
     cv_results: list[dict],
     feature_names: list[str],
+    xgb_model=None,
 ) -> None:
     """
     Save all model artifacts to data/model/ as JSON files compatible
     with TypeScript JSON.parse().
 
     Files saved:
-      coefficients.json   — feature coefficients + intercept
-      scaler.json         — StandardScaler mean/scale arrays
-      calibration.json    — isotonic regression thresholds
-      model_metadata.json — training info, CV metrics
+      coefficients.json      — LR feature coefficients + intercept (fallback)
+      scaler.json            — StandardScaler mean/scale arrays
+      calibration.json       — isotonic regression thresholds
+      model_metadata.json    — training info, CV metrics
+      xgboost_trees.json     — XGBoost trees for TypeScript scoring (if XGB trained)
+      xgboost_scaler.json    — feature name -> mean/scale for XGB input normalization
     """
     # ── 1. coefficients.json ──────────────────────────────────────────────
     # Use the raw LogisticRegression coefficients (before calibration) for
@@ -659,23 +687,58 @@ def save_model_artifacts(
     avg_brier = float(np.mean([r["brier"] for r in cv_results])) if cv_results else 0.0
     avg_acc = float(np.mean([r["accuracy"] for r in cv_results])) if cv_results else 0.0
 
+    xgb_saved = False
+    if xgb_model is not None:
+        try:
+            # Export trees via get_dump (JSON format) for TypeScript tree-walker
+            tree_dumps = xgb_model.get_booster().get_dump(dump_format="json")
+            parsed_trees = [json.loads(t) for t in tree_dumps]
+
+            xgb_tree_path = MODEL_DIR / "xgboost_trees.json"
+            xgb_tree_path.write_text(json.dumps({
+                "n_trees": len(parsed_trees),
+                "n_features": len(feature_names),
+                "feature_names": feature_names,
+                "base_score": 0.5,
+                "trees": parsed_trees,
+            }, indent=2))
+            print(f"Saved xgboost_trees.json ({len(parsed_trees)} trees)")
+            xgb_saved = True
+        except Exception as exc:
+            print(f"WARNING: Could not save XGBoost trees: {exc}")
+
+    # ── 4. model_metadata.json ────────────────────────────────────────────
+    from datetime import datetime
+
+    avg_brier = float(np.mean([r["brier"] for r in cv_results])) if cv_results else 0.0
+    avg_acc = float(np.mean([r["accuracy"] for r in cv_results])) if cv_results else 0.0
+    avg_xgb_brier = float(np.mean([r["xgb_brier"] for r in cv_results if not np.isnan(r.get("xgb_brier", float("nan")))])) if cv_results else None
+    avg_xgb_acc = float(np.mean([r["xgb_accuracy"] for r in cv_results if not np.isnan(r.get("xgb_accuracy", float("nan")))])) if cv_results else None
+
+    primary_model = "xgboost" if xgb_saved else "logistic_regression"
     metadata = {
-        "version": "4.0.0",
-        "model_type": "logistic_regression_calibrated",
+        "version": "4.1.0",
+        "model_type": primary_model,
+        "lr_fallback": True,
         "calibration_method": "isotonic",
         "feature_names": feature_names,
         "n_features": len(feature_names),
         "train_dates": "2018-04-01 to 2024-10-31",
-        "test_dates": "2022–2025 (walk-forward CV)",
+        "test_dates": "2022-2025 (walk-forward CV)",
         "cv_results": cv_results,
         "avg_brier": avg_brier,
         "avg_accuracy": avg_acc,
+        "avg_xgb_brier": avg_xgb_brier,
+        "avg_xgb_accuracy": avg_xgb_acc,
         "trained_at": datetime.now().isoformat(),
         "sklearn_params": {
             "C": 1.0,
             "max_iter": 1000,
             "solver": "lbfgs",
             "calibration_cv": 5,
+            "xgb_n_estimators": 200 if xgb_saved else None,
+            "xgb_max_depth": 4 if xgb_saved else None,
+            "xgb_learning_rate": 0.05 if xgb_saved else None,
         },
     }
     meta_path = MODEL_DIR / "model_metadata.json"
@@ -687,6 +750,8 @@ def save_model_artifacts(
     print(f"  {scaler_path.name}")
     print(f"  {calib_path.name}")
     print(f"  {meta_path.name}")
+    if xgb_saved:
+        print(f"  xgboost_trees.json  (primary scorer for TypeScript)")
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
@@ -746,8 +811,8 @@ def main() -> None:
         print("\n--evaluate-only: skipping model training and artifact saving.")
         return
 
-    # Train final model (on 2018–2024 data)
-    calibrated_model, scaler, iso_reg, raw_lr = train_final_model(X, y, dates)
+    # Train final model (on 2018-2024 data)
+    calibrated_model, scaler, iso_reg, raw_lr, final_xgb = train_final_model(X, y, dates)
 
     # Feature importance
     print_feature_importance(calibrated_model, FEATURE_COLUMNS)
@@ -760,6 +825,7 @@ def main() -> None:
         iso_reg,
         cv_results,
         FEATURE_COLUMNS,
+        xgb_model=final_xgb,
     )
 
     print("\n" + "=" * 65)

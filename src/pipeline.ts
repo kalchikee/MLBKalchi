@@ -199,6 +199,11 @@ async function processGame(
     }
   }
 
+  // Inject live vegas_prob into feature vector so XGBoost/LR can use it
+  if (vegas_prob !== undefined) {
+    features.vegas_home_prob = vegas_prob;
+  }
+
   // ── Step E: Build prediction record ───────────────────────────────────────
   const prediction: Prediction = {
     game_date: gameDate,

@@ -44,6 +44,28 @@ interface ModelMetadataJson {
   trained_at: string;
 }
 
+// ─── XGBoost tree JSON shapes ─────────────────────────────────────────────────
+
+interface XGBTreeNode {
+  nodeid: number;
+  depth?: number;
+  split?: string;           // feature name
+  split_condition?: number; // threshold
+  yes?: number;             // nodeid of left child (condition true)
+  no?: number;              // nodeid of right child
+  missing?: number;
+  leaf?: number;            // leaf value (only present on leaf nodes)
+  children?: XGBTreeNode[];
+}
+
+interface XGBTreesJson {
+  n_trees: number;
+  n_features: number;
+  feature_names: string[];
+  base_score: number;
+  trees: XGBTreeNode[];
+}
+
 // ─── Internal model state ─────────────────────────────────────────────────────
 
 interface LoadedModel {
@@ -68,6 +90,18 @@ interface LoadedModel {
 // Singleton — loaded once on first call to predict() or loadModel()
 let _model: LoadedModel | null = null;
 let _loadAttempted = false;
+
+// XGBoost tree scorer (primary, if trees file present)
+interface LoadedXGB {
+  trees: XGBTreeNode[];
+  featureNames: string[];
+  baseScore: number;
+  nTrees: number;
+  calX: Float64Array;
+  calY: Float64Array;
+}
+let _xgb: LoadedXGB | null = null;
+let _xgbAttempted = false;
 
 // ─── Feature name list (must match FEATURE_COLUMNS in Python and types.ts) ───
 
@@ -102,6 +136,7 @@ const FEATURE_NAMES_ORDERED = [
   'statcast_ev_diff',
   'gb_rate_diff',
   'sci_adjusted_diff',
+  'vegas_home_prob',
 ] as const;
 
 // ─── Model loading ────────────────────────────────────────────────────────────
@@ -229,10 +264,101 @@ export function loadModel(): boolean {
 }
 
 /**
+ * Attempt to load XGBoost trees from xgboost_trees.json.
+ * Uses the same isotonic calibration thresholds as the LR model.
+ * Returns true if trees loaded successfully.
+ */
+function loadXGB(): boolean {
+  if (_xgb) return true;
+  if (_xgbAttempted) return false;
+  _xgbAttempted = true;
+
+  const treePath = resolve(MODEL_DIR, 'xgboost_trees.json');
+  const calPath  = resolve(MODEL_DIR, 'calibration.json');
+
+  if (!existsSync(treePath)) {
+    logger.debug('xgboost_trees.json not found — using LR model');
+    return false;
+  }
+
+  try {
+    const xgbJson: XGBTreesJson = JSON.parse(readFileSync(treePath, 'utf-8'));
+    const calJson: { x_thresholds: number[]; y_thresholds: number[] } = existsSync(calPath)
+      ? JSON.parse(readFileSync(calPath, 'utf-8'))
+      : { x_thresholds: [], y_thresholds: [] };
+
+    _xgb = {
+      trees: xgbJson.trees,
+      featureNames: xgbJson.feature_names,
+      baseScore: xgbJson.base_score ?? 0.5,
+      nTrees: xgbJson.n_trees,
+      calX: new Float64Array(calJson.x_thresholds),
+      calY: new Float64Array(calJson.y_thresholds),
+    };
+
+    logger.info({ nTrees: _xgb.nTrees, features: _xgb.featureNames.length }, 'XGBoost model loaded');
+    return true;
+  } catch (err) {
+    logger.warn({ err }, 'Failed to load XGBoost trees — falling back to LR');
+    _xgb = null;
+    return false;
+  }
+}
+
+/**
+ * Traverse a single XGBoost tree and return the leaf value.
+ */
+function traverseTree(node: XGBTreeNode, featureValues: Map<string, number>): number {
+  if (node.leaf !== undefined) return node.leaf;
+
+  const featureName = node.split!;
+  const threshold = node.split_condition!;
+  const val = featureValues.get(featureName) ?? 0;
+  const safeVal = isFinite(val) ? val : 0;
+
+  // XGBoost: go left (yes) if val < threshold, right (no) otherwise
+  const nextId = safeVal < threshold ? node.yes! : node.no!;
+
+  // Find child by nodeid in children array
+  if (node.children) {
+    const child = node.children.find(c => c.nodeid === nextId);
+    if (child) return traverseTree(child, featureValues);
+  }
+
+  return 0;
+}
+
+/**
+ * Score a feature vector using the loaded XGBoost trees.
+ * Returns a raw probability [0,1] before calibration.
+ */
+function scoreXGB(features: FeatureVector): number | null {
+  if (!_xgb) return null;
+
+  // Build feature lookup map
+  const fmap = new Map<string, number>();
+  const featObj = features as unknown as Record<string, unknown>;
+  for (const name of _xgb.featureNames) {
+    const val = featObj[name];
+    fmap.set(name, typeof val === 'number' ? val : 0);
+  }
+
+  // Sum leaf values across all trees, then apply logistic transform
+  let score = 0;
+  for (const tree of _xgb.trees) {
+    score += traverseTree(tree, fmap);
+  }
+
+  // XGBoost binary classification: sigmoid of raw score
+  const rawProb = 1 / (1 + Math.exp(-score));
+  return rawProb;
+}
+
+/**
  * Check whether the ML model has been successfully loaded.
  */
 export function isModelLoaded(): boolean {
-  return _model !== null;
+  return _model !== null || _xgb !== null;
 }
 
 /**
@@ -276,15 +402,23 @@ export function getModelInfo(): {
  * @returns Calibrated probability (0–1) for home team win
  */
 export function predict(features: FeatureVector, mcWinProb: number): number {
-  // Auto-load on first call
-  if (!_model) {
-    loadModel();
+  // ── Try XGBoost first (primary scorer) ────────────────────────────────
+  if (!_xgbAttempted) loadXGB();
+
+  if (_xgb) {
+    const xgbRaw = scoreXGB(features);
+    if (xgbRaw !== null) {
+      // Apply the same isotonic calibration
+      const calibrated = _xgb.calX.length > 0
+        ? isotonicInterpolate(xgbRaw, _xgb.calX, _xgb.calY)
+        : xgbRaw;
+      return Math.max(0.01, Math.min(0.99, calibrated));
+    }
   }
 
-  // If model still not available, fall back to MC
-  if (!_model) {
-    return mcWinProb;
-  }
+  // ── Fall back to Logistic Regression ──────────────────────────────────
+  if (!_model) loadModel();
+  if (!_model) return mcWinProb;
 
   const m = _model;
   const n = m.featureNames.length;
@@ -386,4 +520,6 @@ function isotonicInterpolate(
 export function _resetModel(): void {
   _model = null;
   _loadAttempted = false;
+  _xgb = null;
+  _xgbAttempted = false;
 }
