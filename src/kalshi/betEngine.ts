@@ -16,9 +16,19 @@ import { sendBetPlacedAlert, sendNoBetsAlert } from '../alerts/discord.js';
 import { getTeamGamesPlayed } from '../api/mlbClient.js';
 import { logger } from '../logger.js';
 
-// ─── Early-season threshold ───────────────────────────────────────────────────
+// ─── Thresholds (all configurable via env) ────────────────────────────────────
 
 const KALSHI_MIN_TEAM_GAMES = parseInt(process.env.KALSHI_MIN_TEAM_GAMES ?? '10', 10);
+
+// Minimum absolute pythagorean win% gap between teams.
+// Below this the game is a toss-up — model accuracy drops to ~55% (skip it).
+// Segment analysis: |pyth_diff| < 0.03 → 55.1% accuracy vs 71.9% for strong mismatches.
+const KALSHI_MIN_PYTH_DIFF = parseFloat(process.env.KALSHI_MIN_PYTH_DIFF ?? '0.03');
+
+// Minimum absolute Elo gap between teams.
+// Below this there's no meaningful quality separation.
+// Segment analysis: |elo_diff| < 25 → 56.3% accuracy vs 68.1% for clear favourites.
+const KALSHI_MIN_ELO_DIFF = parseFloat(process.env.KALSHI_MIN_ELO_DIFF ?? '25');
 
 export interface KalshiBetRecord {
   id?: number;
@@ -215,6 +225,38 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
     } catch (err) {
       // If we can't verify games played, log and continue (don't block bets)
       logger.warn({ err, matchup }, 'Could not verify games played — skipping early-season check');
+    }
+
+    // ── Structural quality filters (from segment analysis) ────────────────
+    // These are the stable, non-overfitted signals. Per-team/stadium filters
+    // are intentionally excluded — accuracy there fluctuates year to year.
+    const fv = candidate.prediction.feature_vector;
+
+    // 1. Skip toss-up games — pythagorean gap too small
+    const pythDiff = Math.abs(fv?.pythagorean_diff ?? 0);
+    if (pythDiff < KALSHI_MIN_PYTH_DIFF) {
+      logger.info(
+        { matchup, pythDiff: pythDiff.toFixed(3), threshold: KALSHI_MIN_PYTH_DIFF },
+        `Skipping — toss-up (pythagorean gap ${pythDiff.toFixed(3)} < ${KALSHI_MIN_PYTH_DIFF})`
+      );
+      continue;
+    }
+
+    // 2. Skip games with no Elo separation
+    const eloDiff = Math.abs(fv?.elo_diff ?? 0);
+    if (eloDiff < KALSHI_MIN_ELO_DIFF) {
+      logger.info(
+        { matchup, eloDiff: eloDiff.toFixed(0), threshold: KALSHI_MIN_ELO_DIFF },
+        `Skipping — Elo gap too small (${eloDiff.toFixed(0)} pts < ${KALSHI_MIN_ELO_DIFF})`
+      );
+      continue;
+    }
+
+    // 3. Skip October — model accuracy drops ~2%, small sample, playoff-adjacent chaos
+    const gameMonth = new Date(date).getMonth() + 1; // 1=Jan, 10=Oct
+    if (gameMonth === 10) {
+      logger.info({ matchup }, 'Skipping — October games less predictable');
+      continue;
     }
 
     // Check edge if Vegas lines are loaded (optional guard)
