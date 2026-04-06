@@ -85,6 +85,9 @@ FEATURE_COLUMNS = [
     "gb_rate_diff",
     "sci_adjusted_diff",
     "vegas_home_prob",
+    "momentum_diff",
+    "run_diff_diff",
+    "platoon_advantage",
 ]
 
 # Walk-forward CV splits: (train_seasons, test_season)

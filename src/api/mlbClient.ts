@@ -411,6 +411,76 @@ export async function fetchRecentGameLog(
   return results;
 }
 
+// ─── Team momentum & run differential ────────────────────────────────────────
+
+export interface TeamMomentum {
+  last10WinPct: number;    // win% in last 10 games (0–1)
+  seasonWinPct: number;    // full-season win% (0–1)
+  momentum: number;        // last10WinPct - seasonWinPct (positive = hot streak)
+  last10RunDiff: number;   // avg run differential per game over last 10 (positive = outscoring opponents)
+  seasonRunDiff: number;   // avg run differential per game over season
+}
+
+/**
+ * Fetch team momentum from the standings API.
+ * The `lastTen` field ("7-3") gives the last-10 record.
+ * Also returns run differential per game for streak vs season comparison.
+ */
+export async function fetchTeamMomentum(
+  teamAbbr: string,
+  season: number = new Date().getFullYear(),
+): Promise<TeamMomentum> {
+  const neutral: TeamMomentum = { last10WinPct: 0.5, seasonWinPct: 0.5, momentum: 0, last10RunDiff: 0, seasonRunDiff: 0 };
+
+  const teamId = Object.entries(TEAM_ID_TO_ABBR).find(([, a]) => a === teamAbbr)?.[0];
+  if (!teamId) return neutral;
+
+  const url = `${MLB_BASE}/standings?leagueId=103,104&season=${season}&standingsTypes=regularSeason&hydrate=team,record`;
+  let data: Record<string, unknown>;
+  try {
+    data = await fetchWithRetry<Record<string, unknown>>(url);
+  } catch {
+    return neutral;
+  }
+
+  const records = (data as any)?.records ?? [];
+  for (const division of records) {
+    for (const teamRecord of division.teamRecords ?? []) {
+      if (String(teamRecord.team?.id) !== teamId) continue;
+
+      const wins = Number(teamRecord.wins ?? 0);
+      const losses = Number(teamRecord.losses ?? 0);
+      const gp = wins + losses;
+      const seasonWinPct = gp > 0 ? wins / gp : 0.5;
+
+      // lastTen is a string like "7-3"
+      const lastTenStr: string = teamRecord.records?.splitRecords?.find(
+        (r: { type: string }) => r.type === 'lastTen'
+      )?.wins !== undefined
+        ? `${teamRecord.records.splitRecords.find((r: { type: string }) => r.type === 'lastTen').wins}-${teamRecord.records.splitRecords.find((r: { type: string }) => r.type === 'lastTen').losses}`
+        : teamRecord.lastTen ?? '5-5';
+
+      const [l10w, l10l] = lastTenStr.split('-').map(Number);
+      const last10Total = (l10w || 0) + (l10l || 0);
+      const last10WinPct = last10Total > 0 ? (l10w || 0) / last10Total : 0.5;
+
+      const runsScored = Number(teamRecord.runsScored ?? 0);
+      const runsAllowed = Number(teamRecord.runsAllowed ?? 0);
+      const seasonRunDiff = gp > 0 ? (runsScored - runsAllowed) / gp : 0;
+
+      return {
+        last10WinPct,
+        seasonWinPct,
+        momentum: last10WinPct - seasonWinPct,
+        last10RunDiff: 0,       // not available from standings; computed from game log separately
+        seasonRunDiff,
+      };
+    }
+  }
+
+  return neutral;
+}
+
 // ─── Pitcher actual recent form (last N starts game log) ─────────────────────
 
 /**

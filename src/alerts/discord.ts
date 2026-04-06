@@ -511,6 +511,8 @@ export async function sendEODSummaryAlert(
   bets: import('../kalshi/betEngine.js').KalshiBetRecord[],
   summary: { totalCost: number; totalPnl: number; wins: number; losses: number; open: number },
   paper: boolean,
+  recapGames?: RecapGame[],
+  recapMetrics?: RecapMetrics,
 ): Promise<void> {
   const mode = paper ? ' [PAPER]' : '';
   const roi = summary.totalCost > 0 ? (summary.totalPnl / summary.totalCost) * 100 : 0;
@@ -519,10 +521,36 @@ export async function sendEODSummaryAlert(
     : `-$${Math.abs(summary.totalPnl).toFixed(2)}`;
 
   if (bets.length === 0) {
+    const noBetFields: DiscordField[] = [];
+    if (recapGames && recapGames.length > 0) {
+      const correct = recapGames.filter(g => g.correct).length;
+      const gameLines = recapGames.map(g => {
+        const marker = g.correct ? '✅' : '❌';
+        const { team: predicted, winPct } = getWinner(g.prediction);
+        return `${marker} **${g.prediction.away_team} @ ${g.prediction.home_team}** ${g.homeScore}–${g.awayScore} · predicted ${predicted} ${pct(winPct)}`;
+      });
+      noBetFields.push({
+        name: `🎯 Game Predictions — ${correct}/${recapGames.length} correct (${pct(correct / recapGames.length)})`,
+        value: gameLines.join('\n'),
+        inline: false,
+      });
+      if (recapMetrics?.seasonStats && recapMetrics.seasonStats.totalGames > 0) {
+        const s = recapMetrics.seasonStats;
+        noBetFields.push({
+          name: '📈 Season Running Total',
+          value: `${s.correctPredictions}/${s.totalGames} · **${pct(s.accuracy)}**`,
+          inline: true,
+        });
+      }
+    }
+    const gameAccStr = recapGames && recapGames.length > 0
+      ? ` · **${recapGames.filter(g => g.correct).length}/${recapGames.length}** games correct`
+      : '';
     const embed: DiscordEmbed = {
       title: `📋 MLB Oracle EOD${mode} — ${date}`,
-      description: 'No bets were placed today (no games cleared the 65% threshold)',
+      description: `No bets placed today (no games cleared the 75% threshold)${gameAccStr}`,
       color: 0x95a5a6,
+      fields: noBetFields.length > 0 ? noBetFields : undefined,
       footer: { text: `MLB Oracle v${MODEL_VERSION}${mode}` },
       timestamp: new Date().toISOString(),
     };
@@ -577,13 +605,72 @@ export async function sendEODSummaryAlert(
     },
   ];
 
+  // ── Game prediction accuracy section ─────────────────────────────────────
+  if (recapGames && recapGames.length > 0) {
+    const correct = recapGames.filter(g => g.correct).length;
+    const total = recapGames.length;
+    const acc = correct / total;
+
+    // Per-game result lines
+    const gameLines = recapGames.map(g => {
+      const marker = g.correct ? '✅' : '❌';
+      const { team: predicted, winPct } = getWinner(g.prediction);
+      const score = `${g.homeScore}–${g.awayScore}`;
+      return `${marker} **${g.prediction.away_team} @ ${g.prediction.home_team}** ${score} · predicted ${predicted} ${pct(winPct)}`;
+    });
+    fields.push({
+      name: `🎯 Game Predictions — ${correct}/${total} correct (${pct(acc)})`,
+      value: gameLines.join('\n'),
+      inline: false,
+    });
+
+    // High-conviction accuracy
+    const hc = recapGames.filter(g => g.prediction.calibrated_prob >= 0.65 || (1 - g.prediction.calibrated_prob) >= 0.65);
+    if (hc.length > 0) {
+      const hcCorrect = hc.filter(g => g.correct).length;
+      fields.push({
+        name: '⭐ High-Conviction (65%+)',
+        value: `${hcCorrect}/${hc.length} correct — **${pct(hcCorrect / hc.length)}**`,
+        inline: true,
+      });
+    }
+
+    // Season running total
+    if (recapMetrics?.seasonStats && recapMetrics.seasonStats.totalGames > 0) {
+      const s = recapMetrics.seasonStats;
+      fields.push({
+        name: '📈 Season Running Total',
+        value: `${s.correctPredictions}/${s.totalGames} · **${pct(s.accuracy)}**`,
+        inline: true,
+      });
+    }
+
+    // Model vs Vegas
+    if (recapMetrics?.vegasBrierScore !== undefined && recapMetrics.brierScore > 0) {
+      const diff = recapMetrics.brierScore - recapMetrics.vegasBrierScore;
+      const vsVegas = diff < 0
+        ? `✅ Beat Vegas by ${Math.abs(diff).toFixed(4)} Brier`
+        : `📉 Vegas beat us by ${diff.toFixed(4)} Brier`;
+      fields.push({ name: '🎰 vs Vegas', value: vsVegas, inline: true });
+    }
+  } else if (recapGames) {
+    fields.push({
+      name: '🎯 Game Predictions',
+      value: 'No final scores available yet',
+      inline: false,
+    });
+  }
+
   const emoji = summary.totalPnl > 0 ? '🟢' : summary.totalPnl < 0 ? '🔴' : '⚪';
+  const gameAccStr = recapGames && recapGames.length > 0
+    ? ` · **${recapGames.filter(g => g.correct).length}/${recapGames.length}** games correct`
+    : '';
   const embed: DiscordEmbed = {
     title: `📋 MLB Oracle EOD${mode} — ${date}`,
-    description: `${emoji} **${bets.length} bet${bets.length !== 1 ? 's' : ''} placed** · If this were real money: **${pnlStr}**`,
+    description: `${emoji} **${bets.length} bet${bets.length !== 1 ? 's' : ''} placed** · P&L: **${pnlStr}**${gameAccStr}`,
     color: summary.totalPnl >= 0 ? 0x27ae60 : 0xe74c3c,
     fields,
-    footer: { text: `MLB Oracle v${MODEL_VERSION}${mode} · 1 contract per game · 20% stop-loss` },
+    footer: { text: `MLB Oracle v${MODEL_VERSION}${mode} · 20% stop-loss` },
     timestamp: new Date().toISOString(),
   };
   await sendWebhook({ embeds: [embed] });

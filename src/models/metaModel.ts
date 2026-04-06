@@ -137,6 +137,9 @@ const FEATURE_NAMES_ORDERED = [
   'gb_rate_diff',
   'sci_adjusted_diff',
   'vegas_home_prob',
+  'momentum_diff',
+  'run_diff_diff',
+  'platoon_advantage',
 ] as const;
 
 // ─── Model loading ────────────────────────────────────────────────────────────

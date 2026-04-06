@@ -202,6 +202,18 @@ export interface FeatureVector {
   // Vegas closing moneyline (normalized, vig-removed)
   // 0.0 when odds not available (treated as prior ~0.5)
   vegas_home_prob: number;
+
+  // Team momentum: (last-10 win% - season win%) differential (home - away)
+  // Positive = home team on hotter streak relative to their baseline
+  momentum_diff: number;
+
+  // Season run differential per game (home - away)
+  // Positive = home team outscoring opponents by more per game
+  run_diff_diff: number;
+
+  // SP handedness platoon advantage
+  // +1 = home SP has platoon advantage vs away lineup, -1 = disadvantage, 0 = neutral
+  platoon_advantage: number;
 }
 
 export interface SPScore {

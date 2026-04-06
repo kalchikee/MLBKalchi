@@ -12,7 +12,7 @@ import type {
 } from '../types.js';
 import {
   fetchPitcherStats, fetchTeamStats, computeRollingStats, TEAM_ID_TO_ABBR,
-  fetchPitcherRecentForm, fetchTeamILPlayers, type ILPlayer,
+  fetchPitcherRecentForm, fetchTeamILPlayers, fetchTeamMomentum, type ILPlayer,
 } from '../api/mlbClient.js';
 import { fetchParkWeather } from '../api/weatherClient.js';
 import {
@@ -215,8 +215,8 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
     logger.info({ homeILBatters, awayILBatters }, '[IL] Lineup adjustments applied');
   }
 
-  // Rolling stats + actual pitcher recent form (in parallel)
-  const [homeRolling, awayRolling, homeSPRecentForm, awaySPRecentForm] = await Promise.all([
+  // Rolling stats + actual pitcher recent form + team momentum (all parallel)
+  const [homeRolling, awayRolling, homeSPRecentForm, awaySPRecentForm, homeMomentum, awayMomentum] = await Promise.all([
     computeRollingStats(game.homeTeam.id, gameDate),
     computeRollingStats(game.awayTeam.id, gameDate),
     game.homeTeam.probablePitcher?.id && !homeSPOnIL
@@ -225,6 +225,8 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
     game.awayTeam.probablePitcher?.id && !awaySPOnIL
       ? fetchPitcherRecentForm(game.awayTeam.probablePitcher.id, year).catch(() => null)
       : Promise.resolve(null),
+    fetchTeamMomentum(homeAbbr, year).catch(() => ({ momentum: 0, seasonRunDiff: 0, last10WinPct: 0.5, seasonWinPct: 0.5, last10RunDiff: 0 })),
+    fetchTeamMomentum(awayAbbr, year).catch(() => ({ momentum: 0, seasonRunDiff: 0, last10WinPct: 0.5, seasonWinPct: 0.5, last10RunDiff: 0 })),
   ]);
 
   // Upgrade rollingGameScore with actual last-5-starts if available
@@ -453,10 +455,49 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
     // Vegas closing probability — set at inference time by prediction pipeline
     // when live odds are available; 0.0 = no odds loaded
     vegas_home_prob: 0,
+
+    // Team momentum: (last10WinPct - seasonWinPct) for home minus away
+    // Captures hot/cold streaks relative to each team's baseline quality
+    momentum_diff: homeMomentum.momentum - awayMomentum.momentum,
+
+    // Season run differential per game (home - away)
+    run_diff_diff: homeMomentum.seasonRunDiff - awayMomentum.seasonRunDiff,
+
+    // SP handedness platoon advantage
+    // A left-handed SP faces a predominantly right-handed lineup → platoon edge for SP
+    // +1 = home SP has platoon advantage vs away batters, -1 = disadvantage, 0 = neutral
+    platoon_advantage: computePlatoonAdvantage(effectiveHomeSP, effectiveAwaySP),
   };
 
   logger.debug({ gamePk: game.gamePk, features }, 'Features computed');
   return features;
+}
+
+// ─── Platoon advantage helper ─────────────────────────────────────────────────
+
+/**
+ * Compute platoon advantage for the home team's starting pitcher.
+ *
+ * A left-handed starter is harder for right-handed batters (most lineups skew righty).
+ * A right-handed starter faces more natural opposition from right-handed lineups.
+ *
+ * Returns:
+ *  +1  home SP has platoon advantage (LHP vs RHH-heavy lineup)
+ *  -1  home SP is at platoon disadvantage (RHP vs LHH-heavy lineup, unusual)
+ *   0  no meaningful platoon edge
+ *
+ * Uses SP handedness from PitcherStats.handedness ('L' | 'R' | 'S').
+ */
+function computePlatoonAdvantage(
+  homeSP: import('../types.js').PitcherStats | null,
+  awaySP: import('../types.js').PitcherStats | null,
+): number {
+  // Left-handed starters have an edge against typical (right-heavy) lineups
+  // because LHP → RHH is the platoon disadvantage for hitters
+  const homeEdge = homeSP?.handedness === 'L' ? 1 : homeSP?.handedness === 'R' ? -0.3 : 0;
+  const awayEdge = awaySP?.handedness === 'L' ? 1 : awaySP?.handedness === 'R' ? -0.3 : 0;
+  // Return home advantage relative to away (positive = home SP has better platoon situation)
+  return homeEdge - awayEdge;
 }
 
 // ─── Lambda adjustments for Monte Carlo ──────────────────────────────────────

@@ -8,6 +8,7 @@ import { ensureKalshiBetsTable, getOpenBets, getAllBetsForDate, updateBetClosed 
 import { getMarket, PAPER_TRADING, CASHOUT_LOSS_PCT } from '../kalshi/kalshiClient.js';
 import { sendEODSummaryAlert } from '../alerts/discord.js';
 import { sendEODSummaryEmail } from '../alerts/email.js';
+import { processResults } from '../alerts/results.js';
 import { logger } from '../logger.js';
 
 const date = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
@@ -57,7 +58,10 @@ try {
     }
   }
 
-  // 2. Send EOD Discord summary
+  // 2. Fetch final scores and compute game prediction accuracy
+  const { games: recapGames, metrics } = await processResults(date);
+
+  // 3. Send EOD Discord summary
   const allBets = getAllBetsForDate(date);
   const totalCost  = allBets.reduce((s, b) => s + b.cost_basis, 0);
   const totalPnl   = allBets.reduce((s, b) => s + (b.pnl ?? 0), 0);
@@ -65,7 +69,7 @@ try {
   const losses     = allBets.filter(b => b.status !== 'open' && (b.pnl ?? 0) <= 0).length;
   const open       = allBets.filter(b => b.status === 'open').length;
 
-  await sendEODSummaryAlert(date, allBets, { totalCost, totalPnl, wins, losses, open }, PAPER_TRADING);
+  await sendEODSummaryAlert(date, allBets, { totalCost, totalPnl, wins, losses, open }, PAPER_TRADING, recapGames, metrics);
 
   // Email summary via Resend (graceful no-op if keys not configured)
   await sendEODSummaryEmail(date, allBets, { totalCost, totalPnl, wins, losses, open }, PAPER_TRADING).catch(err =>

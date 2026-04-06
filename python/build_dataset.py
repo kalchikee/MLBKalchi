@@ -335,6 +335,46 @@ class EloSystem:
         self.ratings[away] = away_rating + ELO_K * mov_mult * (away_win - expected_away)
 
 
+# ─── Momentum / streak tracker ───────────────────────────────────────────────
+
+class MomentumTracker:
+    """
+    Tracks each team's rolling last-10 win% and season run differential.
+    Updated game-by-game in chronological order (no lookahead).
+    """
+    def __init__(self) -> None:
+        self.results: dict[str, list[int]] = {}       # team -> list of 1/0 (win/loss), all season
+        self.run_diff: dict[str, list[float]] = {}    # team -> list of run differentials per game
+
+    def season_reset(self) -> None:
+        self.results = {}
+        self.run_diff = {}
+
+    def get_features(self, team: str) -> tuple[float, float]:
+        """
+        Returns (momentum, season_run_diff_per_game) BEFORE this game is recorded.
+        momentum = last10_win_pct - season_win_pct
+        """
+        games = self.results.get(team, [])
+        diffs = self.run_diff.get(team, [])
+        if not games:
+            return 0.0, 0.0
+        season_win_pct = sum(games) / len(games)
+        last10 = games[-10:] if len(games) >= 10 else games
+        last10_win_pct = sum(last10) / len(last10)
+        momentum = last10_win_pct - season_win_pct
+        season_rdiff = sum(diffs) / len(diffs) if diffs else 0.0
+        return momentum, season_rdiff
+
+    def update(self, team: str, run_diff: float) -> None:
+        """Record game result: run_diff > 0 = win, < 0 = loss."""
+        if team not in self.results:
+            self.results[team] = []
+            self.run_diff[team] = []
+        self.results[team].append(1 if run_diff > 0 else 0)
+        self.run_diff[team].append(run_diff)
+
+
 # ─── Park factor loader ───────────────────────────────────────────────────────
 
 def load_park_factors() -> dict[str, float]:
@@ -397,6 +437,7 @@ def fetch_pitcher_stats(player_id: int, season: int) -> dict:
         "bb_per_9": 3.0,
         "innings_pitched": 0.0,
         "games_started": 0,
+        "handedness": "R",
     }
     if player_id <= 0:
         return defaults
@@ -414,6 +455,16 @@ def fetch_pitcher_stats(player_id: int, season: int) -> dict:
         bb = float(s.get("baseOnBalls", 0) or 0)
         k_per_9 = (so / ip * 9.0) if ip > 0 else 8.5
         bb_per_9 = (bb / ip * 9.0) if ip > 0 else 3.0
+
+        # Fetch handedness from people endpoint
+        handedness = "R"
+        try:
+            person_data = api_get(f"{MLB_API_BASE}/people/{player_id}", {"hydrate": "currentTeam"})
+            hand = person_data.get("people", [{}])[0].get("pitchHand", {}).get("code", "R")
+            handedness = hand if hand in ("L", "R", "S") else "R"
+        except Exception:
+            pass
+
         return {
             "era": float(s.get("era", 4.20) or 4.20),
             "whip": float(s.get("whip", 1.30) or 1.30),
@@ -421,6 +472,7 @@ def fetch_pitcher_stats(player_id: int, season: int) -> dict:
             "bb_per_9": bb_per_9,
             "innings_pitched": ip,
             "games_started": int(s.get("gamesStarted", 0) or 0),
+            "handedness": handedness,
         }
     except Exception:
         return defaults
@@ -703,6 +755,7 @@ def build_feature_row(
     park_factors: dict[str, float],
     gl_cache: dict | None = None,
     sbr_odds: dict | None = None,
+    momentum_tracker: "MomentumTracker | None" = None,
 ) -> dict | None:
     """
     Build a single feature row for one completed game.
@@ -787,8 +840,27 @@ def build_feature_row(
                 vegas_home_prob = odds_entry["home_prob"]
         row["vegas_home_prob"] = vegas_home_prob
 
+        # Team momentum (pre-game — before updating tracker with this game's result)
+        home_momentum, home_rdiff = momentum_tracker.get_features(home_abbr) if momentum_tracker else (0.0, 0.0)
+        away_momentum, away_rdiff = momentum_tracker.get_features(away_abbr) if momentum_tracker else (0.0, 0.0)
+        row["momentum_diff"] = home_momentum - away_momentum
+        row["run_diff_diff"] = home_rdiff - away_rdiff
+
+        # SP handedness platoon advantage
+        # LH starter = +1 (advantage vs RH-heavy lineups), RH starter = -0.3 (slight disadvantage)
+        home_sp_hand = (sp_cache.get(home_sp_id) or {}).get("handedness", "R") if home_sp_id else "R"
+        away_sp_hand = (sp_cache.get(away_sp_id) or {}).get("handedness", "R") if away_sp_id else "R"
+        def hand_score(h: str) -> float:
+            return 1.0 if h == "L" else (-0.3 if h == "R" else 0.0)
+        row["platoon_advantage"] = hand_score(home_sp_hand) - hand_score(away_sp_hand)
+
         # Label: 1 = home win, 0 = away win
         row["label"] = 1 if home_score > away_score else 0
+
+        # Update momentum tracker AFTER computing features (no lookahead)
+        if momentum_tracker:
+            momentum_tracker.update(home_abbr, home_score - away_score)
+            momentum_tracker.update(away_abbr, away_score - home_score)
 
         return row
 
@@ -849,6 +921,8 @@ def build_dataset(
 
     # Elo system persists across seasons (applies season regression at start of each)
     elo_system = EloSystem()
+    # Momentum tracker: resets each season, updates game-by-game
+    momentum_tracker = MomentumTracker()
     # SP/team stats caches — keyed by player_id/team_id (season-scoped, reset per season)
     sp_cache: dict = {}
     team_cache: dict = {}
@@ -868,6 +942,7 @@ def build_dataset(
         print(f"{'='*60}")
 
         elo_system.season_regress(season)
+        momentum_tracker.season_reset()
 
         # Load SBR Vegas odds for this season (cached after first download)
         sbr_odds = load_sbr_odds(season)
@@ -937,7 +1012,7 @@ def build_dataset(
             try:
                 row = build_feature_row(
                     game, season, elo_system, sp_cache, team_cache, park_factors,
-                    gl_cache=gl_cache, sbr_odds=sbr_odds,
+                    gl_cache=gl_cache, sbr_odds=sbr_odds, momentum_tracker=momentum_tracker,
                 )
                 if row is not None:
                     season_rows.append(row)
