@@ -1058,12 +1058,12 @@ def build_dataset(
 
 def _ensure_all_columns(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Ensure all 30 feature columns exist; fill missing with 0.0.
+    Ensure all 34 feature columns exist; fill missing with 0.0.
     Also fill any NaN values with 0.0.
     """
     required_cols = [
         "game_date", "game_id", "home_team", "away_team", "home_score", "away_score", "season",
-        # All 30 features from FeatureVector
+        # All 34 features from FeatureVector
         "elo_diff", "sp_xfip_diff", "sp_kbb_diff", "sp_siera_diff", "sp_csw_diff",
         "sp_rolling_gs_diff", "bullpen_strength_diff", "lineup_woba_diff",
         "lineup_wrc_plus_diff", "team_10d_woba_diff", "team_10d_fip_diff",
@@ -1072,6 +1072,7 @@ def _ensure_all_columns(df: pd.DataFrame) -> pd.DataFrame:
         "rest_days_diff", "travel_tz_shift", "day_after_night", "is_home",
         "statcast_xba_diff", "statcast_barrel_diff", "statcast_hardhit_diff",
         "statcast_ev_diff", "gb_rate_diff", "sci_adjusted_diff",
+        "vegas_home_prob", "momentum_diff", "run_diff_diff", "platoon_advantage",
         # Label
         "label",
     ]
@@ -1090,7 +1091,7 @@ def _print_dataset_summary(df: pd.DataFrame) -> None:
     print("Dataset Summary")
     print("=" * 60)
     print(f"Total rows       : {len(df)}")
-    print(f"Date range       : {df['game_date'].min()} → {df['game_date'].max()}")
+    print(f"Date range       : {df['game_date'].min()} -> {df['game_date'].max()}")
     print(f"Seasons          : {sorted(df['season'].unique())}")
     print(f"Home win rate    : {df['label'].mean():.3f}")
     print(f"\nEstimated features (set to 0.0 or default):")
