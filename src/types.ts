@@ -73,6 +73,7 @@ export interface TeamStats {
   rolling10dWoba?: number;
   rolling10dFip?: number;
   rolling10dRunsPerGame?: number;
+  gamesPlayed?: number;
 }
 
 export interface ProbablePitcher {

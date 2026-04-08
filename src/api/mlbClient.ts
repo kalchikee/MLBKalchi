@@ -208,6 +208,13 @@ export async function fetchPitcherStats(playerId: number, season: number = new D
     return null;
   }
 
+  // Small-sample protection: if fewer than 15 IP in current season, use prior season
+  // Early in the season a pitcher with 3 IP and ERA 18 should not tank predictions
+  const earlySeasonIp = safeNum(stats.inningsPitched, 0);
+  if (earlySeasonIp < 15 && season > 2024) {
+    return fetchPitcherStats(playerId, season - 1);
+  }
+
   // Fetch player metadata for handedness
   const personUrl = `${MLB_BASE}/people/${playerId}`;
   let handedness: 'L' | 'R' | 'S' = 'R';
@@ -333,6 +340,7 @@ export async function fetchTeamStats(teamId: number, season: number = new Date()
     hardHitRate: 0.37,
     exitVelocity: 88.5,
     gbRate: 0.43,
+    gamesPlayed,
   };
 }
 

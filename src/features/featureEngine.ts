@@ -363,8 +363,19 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
   const homeRA = homeTeamStats?.era ? homeTeamStats.era : LEAGUE_AVG_RPG;
   const awayRA = awayTeamStats?.era ? awayTeamStats.era : LEAGUE_AVG_RPG;
 
-  const homePythPct = pythagoreanWinPct(homeRPG, homeRA);
-  const awayPythPct = pythagoreanWinPct(awayRPG, awayRA);
+  // Bayesian shrinkage: regress pythagorean win% toward .500 based on games played.
+  // Early in the season a 6-1 record produces an extreme pythagorean win% that
+  // has no predictive value yet — we need ~50 games for it to stabilize.
+  const PYTH_STABILIZATION_GP = 50;
+  const homeGP = homeTeamStats?.gamesPlayed ?? 0;
+  const awayGP = awayTeamStats?.gamesPlayed ?? 0;
+  const homeReliability = Math.min(1, homeGP / PYTH_STABILIZATION_GP);
+  const awayReliability = Math.min(1, awayGP / PYTH_STABILIZATION_GP);
+
+  const homePythRaw = pythagoreanWinPct(homeRPG, homeRA);
+  const awayPythRaw = pythagoreanWinPct(awayRPG, awayRA);
+  const homePythPct = 0.5 + (homePythRaw - 0.5) * homeReliability;
+  const awayPythPct = 0.5 + (awayPythRaw - 0.5) * awayReliability;
   const log5 = log5Probability(homePythPct, awayPythPct);
 
   // wOBA and wRC+ — adjusted for IL position players
@@ -408,7 +419,17 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
     sp_kbb_diff: (effectiveHomeSP?.kBBPct ?? 0.14) - (effectiveAwaySP?.kBBPct ?? 0.14),
     sp_siera_diff: (effectiveHomeSP?.siera ?? 4.20) - (effectiveAwaySP?.siera ?? 4.20),
     sp_csw_diff: (effectiveHomeSP?.cswRate ?? 0.28) - (effectiveAwaySP?.cswRate ?? 0.28),
-    sp_rolling_gs_diff: (effectiveHomeSP?.rollingGameScore ?? 50) - (effectiveAwaySP?.rollingGameScore ?? 50),
+    // Regress game score toward 0 diff based on pitcher starts — 1-2 starts is noise
+    sp_rolling_gs_diff: (() => {
+      const homeGS = effectiveHomeSP?.rollingGameScore ?? 50;
+      const awayGS = effectiveAwaySP?.rollingGameScore ?? 50;
+      const rawDiff = homeGS - awayGS;
+      // Each ~6 IP ≈ 1 start; stabilizes after ~5 starts (30 IP)
+      const homeStarts = Math.min(1, (effectiveHomeSP?.inningsPitched ?? 0) / 30);
+      const awayStarts = Math.min(1, (effectiveAwaySP?.inningsPitched ?? 0) / 30);
+      const reliability = Math.min(homeStarts, awayStarts);
+      return rawDiff * reliability;
+    })(),
 
     // Bullpen & lineup
     bullpen_strength_diff: bullpenStrengthDiff,
