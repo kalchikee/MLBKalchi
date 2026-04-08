@@ -338,12 +338,16 @@ function traverseTree(node: XGBTreeNode, featureValues: Map<string, number>): nu
 function scoreXGB(features: FeatureVector): number | null {
   if (!_xgb) return null;
 
-  // Build feature lookup map
+  // Build feature lookup map with both actual names AND fN index keys
+  // XGBoost get_dump() uses f0/f1/f2... in split fields even when feature_names are set
   const fmap = new Map<string, number>();
   const featObj = features as unknown as Record<string, unknown>;
-  for (const name of _xgb.featureNames) {
+  for (let i = 0; i < _xgb.featureNames.length; i++) {
+    const name = _xgb.featureNames[i];
     const val = featObj[name];
-    fmap.set(name, typeof val === 'number' ? val : 0);
+    const numVal = typeof val === 'number' ? val : 0;
+    fmap.set(name, numVal);    // by actual name (future-proof)
+    fmap.set(`f${i}`, numVal); // by XGBoost index notation (f0, f1, ...)
   }
 
   // Sum leaf values across all trees, then apply logistic transform
