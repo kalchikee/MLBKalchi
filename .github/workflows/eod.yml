@@ -27,13 +27,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Restore DB written by monitor job (has stop-loss records + settled bets)
+      # Restore DB — try monitor's updated copy first, fall back to morning's copy
       - name: Restore DB cache
         uses: actions/cache/restore@v4
         with:
           path: data/mlb_oracle.db
-          key: mlb-oracle-db-${{ steps.date.outputs.date }}
-          restore-keys: mlb-oracle-db-
+          key: mlb-oracle-db-${{ steps.date.outputs.date }}-monitor-
+          restore-keys: |
+            mlb-oracle-db-${{ steps.date.outputs.date }}-monitor-
+            mlb-oracle-db-${{ steps.date.outputs.date }}
+            mlb-oracle-db-
 
       - name: Final position check + send EOD Discord summary
         env:
