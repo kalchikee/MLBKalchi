@@ -41,9 +41,6 @@ jobs:
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RESEND_FROM: ${{ secrets.RESEND_FROM }}
-          RESEND_TO: ${{ secrets.RESEND_TO }}
           KALSHI_PAPER_TRADING: 'true'
           KALSHI_MIN_PROB: '0.75'
           KALSHI_MIN_EDGE: '0.05'
