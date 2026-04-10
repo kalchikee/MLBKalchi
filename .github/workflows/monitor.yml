@@ -47,10 +47,11 @@ jobs:
           LOG_LEVEL: 'info'
         run: node --loader ts-node/esm src/actions/monitor.ts
 
-      # Save updated DB (with stop-loss records) for EOD job
+      # Save updated DB with a unique key so EOD job can restore it
+      # (GitHub Actions cache keys are immutable — using run_id avoids collision with morning key)
       - name: Save updated DB to cache
         uses: actions/cache/save@v4
         if: always()
         with:
           path: data/mlb_oracle.db
-          key: mlb-oracle-db-${{ steps.date.outputs.date }}
+          key: mlb-oracle-db-${{ steps.date.outputs.date }}-monitor-${{ github.run_id }}
