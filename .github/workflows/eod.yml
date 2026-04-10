@@ -40,9 +40,6 @@ jobs:
           KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RESEND_FROM: ${{ secrets.RESEND_FROM }}
-          RESEND_TO: ${{ secrets.RESEND_TO }}
           KALSHI_PAPER_TRADING: 'true'
           KALSHI_CASHOUT_LOSS_PCT: '0.20'
           DB_PATH: './data/mlb_oracle.db'
