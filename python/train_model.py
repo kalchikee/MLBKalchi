@@ -53,41 +53,17 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 # ─── Feature columns (30 features — must match FeatureVector in types.ts) ────
 
+# Only features that have real values in BOTH training data AND at predict time.
+# Many columns in historical_features.csv are non-zero in training (pitcher xFIP,
+# lineup wOBA, statcast, etc.) but are zeroed at predict time because ESPN doesn't
+# provide them. Training on those features and then passing 0.0 at inference causes
+# systematic bias: the scaler converts 0 → (0 - mean) / std ≠ 0, biasing every
+# prediction. Restricting to these 4 keeps training and inference distributions aligned.
 FEATURE_COLUMNS = [
-    "elo_diff",
-    "sp_xfip_diff",
-    "sp_kbb_diff",
-    "sp_siera_diff",
-    "sp_csw_diff",
-    "sp_rolling_gs_diff",
-    "bullpen_strength_diff",
-    "lineup_woba_diff",
-    "lineup_wrc_plus_diff",
-    "team_10d_woba_diff",
-    "team_10d_fip_diff",
-    "pythagorean_diff",
-    "log5_prob",
-    "drs_diff",
-    "catcher_framing_diff",
-    "park_factor",
-    "wind_out_cf",
-    "wind_in_cf",
-    "temperature",
-    "umpire_run_factor",
-    "rest_days_diff",
-    "travel_tz_shift",
-    "day_after_night",
-    "is_home",
-    "statcast_xba_diff",
-    "statcast_barrel_diff",
-    "statcast_hardhit_diff",
-    "statcast_ev_diff",
-    "gb_rate_diff",
-    "sci_adjusted_diff",
-    "vegas_home_prob",
-    "momentum_diff",
-    "run_diff_diff",
-    "platoon_advantage",
+    "elo_diff",           # Elo rating gap, rebuilt from full game history
+    "pythagorean_diff",   # Pythagorean win% differential
+    "log5_prob",          # Log5 expected win probability
+    "sci_adjusted_diff",  # Strength-of-schedule adjusted win% diff
 ]
 
 # Walk-forward CV splits: (train_seasons, test_season)

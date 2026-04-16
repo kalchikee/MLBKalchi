@@ -1,0 +1,29 @@
+{
+  "sport": "MLB",
+  "playoff_weight": 3.0,
+  "cv_accuracy_lr": 0.5834756235831532,
+  "feature_names": [
+    "elo_diff",
+    "win_pct_diff",
+    "rpg_diff",
+    "rapg_diff",
+    "pythagorean_diff",
+    "log5_prob",
+    "sp_era_diff",
+    "sp_whip_diff",
+    "sp_k9_diff",
+    "sp_bb9_diff",
+    "series_game_num",
+    "series_deficit",
+    "is_elimination_game"
+  ],
+  "playoff_seasons": [
+    2018,
+    2019,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ]
+}
