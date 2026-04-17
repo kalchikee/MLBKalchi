@@ -1,7 +1,17 @@
 {
-  "elo_diff": -0.12198057366237498,
-  "pythagorean_diff": 0.4242236170240806,
-  "log5_prob": -0.06500818461047436,
-  "sci_adjusted_diff": 0.3040214857820307,
-  "_intercept": 0.12246797836857737
+  "elo_diff": -0.1294349531094386,
+  "pythagorean_diff": 0.5403428825329171,
+  "log5_prob": -0.19301388109093867,
+  "sci_adjusted_diff": 0.10041130846777109,
+  "sp_xfip_diff": 0.07110836933530776,
+  "sp_kbb_diff": -0.10122236851978572,
+  "sp_siera_diff": 0.07110836933530737,
+  "sp_rolling_gs_diff": 0.21359328413671747,
+  "lineup_woba_diff": 0.10041130846777568,
+  "lineup_wrc_plus_diff": 0.10041130846777109,
+  "park_factor": 0.06640271257732452,
+  "momentum_diff": 0.009479759481696062,
+  "run_diff_diff": -0.05694906314888078,
+  "platoon_advantage": 0.018779401783176712,
+  "_intercept": 0.12368664528176339
 }

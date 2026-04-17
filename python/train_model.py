@@ -53,17 +53,30 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 # ─── Feature columns (30 features — must match FeatureVector in types.ts) ────
 
-# Only features that have real values in BOTH training data AND at predict time.
-# Many columns in historical_features.csv are non-zero in training (pitcher xFIP,
-# lineup wOBA, statcast, etc.) but are zeroed at predict time because ESPN doesn't
-# provide them. Training on those features and then passing 0.0 at inference causes
-# systematic bias: the scaler converts 0 → (0 - mean) / std ≠ 0, biasing every
-# prediction. Restricting to these 4 keeps training and inference distributions aligned.
+# All features with real data in training AND at TypeScript pipeline inference time.
+# The TS pipeline (featureEngine.ts) computes pitcher, lineup, park, and momentum
+# features from FanGraphs/Statcast APIs — so the model can use them.
+# The Python predict.py (standalone oracle) can't use these — it uses the 4-feature
+# playoff model as fallback during regular season.
 FEATURE_COLUMNS = [
-    "elo_diff",           # Elo rating gap, rebuilt from full game history
-    "pythagorean_diff",   # Pythagorean win% differential
-    "log5_prob",          # Log5 expected win probability
-    "sci_adjusted_diff",  # Strength-of-schedule adjusted win% diff
+    # Core team strength
+    "elo_diff",               # Elo rating gap
+    "pythagorean_diff",       # Pythagorean win% differential
+    "log5_prob",              # Log5 expected win probability
+    "sci_adjusted_diff",      # Strength-of-schedule adjusted diff
+    # Starting pitcher (biggest single-game predictor)
+    "sp_xfip_diff",           # xFIP differential (fielding-independent pitching)
+    "sp_kbb_diff",            # K-BB% differential (strikeout minus walk rate)
+    "sp_siera_diff",          # SIERA differential (skill-interactive ERA)
+    "sp_rolling_gs_diff",     # Rolling game score differential
+    # Lineup strength
+    "lineup_woba_diff",       # Lineup wOBA differential
+    "lineup_wrc_plus_diff",   # Lineup wRC+ differential
+    # Ballpark & situational
+    "park_factor",            # Park run factor (Coors = 1.15, Oracle = 0.88)
+    "momentum_diff",          # Recent win streak momentum
+    "run_diff_diff",          # Season run differential gap
+    "platoon_advantage",      # Lineup handedness vs pitcher advantage
 ]
 
 # Walk-forward CV splits: (train_seasons, test_season)
