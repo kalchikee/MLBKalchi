@@ -58,6 +58,8 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 # features from FanGraphs/Statcast APIs — so the model can use them.
 # The Python predict.py (standalone oracle) can't use these — it uses the 4-feature
 # playoff model as fallback during regular season.
+# Full feature set — all columns with real data in training AND at TS inference time.
+# After enrichment with MLB Stats API, all 23 features have non-zero variance.
 FEATURE_COLUMNS = [
     # Core team strength
     "elo_diff",               # Elo rating gap
@@ -77,6 +79,19 @@ FEATURE_COLUMNS = [
     "momentum_diff",          # Recent win streak momentum
     "run_diff_diff",          # Season run differential gap
     "platoon_advantage",      # Lineup handedness vs pitcher advantage
+    # Team batting quality (from MLB Stats API enrichment)
+    "statcast_xba_diff",      # Batting average differential
+    "statcast_barrel_diff",   # HR rate differential (barrel proxy)
+    "statcast_hardhit_diff",  # SLG differential (hard hit proxy)
+    "gb_rate_diff",           # Ground ball rate differential
+    # Pitching & defense
+    "bullpen_strength_diff",  # Team ERA differential (bullpen proxy)
+    "drs_diff",               # Range factor differential (DRS proxy)
+    # Rolling form
+    "team_10d_woba_diff",     # 10-game rolling offense trend
+    "team_10d_fip_diff",      # 10-game rolling pitching trend
+    # Rest
+    "rest_days_diff",         # Days since last game differential
 ]
 
 # Walk-forward CV splits: (train_seasons, test_season)
