@@ -419,7 +419,9 @@ export function predict(features: FeatureVector, mcWinProb: number): number {
       const calibrated = _xgb.calX.length > 0
         ? isotonicInterpolate(xgbRaw, _xgb.calX, _xgb.calY)
         : xgbRaw;
-      return Math.max(0.01, Math.min(0.99, calibrated));
+      // Cap at 85%: no MLB game is more predictable than this — prevents
+      // out-of-distribution extremes when calibration tail maps to 1.0
+      return Math.max(0.15, Math.min(0.85, calibrated));
     }
   }
 
@@ -448,8 +450,9 @@ export function predict(features: FeatureVector, mcWinProb: number): number {
   // ── Step 4: Isotonic calibration ──────────────────────────────────────
   const calibrated = isotonicInterpolate(rawProb, m.calX, m.calY);
 
-  // Clamp to [0.01, 0.99] — never output certainty
-  return Math.max(0.01, Math.min(0.99, calibrated));
+  // Cap at 85%: no MLB game is more predictable than this — prevents
+  // out-of-distribution extremes when calibration tail maps to 1.0
+  return Math.max(0.15, Math.min(0.85, calibrated));
 }
 
 // ─── Math helpers ─────────────────────────────────────────────────────────────
