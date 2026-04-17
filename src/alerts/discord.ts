@@ -173,7 +173,7 @@ export async function sendMorningBriefing(
   } else {
     fields.push({
       name: '🎯 Paper Trades Today',
-      value: 'No games cleared the 65% confidence threshold today',
+      value: 'No bettable edge found today (need 65%+ model confidence AND market edge vs Vegas)',
       inline: false,
     });
   }
