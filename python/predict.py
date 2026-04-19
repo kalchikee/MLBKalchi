@@ -220,7 +220,7 @@ def predict_proba(model: dict, fv: dict) -> float:
                       for i, f in enumerate(features)])
     coeff = np.array([coeff_map.get(f, 0.0) for f in features])
     logit = float(np.dot(coeff, x)) + intercept
-    raw   = 1.0 / (1.0 + math.exp(-logit))
+    raw   = 1.0 / (1.0 + math.exp(-max(-500.0, min(500.0, logit))))
 
     calib = model["calib"]
     bins  = calib.get("x_thresholds", calib.get("bins", []))
