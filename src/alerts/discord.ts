@@ -611,17 +611,33 @@ export async function sendEODSummaryAlert(
     const total = recapGames.length;
     const acc = correct / total;
 
-    // Per-game result lines
+    // Per-game result lines — split into chunks to respect Discord's 1024 char/field limit
     const gameLines = recapGames.map(g => {
       const marker = g.correct ? '✅' : '❌';
       const { team: predicted, winPct } = getWinner(g.prediction);
       const score = `${g.homeScore}–${g.awayScore}`;
       return `${marker} **${g.prediction.away_team} @ ${g.prediction.home_team}** ${score} · predicted ${predicted} ${pct(winPct)}`;
     });
-    fields.push({
-      name: `🎯 Game Predictions — ${correct}/${total} correct (${pct(acc)})`,
-      value: gameLines.join('\n'),
-      inline: false,
+    const MAX_FIELD_LEN = 1000; // leave headroom under 1024
+    const chunks: string[] = [];
+    let current = '';
+    for (const line of gameLines) {
+      if (current.length + line.length + 1 > MAX_FIELD_LEN) {
+        chunks.push(current);
+        current = line;
+      } else {
+        current = current ? `${current}\n${line}` : line;
+      }
+    }
+    if (current) chunks.push(current);
+    chunks.forEach((chunk, i) => {
+      fields.push({
+        name: i === 0
+          ? `🎯 Game Predictions — ${correct}/${total} correct (${pct(acc)})`
+          : `🎯 Game Predictions (cont.)`,
+        value: chunk,
+        inline: false,
+      });
     });
 
     // High-conviction accuracy

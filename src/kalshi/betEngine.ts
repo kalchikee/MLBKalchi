@@ -303,6 +303,15 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
     const p = candidate.modelProb;
     const b = (100 - priceCents) / priceCents;
     const kellyFraction = Math.max(0, (p * b - (1 - p)) / b);
+
+    // Skip if no positive Kelly edge — previously we fell through to minimum
+    // BET_SIZE_DOLLARS even with 0 or negative edge when Vegas data was
+    // unavailable for edge-based rejection.
+    if (kellyFraction <= 0) {
+      logger.debug({ ticker: candidate.ticker, p, priceCents }, 'No positive edge (model prob ≤ market price) — skipping');
+      continue;
+    }
+
     const quarterKelly = kellyFraction * 0.25;
     const betDollars = Math.min(
       KALSHI_MAX_BET_DOLLARS,
