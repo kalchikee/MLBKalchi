@@ -413,12 +413,16 @@ export async function computeFeatures(game: Game, gameDate: string): Promise<Fea
   const awayGB = awayTeamStats?.gbRate ?? 0.43;
 
   const features: FeatureVector = {
-    // Pitcher differentials (uses effectiveSP which is null if pitcher is on IL → falls back to league avg)
+    // Pitcher differentials — MUST match build_dataset.py convention:
+    // "Positive diff = home SP advantage".
+    // For xFIP/SIERA/CSW (lower = better), subtract home from away.
+    // For K-BB% (higher = better), subtract away from home.
+    // Previously all 4 were `home - away`, inverting xFIP/SIERA/CSW vs training.
     elo_diff: getEloDiff(homeAbbr, awayAbbr),
-    sp_xfip_diff: (effectiveHomeSP?.xfip ?? 4.20) - (effectiveAwaySP?.xfip ?? 4.20),
+    sp_xfip_diff: (effectiveAwaySP?.xfip ?? 4.20) - (effectiveHomeSP?.xfip ?? 4.20),
     sp_kbb_diff: (effectiveHomeSP?.kBBPct ?? 0.14) - (effectiveAwaySP?.kBBPct ?? 0.14),
-    sp_siera_diff: (effectiveHomeSP?.siera ?? 4.20) - (effectiveAwaySP?.siera ?? 4.20),
-    sp_csw_diff: (effectiveHomeSP?.cswRate ?? 0.28) - (effectiveAwaySP?.cswRate ?? 0.28),
+    sp_siera_diff: (effectiveAwaySP?.siera ?? 4.20) - (effectiveHomeSP?.siera ?? 4.20),
+    sp_csw_diff: (effectiveAwaySP?.cswRate ?? 0.28) - (effectiveHomeSP?.cswRate ?? 0.28),
     // Regress game score toward 0 diff based on pitcher starts — 1-2 starts is noise
     sp_rolling_gs_diff: (() => {
       const homeGS = effectiveHomeSP?.rollingGameScore ?? 50;
