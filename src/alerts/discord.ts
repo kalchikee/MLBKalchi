@@ -148,7 +148,7 @@ export async function sendMorningBriefing(date: string): Promise<void> {
 
   fields.push({
     name: 'ℹ️ Betting',
-    value: 'High-conviction picks (⭐) are sent to the Kalshi Safety service, which decides which ones to back. See the Kalshi Safety channel for today\'s bet list.',
+    value: 'High-conviction picks (⭐) are sent to Kalshi Picks, which decides which ones to back. See the Kalshi Picks channel for today\'s bet list.',
     inline: false,
   });
 
