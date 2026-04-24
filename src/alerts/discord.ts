@@ -113,10 +113,7 @@ function predictionSummaryField(pred: Prediction): DiscordField {
 
 // ─── Morning Briefing (10 AM) — Predictions + Paper Trades in one message ─────
 
-export async function sendMorningBriefing(
-  date: string,
-  bets?: import('../kalshi/betEngine.js').KalshiBetRecord[],
-): Promise<void> {
+export async function sendMorningBriefing(date: string): Promise<void> {
   await initDb();
 
   const predictions = getPredictionsByDate(date);
@@ -129,7 +126,7 @@ export async function sendMorningBriefing(
   const highConv = predictions.filter(isHighConviction);
   const fields: DiscordField[] = [];
 
-  // ── Section 1: All games ──────────────────────────────────────────────────
+  // ── All games, sorted by conviction ───────────────────────────────────────
   const allGamesLines = predictions
     .slice()
     .sort((a, b) => {
@@ -149,38 +146,15 @@ export async function sendMorningBriefing(
     inline: false,
   });
 
-  // ── Section 2: Paper trades being placed ─────────────────────────────────
-  if (bets && bets.length > 0) {
-    const betLines = bets.map(b => {
-      const matchup = `${b.away_team} @ ${b.home_team}`;
-      const side = b.side.toUpperCase();
-      const modelProbPct = (b.model_prob * 100).toFixed(1);
-      const potentialProfit = ((1 - b.cost_basis) * 100).toFixed(0);
-      return `**${matchup}** → ${side} @ ${b.entry_price}¢  |  Model: ${modelProbPct}%  |  Max profit: +${potentialProfit}¢`;
-    });
-    fields.push({
-      name: `🎯 Paper Trades Today (${bets.length} bet${bets.length !== 1 ? 's' : ''} · 1 contract each)`,
-      value: betLines.join('\n'),
-      inline: false,
-    });
-
-    // Stop-loss note
-    fields.push({
-      name: '🛡️ Stop-Loss Rule',
-      value: 'Auto-sell if any position loses **20%** of its value during the day',
-      inline: false,
-    });
-  } else {
-    fields.push({
-      name: '🎯 Paper Trades Today',
-      value: 'No bettable edge found today (need 65%+ model confidence AND market edge vs Vegas)',
-      inline: false,
-    });
-  }
+  fields.push({
+    name: 'ℹ️ Betting',
+    value: 'High-conviction picks (⭐) are sent to the Kalshi Safety service, which decides which ones to back. See the Kalshi Safety channel for today\'s bet list.',
+    inline: false,
+  });
 
   const embed: DiscordEmbed = {
     title: `⚾ MLB Oracle — ${date}`,
-    description: `**${predictions.length} games** · **${highConv.length}** high-conviction (65%+) · Paper trading`,
+    description: `**${predictions.length} games** · **${highConv.length}** high-conviction (65%+)`,
     color: COLORS.morning,
     fields,
     footer: { text: `MLB Oracle v${MODEL_VERSION} | Monte Carlo 10,000 simulations` },
@@ -434,259 +408,6 @@ export async function sendNoBetsAlert(date: string, reason: string): Promise<voi
     description: reason,
     color: 0x95a5a6,
     footer: { text: `MLB Oracle v${MODEL_VERSION} · Paper Trading` },
-    timestamp: new Date().toISOString(),
-  };
-  await sendWebhook({ embeds: [embed] });
-}
-
-export async function sendBetPlacedAlert(
-  bet: import('../kalshi/betEngine.js').KalshiBetRecord,
-  candidate: import('../kalshi/marketMatcher.js').MatchedBet,
-  paper: boolean,
-): Promise<void> {
-  const mode = paper ? ' [PAPER]' : '';
-  const matchup = `${candidate.prediction.away_team} @ ${candidate.prediction.home_team}`;
-  const pickedTeam = candidate.side === 'yes' ? candidate.yesTeam : candidate.noTeam;
-  const projScore = candidate.prediction.most_likely_score;
-  const potentialProfit = (bet.contracts - bet.cost_basis).toFixed(2);
-  const payout = (bet.contracts * 1.0).toFixed(2);
-
-  const fields: DiscordField[] = [
-    { name: '🏟️ Matchup', value: matchup, inline: true },
-    { name: '✅ Pick', value: `**${pickedTeam}** (${bet.side.toUpperCase()})`, inline: true },
-    { name: '📊 Model Prob', value: `**${pct(bet.model_prob)}**`, inline: true },
-    { name: '💰 Entry Price', value: `${bet.entry_price}¢ / contract`, inline: true },
-    { name: '🎟️ Contracts', value: `${bet.contracts}`, inline: true },
-    { name: '💵 Cost Basis', value: `$${bet.cost_basis.toFixed(2)}`, inline: true },
-    { name: '🏆 Max Payout', value: `$${payout} (+$${potentialProfit} profit)`, inline: true },
-    { name: '🎯 Proj Score', value: projScore, inline: true },
-  ];
-
-  if (bet.edge && bet.edge !== 0) {
-    fields.push({ name: '📈 Edge vs Vegas', value: `${(bet.edge * 100).toFixed(1)}pp`, inline: true });
-  }
-
-  const embed: DiscordEmbed = {
-    title: `⚾ Bet Placed${mode} — ${matchup}`,
-    description: `Backing **${pickedTeam}** at **${bet.entry_price}¢** · Ticker: \`${bet.ticker}\``,
-    color: paper ? 0xf39c12 : 0x27ae60,
-    fields,
-    footer: { text: `MLB Oracle v${MODEL_VERSION}${mode} · Order: ${bet.order_id}` },
-    timestamp: new Date().toISOString(),
-  };
-  await sendWebhook({ embeds: [embed] });
-}
-
-export async function sendCashoutAlert(
-  bet: import('../kalshi/betEngine.js').KalshiBetRecord,
-  exitPriceCents: number,
-  pnl: number,
-  pctChange: number,
-  paper: boolean,
-): Promise<void> {
-  const mode = paper ? ' [PAPER]' : '';
-  const matchup = `${bet.away_team} @ ${bet.home_team}`;
-  const pnlStr = pnl >= 0 ? `+$${pnl.toFixed(2)}` : `-$${Math.abs(pnl).toFixed(2)}`;
-  const pctStr = `${(pctChange * 100).toFixed(1)}%`;
-
-  const embed: DiscordEmbed = {
-    title: `🚨 Stop-Loss Triggered${mode} — ${matchup}`,
-    description: `Position lost **${pctStr}** of value — auto-sold`,
-    color: 0xe74c3c,
-    fields: [
-      { name: '🎟️ Ticker', value: bet.ticker, inline: true },
-      { name: '📌 Side', value: bet.side.toUpperCase(), inline: true },
-      { name: '📉 Entry / Exit', value: `${bet.entry_price}¢ → ${exitPriceCents}¢`, inline: true },
-      { name: '📊 P&L', value: pnlStr, inline: true },
-      { name: '📉 Loss %', value: pctStr, inline: true },
-    ],
-    footer: { text: `MLB Oracle v${MODEL_VERSION}${mode}` },
-    timestamp: new Date().toISOString(),
-  };
-  await sendWebhook({ embeds: [embed] });
-}
-
-export async function sendEODSummaryAlert(
-  date: string,
-  bets: import('../kalshi/betEngine.js').KalshiBetRecord[],
-  summary: { totalCost: number; totalPnl: number; wins: number; losses: number; open: number },
-  paper: boolean,
-  recapGames?: RecapGame[],
-  recapMetrics?: RecapMetrics,
-): Promise<void> {
-  const mode = paper ? ' [PAPER]' : '';
-  const roi = summary.totalCost > 0 ? (summary.totalPnl / summary.totalCost) * 100 : 0;
-  const pnlStr = summary.totalPnl >= 0
-    ? `+$${summary.totalPnl.toFixed(2)}`
-    : `-$${Math.abs(summary.totalPnl).toFixed(2)}`;
-
-  if (bets.length === 0) {
-    const noBetFields: DiscordField[] = [];
-    if (recapGames && recapGames.length > 0) {
-      const correct = recapGames.filter(g => g.correct).length;
-      const gameLines = recapGames.map(g => {
-        const marker = g.correct ? '✅' : '❌';
-        const { team: predicted, winPct } = getWinner(g.prediction);
-        return `${marker} **${g.prediction.away_team} @ ${g.prediction.home_team}** ${g.homeScore}–${g.awayScore} · predicted ${predicted} ${pct(winPct)}`;
-      });
-      noBetFields.push({
-        name: `🎯 Game Predictions — ${correct}/${recapGames.length} correct (${pct(correct / recapGames.length)})`,
-        value: gameLines.join('\n'),
-        inline: false,
-      });
-      if (recapMetrics?.seasonStats && recapMetrics.seasonStats.totalGames > 0) {
-        const s = recapMetrics.seasonStats;
-        noBetFields.push({
-          name: '📈 Season Running Total',
-          value: `${s.correctPredictions}/${s.totalGames} · **${pct(s.accuracy)}**`,
-          inline: true,
-        });
-      }
-    }
-    const gameAccStr = recapGames && recapGames.length > 0
-      ? ` · **${recapGames.filter(g => g.correct).length}/${recapGames.length}** games correct`
-      : '';
-    const embed: DiscordEmbed = {
-      title: `📋 MLB Oracle EOD${mode} — ${date}`,
-      description: `No bets placed today (no games met both confidence + edge threshold)${gameAccStr}`,
-      color: 0x95a5a6,
-      fields: noBetFields.length > 0 ? noBetFields : undefined,
-      footer: { text: `MLB Oracle v${MODEL_VERSION}${mode}` },
-      timestamp: new Date().toISOString(),
-    };
-    await sendWebhook({ embeds: [embed] });
-    return;
-  }
-
-  // Per-bet breakdown
-  const betLines = bets.map(b => {
-    const matchup = `${b.away_team} @ ${b.home_team}`;
-    const entryStr = `${b.side.toUpperCase()} @ ${b.entry_price}¢`;
-    let resultStr: string;
-    if (b.status === 'open') {
-      resultStr = '⏳ Still open';
-    } else if (b.exit_reason === 'stop_loss_20pct') {
-      resultStr = `🛑 Stop-loss  ${b.pnl !== undefined ? (b.pnl >= 0 ? `+${(b.pnl * 100).toFixed(0)}¢` : `${(b.pnl * 100).toFixed(0)}¢`) : ''}`;
-    } else if (b.pnl !== undefined && b.pnl > 0) {
-      resultStr = `✅ Won  +${(b.pnl * 100).toFixed(0)}¢`;
-    } else if (b.pnl !== undefined && b.pnl < 0) {
-      resultStr = `❌ Lost  ${(b.pnl * 100).toFixed(0)}¢`;
-    } else {
-      resultStr = '—';
-    }
-    return `**${matchup}** · ${entryStr} · ${resultStr}`;
-  }).join('\n');
-
-  const fields: DiscordField[] = [
-    {
-      name: '🎟️ Bet Results',
-      value: betLines,
-      inline: false,
-    },
-    {
-      name: '📊 Record',
-      value: `${summary.wins}W  ${summary.losses}L  ${summary.open > 0 ? `${summary.open} open` : ''}`.trim(),
-      inline: true,
-    },
-    {
-      name: '💵 Total Wagered',
-      value: `$${summary.totalCost.toFixed(2)}`,
-      inline: true,
-    },
-    {
-      name: '💰 Net P&L',
-      value: `**${pnlStr}**`,
-      inline: true,
-    },
-    {
-      name: '📈 ROI',
-      value: `${roi.toFixed(1)}%`,
-      inline: true,
-    },
-  ];
-
-  // ── Game prediction accuracy section ─────────────────────────────────────
-  if (recapGames && recapGames.length > 0) {
-    const correct = recapGames.filter(g => g.correct).length;
-    const total = recapGames.length;
-    const acc = correct / total;
-
-    // Per-game result lines — split into chunks to respect Discord's 1024 char/field limit
-    const gameLines = recapGames.map(g => {
-      const marker = g.correct ? '✅' : '❌';
-      const { team: predicted, winPct } = getWinner(g.prediction);
-      const score = `${g.homeScore}–${g.awayScore}`;
-      return `${marker} **${g.prediction.away_team} @ ${g.prediction.home_team}** ${score} · predicted ${predicted} ${pct(winPct)}`;
-    });
-    const MAX_FIELD_LEN = 1000; // leave headroom under 1024
-    const chunks: string[] = [];
-    let current = '';
-    for (const line of gameLines) {
-      if (current.length + line.length + 1 > MAX_FIELD_LEN) {
-        chunks.push(current);
-        current = line;
-      } else {
-        current = current ? `${current}\n${line}` : line;
-      }
-    }
-    if (current) chunks.push(current);
-    chunks.forEach((chunk, i) => {
-      fields.push({
-        name: i === 0
-          ? `🎯 Game Predictions — ${correct}/${total} correct (${pct(acc)})`
-          : `🎯 Game Predictions (cont.)`,
-        value: chunk,
-        inline: false,
-      });
-    });
-
-    // High-conviction accuracy
-    const hc = recapGames.filter(g => g.prediction.calibrated_prob >= 0.65 || (1 - g.prediction.calibrated_prob) >= 0.65);
-    if (hc.length > 0) {
-      const hcCorrect = hc.filter(g => g.correct).length;
-      fields.push({
-        name: '⭐ High-Conviction (65%+)',
-        value: `${hcCorrect}/${hc.length} correct — **${pct(hcCorrect / hc.length)}**`,
-        inline: true,
-      });
-    }
-
-    // Season running total
-    if (recapMetrics?.seasonStats && recapMetrics.seasonStats.totalGames > 0) {
-      const s = recapMetrics.seasonStats;
-      fields.push({
-        name: '📈 Season Running Total',
-        value: `${s.correctPredictions}/${s.totalGames} · **${pct(s.accuracy)}**`,
-        inline: true,
-      });
-    }
-
-    // Model vs Vegas
-    if (recapMetrics?.vegasBrierScore !== undefined && recapMetrics.brierScore > 0) {
-      const diff = recapMetrics.brierScore - recapMetrics.vegasBrierScore;
-      const vsVegas = diff < 0
-        ? `✅ Beat Vegas by ${Math.abs(diff).toFixed(4)} Brier`
-        : `📉 Vegas beat us by ${diff.toFixed(4)} Brier`;
-      fields.push({ name: '🎰 vs Vegas', value: vsVegas, inline: true });
-    }
-  } else if (recapGames) {
-    fields.push({
-      name: '🎯 Game Predictions',
-      value: 'No final scores available yet',
-      inline: false,
-    });
-  }
-
-  const emoji = summary.totalPnl > 0 ? '🟢' : summary.totalPnl < 0 ? '🔴' : '⚪';
-  const gameAccStr = recapGames && recapGames.length > 0
-    ? ` · **${recapGames.filter(g => g.correct).length}/${recapGames.length}** games correct`
-    : '';
-  const embed: DiscordEmbed = {
-    title: `📋 MLB Oracle EOD${mode} — ${date}`,
-    description: `${emoji} **${bets.length} bet${bets.length !== 1 ? 's' : ''} placed** · P&L: **${pnlStr}**${gameAccStr}`,
-    color: summary.totalPnl >= 0 ? 0x27ae60 : 0xe74c3c,
-    fields,
-    footer: { text: `MLB Oracle v${MODEL_VERSION}${mode} · 20% stop-loss` },
     timestamp: new Date().toISOString(),
   };
   await sendWebhook({ embeds: [embed] });

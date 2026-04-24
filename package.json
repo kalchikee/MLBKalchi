@@ -1,7 +1,7 @@
 {
   "name": "mlb-oracle",
-  "version": "4.0.0",
-  "description": "MLB Oracle v4.0 - Poisson Monte Carlo prediction engine",
+  "version": "5.0.0",
+  "description": "MLB Oracle — prediction engine. Bet placement moved to kalshi-safety service.",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
@@ -9,20 +9,14 @@
     "start": "node --loader ts-node/esm src/index.ts",
     "dev": "node --loader ts-node/esm src/index.ts",
     "pipeline": "node --loader ts-node/esm src/pipeline.ts",
-    "scheduler": "node --loader ts-node/esm src/scheduler/cron.ts",
     "alerts:morning": "node --loader ts-node/esm src/index.ts --alert morning",
     "alerts:recap": "node --loader ts-node/esm src/index.ts --alert recap",
     "dashboard": "node --loader ts-node/esm src/dashboard.ts",
     "backtest": "python python/backtest.py",
-    "kalshi:bet": "node --loader ts-node/esm src/index.ts --alert kalshi-bet",
-    "kalshi:monitor": "node --loader ts-node/esm src/index.ts --alert kalshi-monitor",
-    "kalshi:eod": "node --loader ts-node/esm src/index.ts --alert kalshi-eod",
     "clean": "rimraf dist cache/*.json"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "kalshi-safety": "github:kalchikee/kalshi-safety",
-    "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
     "pino": "^8.19.0",
     "pino-pretty": "^11.0.0",
@@ -30,7 +24,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
-    "@types/node-cron": "^3.0.11",
     "@types/sql.js": "^1.4.9",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",

@@ -177,30 +177,8 @@ async function main(): Promise<void> {
       return;
     }
 
-    if (opts.alertMode === 'kalshi-bet') {
-      await initDb();
-      const { runBetEngine } = await import('./kalshi/betEngine.js');
-      const bets = await runBetEngine(date);
-      console.log(`\n[Kalshi] Placed ${bets.length} bet(s) for ${date} (${process.env.KALSHI_PAPER_TRADING !== 'false' ? 'PAPER' : 'LIVE'})\n`);
-      return;
-    }
-
-    if (opts.alertMode === 'kalshi-monitor') {
-      await initDb();
-      const { startPositionMonitor } = await import('./kalshi/positionMonitor.js');
-      console.log('\n[Kalshi] Position monitor running — polls every 60s. Press Ctrl+C to stop.\n');
-      startPositionMonitor();
-      // Keep process alive
-      await new Promise(() => {});
-      return;
-    }
-
-    if (opts.alertMode === 'kalshi-eod') {
-      await initDb();
-      const { sendEndOfDaySummary } = await import('./kalshi/positionMonitor.js');
-      await sendEndOfDaySummary(date);
-      return;
-    }
+    // Kalshi bet/monitor/eod modes were removed — the kalshi-safety service
+    // now owns bet placement, stop-loss, and recap across all sports.
 
     // ── Full pipeline mode ────────────────────────────────────────────────────
 
