@@ -1,0 +1,167 @@
+{
+  "sport": "MLB",
+  "date": "2026-04-24",
+  "generatedAt": "2026-04-24T21:26:51.977Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-04-24-PHI-ATL",
+      "home": "ATL",
+      "away": "PHI",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.7614678899082569,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824932,
+        "venue": "Truist Park",
+        "runLine": 4.1208,
+        "totalRuns": 9.998000000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-BOS-BAL",
+      "home": "BAL",
+      "away": "BOS",
+      "pickedTeam": "BAL",
+      "pickedSide": "home",
+      "modelProb": 0.7614678899082569,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824854,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": 2.2768,
+        "totalRuns": 9.9556
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-WSH-CWS",
+      "home": "CWS",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.6056338028169015,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824611,
+        "venue": "Rate Field",
+        "runLine": 0.48580000000000023,
+        "totalRuns": 9.697199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-OAK-TEX",
+      "home": "TEX",
+      "away": "OAK",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.6222222222222222,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822909,
+        "venue": "Globe Life Field",
+        "runLine": -0.012500000000000178,
+        "totalRuns": 9.974499999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-DET-CIN",
+      "home": "CIN",
+      "away": "DET",
+      "pickedTeam": "DET",
+      "pickedSide": "away",
+      "modelProb": 0.7272727272727273,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824529,
+        "venue": "Great American Ball Park",
+        "runLine": -0.0246000000000004,
+        "totalRuns": 10.693200000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-NYY-HOU",
+      "home": "HOU",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6440677966101696,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824204,
+        "venue": "Daikin Park",
+        "runLine": -0.042300000000000004,
+        "totalRuns": 9.3597
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-CLE-TOR",
+      "home": "TOR",
+      "away": "CLE",
+      "pickedTeam": "CLE",
+      "pickedSide": "away",
+      "modelProb": 0.6440677966101696,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822827,
+        "venue": "Rogers Centre",
+        "runLine": -0.17989999999999995,
+        "totalRuns": 9.3809
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-CHC-LAD",
+      "home": "LAD",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.5930232558139534,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823962,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -1.1400999999999994,
+        "totalRuns": 9.2467
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-MIA-SF",
+      "home": "SF",
+      "away": "MIA",
+      "pickedTeam": "MIA",
+      "pickedSide": "away",
+      "modelProb": 0.7619047619047619,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823232,
+        "venue": "Oracle Park",
+        "runLine": -2.2299,
+        "totalRuns": 8.7705
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-24-LAA-KC",
+      "home": "KC",
+      "away": "LAA",
+      "pickedTeam": "LAA",
+      "pickedSide": "away",
+      "modelProb": 0.7619047619047619,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824124,
+        "venue": "Kauffman Stadium",
+        "runLine": -2.4314,
+        "totalRuns": 9.6402
+      }
+    }
+  ]
+}
