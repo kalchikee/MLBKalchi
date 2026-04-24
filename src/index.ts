@@ -130,6 +130,7 @@ async function runMorningAlert(date: string): Promise<void> {
 }
 
 async function runRecapAlert(date: string): Promise<void> {
+  await initDb();  // Defensive: same init-missing bug hit NFL+EPL recaps
   const { sendEveningRecap } = await import('./alerts/discord.js');
   const { sendEveningRecapEmail } = await import('./alerts/email.js');
   const { processResults } = await import('./alerts/results.js');
