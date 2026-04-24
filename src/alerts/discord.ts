@@ -548,7 +548,7 @@ export async function sendEODSummaryAlert(
       : '';
     const embed: DiscordEmbed = {
       title: `📋 MLB Oracle EOD${mode} — ${date}`,
-      description: `No bets placed today (no games cleared the 75% threshold)${gameAccStr}`,
+      description: `No bets placed today (no games met both confidence + edge threshold)${gameAccStr}`,
       color: 0x95a5a6,
       fields: noBetFields.length > 0 ? noBetFields : undefined,
       footer: { text: `MLB Oracle v${MODEL_VERSION}${mode}` },

@@ -192,7 +192,7 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
 
   if (candidates.length === 0) {
     logger.info({ date }, 'No high-conviction bets found today');
-    await sendNoBetsAlert(date, `No games cleared ${(MIN_MODEL_PROB * 100).toFixed(0)}% threshold`);
+    await sendNoBetsAlert(date, `No games matched a Kalshi market at ${(MIN_MODEL_PROB * 100).toFixed(0)}%+ model confidence`);
     return [];
   }
 
