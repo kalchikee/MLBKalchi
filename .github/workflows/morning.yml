@@ -35,11 +35,21 @@ jobs:
           key: mlb-oracle-db-${{ steps.date.outputs.date }}
           restore-keys: mlb-oracle-db-
 
+      # Restore kalshi-safety paper state — preserves paper-bet history across
+      # runs so the 30-day dry-run clock and W/L record are continuous.
+      - name: Restore safety-state
+        uses: actions/cache/restore@v4
+        with:
+          path: safety-state
+          key: mlb-safety-state-${{ steps.date.outputs.date }}
+          restore-keys: mlb-safety-state-
+
       - name: Run pipeline + bet engine + send morning Discord
         env:
           KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          KALSHI_SAFETY_DISCORD_URL: ${{ secrets.KALSHI_SAFETY_DISCORD_URL }}
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           KALSHI_PAPER_TRADING: 'true'
           KALSHI_MIN_PROB: '0.75'
@@ -62,3 +72,10 @@ jobs:
         with:
           path: data/mlb_oracle.db
           key: mlb-oracle-db-${{ steps.date.outputs.date }}
+
+      - name: Save safety-state cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: safety-state
+          key: mlb-safety-state-${{ steps.date.outputs.date }}

@@ -1,5 +1,9 @@
 // MLB Oracle v4.0 — Kalshi Bet Engine
 // Evaluates predictions, finds value, places bets (or logs in paper mode)
+//
+// Every bet passes through kalshi-safety's checkBet() BEFORE placement.
+// If the safety module blocks or requests paper mode, no Kalshi API call
+// is made. Fail-closed: if the safety module throws, the bet is skipped.
 
 import { initDb, getDb, persistDb, getPredictionsByDate } from '../db/database.js';
 import {
@@ -15,6 +19,8 @@ import { matchPredictionsToMarkets } from './marketMatcher.js';
 import { sendNoBetsAlert } from '../alerts/discord.js';
 import { getTeamGamesPlayed, fetchSchedule } from '../api/mlbClient.js';
 import { logger } from '../logger.js';
+import { checkBet, recordPaperBet } from 'kalshi-safety';
+import type { BetRequest } from 'kalshi-safety';
 
 // ─── Thresholds (all configurable via env) ────────────────────────────────────
 
@@ -317,8 +323,57 @@ export async function runBetEngine(date: string): Promise<KalshiBetRecord[]> {
       KALSHI_MAX_BET_DOLLARS,
       Math.max(BET_SIZE_DOLLARS, quarterKelly * balanceDollars),
     );
-    const contracts = Math.max(1, Math.round(betDollars / (priceCents / 100)));
+    const requestedContracts = Math.max(1, Math.round(betDollars / (priceCents / 100)));
 
+    // ── SAFETY GATE ─────────────────────────────────────────────────────────
+    // Every bet passes through kalshi-safety before placement. Blocks if kill
+    // switch active, daily loss hit, position count at cap, edge < 5%, etc.
+    // Returns either `paper` mode (don't call Kalshi) or `live` mode (place
+    // with cappedContracts — may be less than requested).
+    const safetyReq: BetRequest = {
+      sport: 'MLB',
+      ticker: candidate.ticker,
+      side: candidate.side as 'yes' | 'no',
+      priceCents,
+      contracts: requestedContracts,
+      modelProb: candidate.modelProb,
+      reason: `MLB pick @ ${(candidate.modelProb * 100).toFixed(1)}%`,
+    };
+    const todayDollars = placed.reduce((sum, b) => sum + b.cost_basis, 0);
+    const openPositions = placed
+      .filter(b => b.status === 'open')
+      .map(b => ({
+        sport: 'MLB',
+        ticker: b.ticker,
+        contracts: b.contracts,
+        entryPriceCents: b.entry_price,
+        costBasisDollars: b.cost_basis,
+        currentValueDollars: b.cost_basis,  // mark-to-market done by monitor
+      }));
+    const decision = await checkBet(safetyReq, {
+      todayDollarsPlaced: todayDollars,
+      openPositions,
+      todayRealizedLoss: 0,  // TODO: pull from today's closed bets
+      requestLive: !PAPER_TRADING,
+    });
+
+    if (!decision.allowed) {
+      logger.info({ ticker: candidate.ticker, reason: decision.reason, violated: decision.violatedRules }, 'Bet blocked by kalshi-safety');
+      continue;
+    }
+    const contracts = decision.cappedContracts ?? requestedContracts;
+
+    // Paper mode: record paper bet, skip Kalshi API entirely
+    if (decision.mode === 'paper') {
+      recordPaperBet('MLB', { ...safetyReq, contracts });
+      logger.info({
+        ticker: candidate.ticker, side: candidate.side, contracts,
+        modelProb: candidate.modelProb, reason: decision.reason,
+      }, '[kalshi-safety] Paper bet recorded — Kalshi API NOT called');
+      continue;  // no placeOrder, no DB update — pure dry run
+    }
+
+    // Live mode: place real order through Kalshi API
     try {
       const result = await placeOrder(
         candidate.ticker,

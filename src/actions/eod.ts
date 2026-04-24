@@ -9,6 +9,7 @@ import { getMarket, PAPER_TRADING, CASHOUT_LOSS_PCT } from '../kalshi/kalshiClie
 import { sendEODSummaryAlert } from '../alerts/discord.js';
 import { processResults } from '../alerts/results.js';
 import { logger } from '../logger.js';
+import { loadPaperState, settlePaperBet, sendDailyDryRunSummary } from 'kalshi-safety';
 
 const date = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 
@@ -69,6 +70,34 @@ try {
   const open       = allBets.filter(b => b.status === 'open').length;
 
   await sendEODSummaryAlert(date, allBets, { totalCost, totalPnl, wins, losses, open }, PAPER_TRADING, recapGames, metrics);
+
+  // ── Kalshi Safety: settle paper bets and post dry-run summary ─────────
+  // For every open paper bet whose market has settled today, record the
+  // outcome in safety-state. Then post today's paper W/L to the safety
+  // Discord channel.
+  try {
+    const paperState = loadPaperState('MLB');
+    const openPaper = paperState.bets.filter(b => !b.settledAt);
+    let settledCount = 0;
+    for (const bet of openPaper) {
+      try {
+        const market = await getMarket(bet.ticker);
+        if (!market) continue;
+        if (market.status === 'finalized' || market.result) {
+          const won = (market.result === 'yes' && bet.side === 'yes') ||
+                      (market.result === 'no'  && bet.side === 'no');
+          settlePaperBet('MLB', bet.ticker, won ? 'win' : 'loss');
+          settledCount++;
+        }
+      } catch { /* continue */ }
+    }
+    logger.info({ settled: settledCount, openPaper: openPaper.length }, '[EOD] Paper bets settled');
+
+    // Post today's paper summary to the safety Discord (separate channel)
+    await sendDailyDryRunSummary('MLB', { date });
+  } catch (err) {
+    logger.warn({ err }, '[EOD] kalshi-safety settlement failed (non-blocking)');
+  }
 
   logger.info({ date, bets: allBets.length, pnl: totalPnl.toFixed(2) }, '[EOD Action] Complete');
 } catch (err) {

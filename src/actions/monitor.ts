@@ -8,6 +8,10 @@ import { initDb, closeDb } from '../db/database.js';
 import { ensureKalshiBetsTable, getOpenBets, updateBetClosed } from '../kalshi/betEngine.js';
 import { getMarket, PAPER_TRADING, CASHOUT_LOSS_PCT } from '../kalshi/kalshiClient.js';
 import { logger } from '../logger.js';
+// Also scan paper bets for stop-loss. Paper bets are in safety-state/,
+// NOT in the Kalshi bets DB — they need their own scan so mark-to-market
+// stops still fire in dry-run mode.
+import { scanForPaperStopLosses, loadPaperState } from 'kalshi-safety';
 
 const POLL_MS = parseInt(process.env.KALSHI_MONITOR_INTERVAL_MS ?? '120000', 10);
 
@@ -24,7 +28,36 @@ function etDate(): string {
   return new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 }
 
+async function checkPaperPositions(): Promise<void> {
+  // Build a ticker → current YES price map by fetching markets for any open
+  // paper bet. In paper mode there's no Kalshi order but we can still mark
+  // to market using the public market data.
+  const paperState = loadPaperState('MLB');
+  const openPaper = paperState.bets.filter(b => !b.settledAt);
+  if (openPaper.length === 0) return;
+
+  const priceMap: Record<string, number> = {};
+  for (const bet of openPaper) {
+    try {
+      const market = await getMarket(bet.ticker);
+      if (market?.yes_bid && market.yes_bid > 0) {
+        priceMap[bet.ticker] = market.yes_bid;
+      }
+    } catch {
+      // skip tickers we can't fetch
+    }
+  }
+  const triggered = await scanForPaperStopLosses('MLB', priceMap);
+  if (triggered.length > 0) {
+    logger.info({ count: triggered.length, tickers: triggered.map(b => b.ticker) },
+                '[Monitor] Paper stop-losses triggered');
+  }
+}
+
 async function checkPositions(date: string): Promise<void> {
+  // Always scan paper positions first (these exist even in dry-run)
+  await checkPaperPositions();
+
   const openBets = getOpenBets(date);
   if (openBets.length === 0) return;
 

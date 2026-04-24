@@ -38,11 +38,23 @@ jobs:
             mlb-oracle-db-${{ steps.date.outputs.date }}
             mlb-oracle-db-
 
+      # Restore safety-state — prefer monitor's (has latest stop-loss triggers)
+      - name: Restore safety-state
+        uses: actions/cache/restore@v4
+        with:
+          path: safety-state
+          key: mlb-safety-state-${{ steps.date.outputs.date }}-monitor-
+          restore-keys: |
+            mlb-safety-state-${{ steps.date.outputs.date }}-monitor-
+            mlb-safety-state-${{ steps.date.outputs.date }}
+            mlb-safety-state-
+
       - name: Final position check + send EOD Discord summary
         env:
           KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          KALSHI_SAFETY_DISCORD_URL: ${{ secrets.KALSHI_SAFETY_DISCORD_URL }}
           KALSHI_PAPER_TRADING: 'true'
           KALSHI_CASHOUT_LOSS_PCT: '0.20'
           DB_PATH: './data/mlb_oracle.db'
@@ -56,3 +68,11 @@ jobs:
         with:
           path: data/mlb_oracle.db
           key: mlb-oracle-db-${{ steps.date.outputs.date }}-final
+
+      # Save safety-state with yesterday's settled paper bets recorded
+      - name: Save final safety-state
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: safety-state
+          key: mlb-safety-state-${{ steps.date.outputs.date }}-final
