@@ -90,13 +90,17 @@ ensureKalshiBetsTable();
 
 let polls = 0;
 
+// GitHub Actions has a hard 6h max per job — we configure 2 shifts (1-6 PM
+// and 6-11 PM ET) that each exit at MONITOR_EXIT_HOUR (ET). Default 23 = 11 PM.
+const EXIT_HOUR = parseInt(process.env.MONITOR_EXIT_HOUR ?? '23', 10);
+
 while (true) {
   const hour = etHour();
   const date = etDate();
 
-  // Stop at 11 PM ET — EOD job takes over
-  if (hour >= 23) {
-    logger.info('[Monitor] 11 PM ET reached — exiting for EOD job');
+  // Stop at configured ET hour — either EOD or the next shift takes over
+  if (hour >= EXIT_HOUR) {
+    logger.info({ exitHour: EXIT_HOUR }, '[Monitor] Exit hour reached — handing off');
     break;
   }
 

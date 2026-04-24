@@ -1,14 +1,20 @@
-name: Position Monitor (1 PM – 11 PM ET)
+name: Position Monitor (1 PM – 11 PM ET, two shifts)
 
+# GitHub Actions caps job runtime at 6 hours. The old 10-hour monitor was
+# getting killed at 6h every day (17:00 UTC → 23:00 UTC = 1-7 PM ET),
+# missing the last 4 hours of games. Now splits into two 5-hour shifts:
+#   - Afternoon: 1 PM ET (17 UTC) → 6 PM ET (22 UTC)  — MONITOR_EXIT_HOUR=18
+#   - Evening:   6 PM ET (22 UTC) → 11 PM ET (03 UTC next day) — MONITOR_EXIT_HOUR=23
 on:
   schedule:
-    - cron: '0 17 * * *'   # 17:00 UTC = 1:00 PM ET (EDT, Mar–Nov)
+    - cron: '0 17 * * *'   # 17:00 UTC = 1:00 PM ET — afternoon shift
+    - cron: '0 22 * * *'   # 22:00 UTC = 6:00 PM ET — evening shift
   workflow_dispatch:
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 600   # 10 hours — covers all game windows
+    timeout-minutes: 330   # 5.5h — stays under the 6h GH Actions hard cap
 
     steps:
       - name: Checkout repo
@@ -35,7 +41,17 @@ jobs:
           key: mlb-oracle-db-${{ steps.date.outputs.date }}
           restore-keys: mlb-oracle-db-
 
-      - name: Run position monitor (loops every 2 min until 11 PM ET)
+      - name: Compute shift exit hour
+        id: shift
+        run: |
+          H=$(TZ='America/New_York' date +%H)
+          if [ "$H" -lt "18" ]; then
+            echo "exit_hour=18" >> $GITHUB_OUTPUT  # afternoon: exit 6 PM ET
+          else
+            echo "exit_hour=23" >> $GITHUB_OUTPUT  # evening: exit 11 PM ET
+          fi
+
+      - name: Run position monitor (loops every 2 min until shift end)
         env:
           KALSHI_API_KEY_ID: ${{ secrets.KALSHI_API_KEY_ID }}
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
@@ -43,6 +59,7 @@ jobs:
           KALSHI_PAPER_TRADING: 'true'
           KALSHI_CASHOUT_LOSS_PCT: '0.20'
           KALSHI_MONITOR_INTERVAL_MS: '120000'
+          MONITOR_EXIT_HOUR: ${{ steps.shift.outputs.exit_hour }}
           DB_PATH: './data/mlb_oracle.db'
           LOG_LEVEL: 'info'
         run: node --loader ts-node/esm src/actions/monitor.ts
