@@ -1,0 +1,167 @@
+{
+  "sport": "MLB",
+  "date": "2026-04-29",
+  "generatedAt": "2026-04-29T10:40:36.847Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-04-29-MIA-LAD",
+      "home": "LAD",
+      "away": "MIA",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6237623762376238,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823958,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.2914,
+        "totalRuns": 9.547
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-SF-PHI",
+      "home": "PHI",
+      "away": "SF",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.7614678899082569,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823471,
+        "venue": "Citizens Bank Park",
+        "runLine": 2.0949000000000004,
+        "totalRuns": 10.0625
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-COL-CIN",
+      "home": "CIN",
+      "away": "COL",
+      "pickedTeam": "COL",
+      "pickedSide": "away",
+      "modelProb": 0.5930232558139534,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824525,
+        "venue": "Great American Ball Park",
+        "runLine": 1.9159000000000006,
+        "totalRuns": 10.4239
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-ARI-MIL",
+      "home": "MIL",
+      "away": "ARI",
+      "pickedTeam": "ARI",
+      "pickedSide": "away",
+      "modelProb": 0.5930232558139534,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823796,
+        "venue": "American Family Field",
+        "runLine": 1.4021,
+        "totalRuns": 9.852699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-HOU-BAL",
+      "home": "BAL",
+      "away": "HOU",
+      "pickedTeam": "HOU",
+      "pickedSide": "away",
+      "modelProb": 0.6440677966101696,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824850,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": 0.7614000000000001,
+        "totalRuns": 9.7894
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-TB-CLE",
+      "home": "CLE",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.5930232558139534,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824445,
+        "venue": "Progressive Field",
+        "runLine": -0.6101999999999999,
+        "totalRuns": 9.302800000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-CHC-SD",
+      "home": "SD",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6440677966101696,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823312,
+        "venue": "Petco Park",
+        "runLine": -1.7485999999999997,
+        "totalRuns": 8.9408
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-KC-OAK",
+      "home": "OAK",
+      "away": "KC",
+      "pickedTeam": "KC",
+      "pickedSide": "away",
+      "modelProb": 0.7272727272727273,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825015,
+        "venue": "Sutter Health Park",
+        "runLine": -1.9576000000000002,
+        "totalRuns": 9.0322
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-WSH-NYM",
+      "home": "NYM",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.6440677966101696,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823633,
+        "venue": "Citi Field",
+        "runLine": -2.2477,
+        "totalRuns": 9.0905
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-29-NYY-TEX",
+      "home": "TEX",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6440677966101696,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822907,
+        "venue": "Globe Life Field",
+        "runLine": -2.9822999999999995,
+        "totalRuns": 9.9067
+      }
+    }
+  ]
+}
