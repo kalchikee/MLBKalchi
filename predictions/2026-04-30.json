@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-04-30",
+  "generatedAt": "2026-04-30T10:38:42.709Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-04-30-SF-PHI",
+      "home": "PHI",
+      "away": "SF",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.6222222222222222,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823471,
+        "venue": "Citizens Bank Park",
+        "runLine": 2.2167,
+        "totalRuns": 10.1323
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-30-DET-ATL",
+      "home": "ATL",
+      "away": "DET",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.7614678899082569,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824929,
+        "venue": "Truist Park",
+        "runLine": 1.8757999999999995,
+        "totalRuns": 9.7388
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-30-SF-PHI",
+      "home": "PHI",
+      "away": "SF",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.7614678899082569,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823472,
+        "venue": "Citizens Bank Park",
+        "runLine": 1.8974000000000002,
+        "totalRuns": 10.168199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-30-TOR-MIN",
+      "home": "MIN",
+      "away": "TOR",
+      "pickedTeam": "TOR",
+      "pickedSide": "away",
+      "modelProb": 0.5930232558139534,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823714,
+        "venue": "Target Field",
+        "runLine": 1.1388999999999996,
+        "totalRuns": 9.4871
+      }
+    },
+    {
+      "gameId": "mlb-2026-04-30-ARI-MIL",
+      "home": "MIL",
+      "away": "ARI",
+      "pickedTeam": "ARI",
+      "pickedSide": "away",
+      "modelProb": 0.5930232558139534,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823795,
+        "venue": "American Family Field",
+        "runLine": 0.021700000000000053,
+        "totalRuns": 9.7635
+      }
+    }
+  ]
+}
