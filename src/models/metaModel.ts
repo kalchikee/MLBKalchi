@@ -415,13 +415,28 @@ export function predict(features: FeatureVector, mcWinProb: number): number {
   if (_xgb) {
     const xgbRaw = scoreXGB(features);
     if (xgbRaw !== null) {
-      // Apply the same isotonic calibration
-      const calibrated = _xgb.calX.length > 0
-        ? isotonicInterpolate(xgbRaw, _xgb.calX, _xgb.calY)
-        : xgbRaw;
-      // Cap at 85%: no MLB game is more predictable than this — prevents
-      // out-of-distribution extremes when calibration tail maps to 1.0
-      return Math.max(0.15, Math.min(0.85, calibrated));
+      // ── Isotonic calibrator BYPASSED (2026-05-01) ─────────────────────
+      //
+      // The previous calibrator was a sklearn IsotonicRegression fit on a
+      // ~1k-sample holdout. Pool-Adjacent-Violators merged that holdout
+      // into 14 distinct y-buckets — 0.7614678899082569 (= 83/109),
+      // 0.7272727272727273 (= 8/11), etc. — and `isotonicInterpolate`
+      // snapped every prediction to a linear interpolation between two
+      // of those buckets.
+      //
+      // Diagnostic on 2026-04-30 showed MLB was hitting the supposedly
+      // 76% confidence tier at 40% (15 settled bets, +35pp miscalibration).
+      // The calibrator wasn't fixing anything — it was actively destroying
+      // the XGBoost output's calibration.
+      //
+      // Quickest fix: bypass the calibrator entirely. XGBoost trained
+      // with binary:logistic is reasonably calibrated out-of-the-box
+      // (Brier 0.239 per metadata). The 0.15 / 0.85 clamp still applies.
+      //
+      // Proper fix: retrain with `method='sigmoid'` (Platt scaling) in
+      // CalibratedClassifierCV — applied in python/train_model.py.
+      // Until that retrain ships, we ride the raw XGBoost sigmoid.
+      return Math.max(0.15, Math.min(0.85, xgbRaw));
     }
   }
 
@@ -447,12 +462,13 @@ export function predict(features: FeatureVector, mcWinProb: number): number {
   // ── Step 3: Sigmoid ───────────────────────────────────────────────────
   const rawProb = sigmoid(logit);
 
-  // ── Step 4: Isotonic calibration ──────────────────────────────────────
-  const calibrated = isotonicInterpolate(rawProb, m.calX, m.calY);
-
-  // Cap at 85%: no MLB game is more predictable than this — prevents
-  // out-of-distribution extremes when calibration tail maps to 1.0
-  return Math.max(0.15, Math.min(0.85, calibrated));
+  // ── Isotonic calibration BYPASSED (2026-05-01) ────────────────────────
+  // See the longer explanation on the XGBoost branch above. The same
+  // calibrator was applied to the LR fallback and produced the same
+  // bucket-snapping behavior. LR with logistic loss is also reasonably
+  // calibrated out-of-the-box. Riding the raw sigmoid until a properly
+  // retrained Platt calibrator is shipped.
+  return Math.max(0.15, Math.min(0.85, rawProb));
 }
 
 // ─── Math helpers ─────────────────────────────────────────────────────────────
@@ -477,6 +493,14 @@ function sigmoid(x: number): number {
  * The IsotonicRegression from sklearn stores knot points (xThresholds, yThresholds)
  * representing the fitted step function. We linearly interpolate between adjacent
  * knots to get a smooth (monotone) calibration mapping.
+ *
+ * @deprecated 2026-05-01 — currently UNUSED. Both predict() call sites
+ *   bypass this function and use raw XGBoost/LR sigmoid output. The
+ *   underlying IsotonicRegression calibrator was producing recurring
+ *   small-fraction artifacts (83/109, 8/11, etc.) due to a tiny holdout
+ *   forming too few PAV buckets. Kept here so that after a proper
+ *   Platt-scaling retrain (python/train_model.py uses method='sigmoid'
+ *   now) the bypass can be removed and this can be reused.
  *
  * @param rawProb     Raw sigmoid probability (0–1)
  * @param xThresholds Sorted ascending input probabilities from IsotonicRegression
