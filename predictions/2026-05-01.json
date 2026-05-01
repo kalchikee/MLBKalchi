@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-05-01",
-  "generatedAt": "2026-05-01T10:34:27.221Z",
+  "generatedAt": "2026-05-01T19:48:03.050Z",
   "picks": [
     {
       "gameId": "mlb-2026-05-01-ARI-CHC",
@@ -9,46 +9,14 @@
       "away": "ARI",
       "pickedTeam": "CHC",
       "pickedSide": "home",
-      "modelProb": 0.6237623762376238,
+      "modelProb": 0.7480234029277005,
       "vegasProb": null,
       "edge": null,
       "extra": {
         "gamePk": 824686,
         "venue": "Wrigley Field",
-        "runLine": 4.1725,
-        "totalRuns": 10.4575
-      }
-    },
-    {
-      "gameId": "mlb-2026-05-01-SF-TB",
-      "home": "TB",
-      "away": "SF",
-      "pickedTeam": "TB",
-      "pickedSide": "home",
-      "modelProb": 0.6222222222222222,
-      "vegasProb": null,
-      "edge": null,
-      "extra": {
-        "gamePk": 822990,
-        "venue": "Tropicana Field",
-        "runLine": 2.9088000000000003,
-        "totalRuns": 9.228200000000001
-      }
-    },
-    {
-      "gameId": "mlb-2026-05-01-LAD-STL",
-      "home": "STL",
-      "away": "LAD",
-      "pickedTeam": "LAD",
-      "pickedSide": "away",
-      "modelProb": 0.6056338028169015,
-      "vegasProb": null,
-      "edge": null,
-      "extra": {
-        "gamePk": 823066,
-        "venue": "Busch Stadium",
-        "runLine": 1.1025999999999998,
-        "totalRuns": 8.9572
+        "runLine": 4.012,
+        "totalRuns": 10.204799999999999
       }
     },
     {
@@ -57,30 +25,14 @@
       "away": "MIL",
       "pickedTeam": "MIL",
       "pickedSide": "away",
-      "modelProb": 0.6440677966101696,
+      "modelProb": 0.585634670817091,
       "vegasProb": null,
       "edge": null,
       "extra": {
         "gamePk": 822744,
         "venue": "Nationals Park",
-        "runLine": 0.12819999999999965,
-        "totalRuns": 9.4316
-      }
-    },
-    {
-      "gameId": "mlb-2026-05-01-BAL-NYY",
-      "home": "NYY",
-      "away": "BAL",
-      "pickedTeam": "NYY",
-      "pickedSide": "home",
-      "modelProb": 0.6222222222222222,
-      "vegasProb": null,
-      "edge": null,
-      "extra": {
-        "gamePk": 823557,
-        "venue": "Yankee Stadium",
-        "runLine": -1.1488000000000005,
-        "totalRuns": 9.867
+        "runLine": 0.056700000000000195,
+        "totalRuns": 9.6445
       }
     },
     {
@@ -89,14 +41,14 @@
       "away": "KC",
       "pickedTeam": "SEA",
       "pickedSide": "home",
-      "modelProb": 0.6222222222222222,
+      "modelProb": 0.6164262622619472,
       "vegasProb": null,
       "edge": null,
       "extra": {
         "gamePk": 823146,
         "venue": "T-Mobile Park",
-        "runLine": -1.4101,
-        "totalRuns": 9.1075
+        "runLine": -1.4817999999999998,
+        "totalRuns": 9.1268
       }
     },
     {
@@ -105,14 +57,14 @@
       "away": "CIN",
       "pickedTeam": "PIT",
       "pickedSide": "home",
-      "modelProb": 0.6222222222222222,
+      "modelProb": 0.6094352535863932,
       "vegasProb": null,
       "edge": null,
       "extra": {
         "gamePk": 823389,
         "venue": "PNC Park",
-        "runLine": -2.0521999999999996,
-        "totalRuns": 8.9992
+        "runLine": -1.9374000000000002,
+        "totalRuns": 9.2278
       }
     }
   ]
