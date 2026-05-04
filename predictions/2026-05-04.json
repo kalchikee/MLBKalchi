@@ -1,0 +1,167 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-04",
+  "generatedAt": "2026-05-04T10:44:22.065Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-04-NYM-COL",
+      "home": "COL",
+      "away": "NYM",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.6970108862299925,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824363,
+        "venue": "Coors Field",
+        "runLine": 4.895,
+        "totalRuns": 13.0704
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-BAL-NYY",
+      "home": "NYY",
+      "away": "BAL",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7872238147491599,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823552,
+        "venue": "Yankee Stadium",
+        "runLine": 2.8034999999999997,
+        "totalRuns": 10.0589
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-CIN-CHC",
+      "home": "CHC",
+      "away": "CIN",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6804382898708491,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824684,
+        "venue": "Wrigley Field",
+        "runLine": 2.345,
+        "totalRuns": 10.0268
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-MIL-STL",
+      "home": "STL",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.613361775244138,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823064,
+        "venue": "Busch Stadium",
+        "runLine": 1.4159000000000002,
+        "totalRuns": 9.1123
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-CLE-KC",
+      "home": "KC",
+      "away": "CLE",
+      "pickedTeam": "KC",
+      "pickedSide": "home",
+      "modelProb": 0.6155879987300343,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824120,
+        "venue": "Kauffman Stadium",
+        "runLine": 1.2492,
+        "totalRuns": 9.3576
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-BOS-DET",
+      "home": "DET",
+      "away": "BOS",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6601892584704896,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824283,
+        "venue": "Comerica Park",
+        "runLine": 0.6759000000000004,
+        "totalRuns": 9.0219
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-LAD-HOU",
+      "home": "HOU",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6830238781088296,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824201,
+        "venue": "Daikin Park",
+        "runLine": -0.25480000000000036,
+        "totalRuns": 9.3336
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-CWS-LAA",
+      "home": "LAA",
+      "away": "CWS",
+      "pickedTeam": "LAA",
+      "pickedSide": "home",
+      "modelProb": 0.6397856097527438,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824039,
+        "venue": "Angel Stadium",
+        "runLine": -0.3387000000000002,
+        "totalRuns": 9.094899999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-ATL-SEA",
+      "home": "SEA",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6653746658543487,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823143,
+        "venue": "T-Mobile Park",
+        "runLine": -2.4957,
+        "totalRuns": 9.1821
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-04-SD-SF",
+      "home": "SF",
+      "away": "SD",
+      "pickedTeam": "SF",
+      "pickedSide": "home",
+      "modelProb": 0.5905036727859853,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823228,
+        "venue": "Oracle Park",
+        "runLine": -2.4742999999999995,
+        "totalRuns": 8.9315
+      }
+    }
+  ]
+}
