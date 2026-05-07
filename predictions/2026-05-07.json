@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-07",
+  "generatedAt": "2026-05-07T10:47:30.240Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-07-CIN-CHC",
+      "home": "CHC",
+      "away": "CIN",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.7653468359689078,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824681,
+        "venue": "Wrigley Field",
+        "runLine": 4.3673,
+        "totalRuns": 10.446299999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-07-NYM-COL",
+      "home": "COL",
+      "away": "NYM",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.643331726609536,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824362,
+        "venue": "Coors Field",
+        "runLine": 2.4554,
+        "totalRuns": 12.585999999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-07-CLE-KC",
+      "home": "KC",
+      "away": "CLE",
+      "pickedTeam": "KC",
+      "pickedSide": "home",
+      "modelProb": 0.6377960592589937,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824117,
+        "venue": "Kauffman Stadium",
+        "runLine": -0.2526999999999999,
+        "totalRuns": 9.285499999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-07-STL-SD",
+      "home": "SD",
+      "away": "STL",
+      "pickedTeam": "SD",
+      "pickedSide": "home",
+      "modelProb": 0.5887788150976826,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823306,
+        "venue": "Petco Park",
+        "runLine": -2.2893000000000003,
+        "totalRuns": 9.1007
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-07-PIT-ARI",
+      "home": "ARI",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.7426008245697779,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825090,
+        "venue": "Chase Field",
+        "runLine": -3.0497,
+        "totalRuns": 9.7027
+      }
+    }
+  ]
+}
