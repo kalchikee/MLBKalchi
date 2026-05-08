@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-08",
+  "generatedAt": "2026-05-08T10:36:10.000Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-08-SEA-CWS",
+      "home": "CWS",
+      "away": "SEA",
+      "pickedTeam": "SEA",
+      "pickedSide": "away",
+      "modelProb": 0.5885346094737923,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824607,
+        "venue": "Rate Field",
+        "runLine": 0.5629999999999997,
+        "totalRuns": 9.4966
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-08-LAA-TOR",
+      "home": "TOR",
+      "away": "LAA",
+      "pickedTeam": "TOR",
+      "pickedSide": "home",
+      "modelProb": 0.5866215022288563,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822822,
+        "venue": "Rogers Centre",
+        "runLine": -0.08370000000000033,
+        "totalRuns": 9.2925
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-08-ATL-LAD",
+      "home": "LAD",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6066063867633814,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823957,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -0.11279999999999912,
+        "totalRuns": 9.242
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-08-NYM-ARI",
+      "home": "ARI",
+      "away": "NYM",
+      "pickedTeam": "NYM",
+      "pickedSide": "away",
+      "modelProb": 0.5912892823275528,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825088,
+        "venue": "Chase Field",
+        "runLine": -0.21769999999999978,
+        "totalRuns": 9.401900000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-08-CHC-TEX",
+      "home": "TEX",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6335648090713356,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822904,
+        "venue": "Globe Life Field",
+        "runLine": -4.4578,
+        "totalRuns": 10.1492
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-08-PIT-SF",
+      "home": "SF",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6434556243589395,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823225,
+        "venue": "Oracle Park",
+        "runLine": -4.9306,
+        "totalRuns": 9.4614
+      }
+    }
+  ]
+}
