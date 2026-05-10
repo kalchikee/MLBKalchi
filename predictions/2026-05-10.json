@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-10",
+  "generatedAt": "2026-05-10T10:30:00.222Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-10-LAA-TOR",
+      "home": "TOR",
+      "away": "LAA",
+      "pickedTeam": "LAA",
+      "pickedSide": "away",
+      "modelProb": 0.5964885767251409,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822819,
+        "venue": "Rogers Centre",
+        "runLine": 1.9925000000000006,
+        "totalRuns": 9.411100000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-10-MIN-CLE",
+      "home": "CLE",
+      "away": "MIN",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.5978872987063427,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824440,
+        "venue": "Progressive Field",
+        "runLine": -0.046800000000000175,
+        "totalRuns": 9.1862
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-10-COL-PHI",
+      "home": "PHI",
+      "away": "COL",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.586677737410789,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823463,
+        "venue": "Citizens Bank Park",
+        "runLine": -0.0627999999999993,
+        "totalRuns": 10.0846
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-10-WSH-MIA",
+      "home": "MIA",
+      "away": "WSH",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.6211287447993074,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823868,
+        "venue": "loanDepot park",
+        "runLine": -1.2531999999999996,
+        "totalRuns": 9.0284
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-10-PIT-SF",
+      "home": "SF",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.5921913328194792,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823221,
+        "venue": "Oracle Park",
+        "runLine": -4.3652999999999995,
+        "totalRuns": 9.1203
+      }
+    }
+  ]
+}
