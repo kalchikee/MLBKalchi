@@ -1,0 +1,39 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-11",
+  "generatedAt": "2026-05-11T11:08:23.430Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-11-SF-LAD",
+      "home": "LAD",
+      "away": "SF",
+      "pickedTeam": "SF",
+      "pickedSide": "away",
+      "modelProb": 0.5906930627147772,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823953,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 4.0341,
+        "totalRuns": 9.723700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-11-NYY-BAL",
+      "home": "BAL",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6370584117731144,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824844,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -3.5568999999999997,
+        "totalRuns": 9.9541
+      }
+    }
+  ]
+}
