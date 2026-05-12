@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-12",
+  "generatedAt": "2026-05-12T10:51:29.059Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-12-SF-LAD",
+      "home": "LAD",
+      "away": "SF",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.734181901487316,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823951,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.7126,
+        "totalRuns": 9.3764
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-12-STL-OAK",
+      "home": "OAK",
+      "away": "STL",
+      "pickedTeam": "OAK",
+      "pickedSide": "home",
+      "modelProb": 0.6051958351084812,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825011,
+        "venue": "Sutter Health Park",
+        "runLine": 2.4944000000000006,
+        "totalRuns": 9.1348
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-12-COL-PIT",
+      "home": "PIT",
+      "away": "COL",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.7806140915513484,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823385,
+        "venue": "PNC Park",
+        "runLine": 2.1534999999999997,
+        "totalRuns": 9.1537
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-12-SD-MIL",
+      "home": "MIL",
+      "away": "SD",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6609105266760985,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823790,
+        "venue": "American Family Field",
+        "runLine": 1.8308,
+        "totalRuns": 9.8624
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-12-NYY-BAL",
+      "home": "BAL",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6918697515423842,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824843,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -2.9194,
+        "totalRuns": 9.8704
+      }
+    }
+  ]
+}
