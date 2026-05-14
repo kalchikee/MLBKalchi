@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-14",
+  "generatedAt": "2026-05-14T10:51:37.731Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-14-SD-MIL",
+      "home": "MIL",
+      "away": "SD",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7215347024126373,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823789,
+        "venue": "American Family Field",
+        "runLine": 2.5889,
+        "totalRuns": 9.9711
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-14-STL-OAK",
+      "home": "OAK",
+      "away": "STL",
+      "pickedTeam": "STL",
+      "pickedSide": "away",
+      "modelProb": 0.5990248239641895,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825008,
+        "venue": "Sutter Health Park",
+        "runLine": 1.4130000000000003,
+        "totalRuns": 9.0982
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-14-CHC-ATL",
+      "home": "ATL",
+      "away": "CHC",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6120879908699177,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824926,
+        "venue": "Truist Park",
+        "runLine": 0.06080000000000041,
+        "totalRuns": 9.677
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-14-SEA-HOU",
+      "home": "HOU",
+      "away": "SEA",
+      "pickedTeam": "SEA",
+      "pickedSide": "away",
+      "modelProb": 0.6254935846364098,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824196,
+        "venue": "Daikin Park",
+        "runLine": -2.1619999999999995,
+        "totalRuns": 9.3452
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-14-WSH-CIN",
+      "home": "CIN",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.6018024796702865,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824517,
+        "venue": "Great American Ball Park",
+        "runLine": -3.5249000000000006,
+        "totalRuns": 10.5197
+      }
+    }
+  ]
+}
