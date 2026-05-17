@@ -253,7 +253,7 @@ export async function processResults(date: string): Promise<{
 
 // ─── Season stats helper ──────────────────────────────────────────────────────
 
-function computeSeasonStats(): SeasonStats {
+export function computeSeasonStats(): SeasonStats {
   try {
     const db = getDb();
     const stmt = db.prepare(

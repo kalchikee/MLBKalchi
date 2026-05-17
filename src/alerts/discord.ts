@@ -126,6 +126,20 @@ export async function sendMorningBriefing(date: string): Promise<void> {
   const highConv = predictions.filter(isHighConviction);
   const fields: DiscordField[] = [];
 
+  // ── Season hit-rate ─────────────────────────────────────────────────────
+  // Pulled from the same `computeSeasonStats()` source the evening recap
+  // uses, so morning + evening agree on the number. Only shown when the
+  // season has graded predictions.
+  const { computeSeasonStats } = await import('./results.js');
+  const season = computeSeasonStats();
+  if (season.totalGames > 0) {
+    fields.push({
+      name: '📊 Season Accuracy',
+      value: `**${pct(season.accuracy)}** · ${season.correctPredictions}/${season.totalGames} predictions correct this season`,
+      inline: false,
+    });
+  }
+
   // ── All games, sorted by conviction ───────────────────────────────────────
   const allGamesLines = predictions
     .slice()
