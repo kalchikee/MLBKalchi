@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-21",
+  "generatedAt": "2026-05-21T11:08:42.310Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-21-NYM-WSH",
+      "home": "WSH",
+      "away": "NYM",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.5806293173908615,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822733,
+        "venue": "Nationals Park",
+        "runLine": 2.4168000000000003,
+        "totalRuns": 9.3742
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-21-COL-ARI",
+      "home": "ARI",
+      "away": "COL",
+      "pickedTeam": "ARI",
+      "pickedSide": "home",
+      "modelProb": 0.6899289607033058,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825083,
+        "venue": "Chase Field",
+        "runLine": 1.5145,
+        "totalRuns": 9.5231
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-21-TOR-NYY",
+      "home": "NYY",
+      "away": "TOR",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6301466571044588,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823545,
+        "venue": "Yankee Stadium",
+        "runLine": 1.4146999999999998,
+        "totalRuns": 9.8767
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-21-PIT-STL",
+      "home": "STL",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6118018737412385,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823056,
+        "venue": "Busch Stadium",
+        "runLine": -0.5476999999999999,
+        "totalRuns": 9.1389
+      }
+    }
+  ]
+}
