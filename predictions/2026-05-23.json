@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-23",
+  "generatedAt": "2026-05-23T10:34:07.970Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-23-HOU-CHC",
+      "home": "CHC",
+      "away": "HOU",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.7137952306736165,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824674,
+        "venue": "Wrigley Field",
+        "runLine": 3.0475,
+        "totalRuns": 10.3009
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-23-COL-ARI",
+      "home": "ARI",
+      "away": "COL",
+      "pickedTeam": "ARI",
+      "pickedSide": "home",
+      "modelProb": 0.7044281114988156,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825080,
+        "venue": "Chase Field",
+        "runLine": 2.0085,
+        "totalRuns": 9.5469
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-23-CLE-PHI",
+      "home": "PHI",
+      "away": "CLE",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.6806635990191502,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823458,
+        "venue": "Citizens Bank Park",
+        "runLine": -2.0811,
+        "totalRuns": 10.1557
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-23-WSH-ATL",
+      "home": "ATL",
+      "away": "WSH",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6224705454455263,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824920,
+        "venue": "Truist Park",
+        "runLine": -2.1263000000000005,
+        "totalRuns": 9.8307
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-23-OAK-SD",
+      "home": "SD",
+      "away": "OAK",
+      "pickedTeam": "OAK",
+      "pickedSide": "away",
+      "modelProb": 0.6351967225766754,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823300,
+        "venue": "Petco Park",
+        "runLine": -2.0645,
+        "totalRuns": 9.026499999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-23-PIT-TOR",
+      "home": "TOR",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6823393443271188,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822814,
+        "venue": "Rogers Centre",
+        "runLine": -2.2614000000000005,
+        "totalRuns": 9.5088
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-23-CWS-SF",
+      "home": "SF",
+      "away": "CWS",
+      "pickedTeam": "CWS",
+      "pickedSide": "away",
+      "modelProb": 0.6676388830901407,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823222,
+        "venue": "Oracle Park",
+        "runLine": -2.8918,
+        "totalRuns": 8.8696
+      }
+    }
+  ]
+}
