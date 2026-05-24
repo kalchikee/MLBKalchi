@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-24",
+  "generatedAt": "2026-05-24T10:36:40.783Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-24-COL-ARI",
+      "home": "ARI",
+      "away": "COL",
+      "pickedTeam": "ARI",
+      "pickedSide": "home",
+      "modelProb": 0.6009033179101232,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825081,
+        "venue": "Chase Field",
+        "runLine": 3.8238999999999996,
+        "totalRuns": 9.8205
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-24-HOU-CHC",
+      "home": "CHC",
+      "away": "HOU",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6590241112950874,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824676,
+        "venue": "Wrigley Field",
+        "runLine": 2.2827,
+        "totalRuns": 10.2391
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-24-CLE-PHI",
+      "home": "PHI",
+      "away": "CLE",
+      "pickedTeam": "CLE",
+      "pickedSide": "away",
+      "modelProb": 0.6851443709314291,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823459,
+        "venue": "Citizens Bank Park",
+        "runLine": -0.5054999999999996,
+        "totalRuns": 10.0875
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-24-LAD-MIL",
+      "home": "MIL",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6366219883266406,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823786,
+        "venue": "American Family Field",
+        "runLine": -1.8817,
+        "totalRuns": 9.7829
+      }
+    }
+  ]
+}
