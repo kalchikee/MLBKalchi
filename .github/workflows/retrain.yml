@@ -1,0 +1,51 @@
+name: Retrain Model (manual)
+
+# Manually triggered model retrain. Runs the Python training pipeline
+# against data/historical_features.csv and commits the resulting
+# data/model/*.json artifacts back to the repo. The morning workflow
+# picks up the new model on its next scheduled run.
+#
+# Trigger from the Actions tab → "Retrain Model (manual)" → Run workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why retrain? (logged in commit message)'
+        required: false
+        default: 'manual retrain'
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install training deps
+        run: pip install -r python/requirements.txt
+
+      - name: Train model
+        run: python python/train_model.py
+
+      - name: Commit updated model artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/model/*.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Retrain MLB model: ${{ github.event.inputs.reason }}"
+            git push
+          else
+            echo "No model artifact changes to commit"
+          fi

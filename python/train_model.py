@@ -470,19 +470,28 @@ def train_final_model(
     dates: pd.Series,
 ) -> tuple:
     """
-    Train the final production model on 2018-2024 data.
+    Train the final production model on all historical seasons.
 
     Primary: XGBoost (if available) — captures non-linear feature interactions.
     Fallback: CalibratedClassifierCV with LogisticRegression.
 
     Returns (calibrated_model, scaler, iso_reg, raw_lr, xgb_model_or_None)
     """
-    # Final training window: 2018-2024 (exclude 2025 which is live/current)
-    train_mask = dates.dt.year <= 2024
+    # 2026-05-25: extended training window to include 2025. Previously hardcoded
+    # to <= 2024 with the comment "exclude 2025 which is live/current" — but
+    # 2025 is now historical and is in historical_features.csv. Production
+    # backtest on 2026-04-24..2026-05-24 (203 picks) showed 55.7% accuracy at
+    # 65.6% declared probability (9.7pp overconfident), and the per-bucket
+    # calibration was non-monotone. Including 2025 in training is the
+    # baseline fix; downstream improvements (more 2026 data, better feature
+    # rolling-window stability) build on this.
+    current_year = pd.Timestamp.now().year
+    train_mask = dates.dt.year < current_year
     X_train_full = X[train_mask]
     y_train_full = y[train_mask]
 
-    print(f"\nFinal model training: {len(X_train_full)} rows (2018-2024)")
+    train_years = sorted(dates[train_mask].dt.year.unique().tolist())
+    print(f"\nFinal model training: {len(X_train_full)} rows ({train_years[0]}-{train_years[-1]})")
 
     if len(X_train_full) < 50:
         print("WARNING: Very few training rows. Model may perform poorly.")
@@ -634,6 +643,8 @@ def save_model_artifacts(
     cv_results: list[dict],
     feature_names: list[str],
     xgb_model=None,
+    train_min_iso: str = "",
+    train_max_iso: str = "",
 ) -> None:
     """
     Save all model artifacts to data/model/ as JSON files compatible
@@ -744,14 +755,14 @@ def save_model_artifacts(
 
     primary_model = "xgboost" if xgb_saved else "logistic_regression"
     metadata = {
-        "version": "4.1.0",
+        "version": "4.2.0",
         "model_type": primary_model,
         "lr_fallback": True,
-        "calibration_method": "isotonic",
+        "calibration_method": "sigmoid",  # CalibratedClassifierCV uses method='sigmoid' (Platt)
         "feature_names": feature_names,
         "n_features": len(feature_names),
-        "train_dates": "2018-04-01 to 2024-10-31",
-        "test_dates": "2022-2025 (walk-forward CV)",
+        "train_dates": f"{train_min_iso} to {train_max_iso}" if train_min_iso else "unknown",
+        "test_dates": "walk-forward CV (next season vs prior)",
         "cv_results": cv_results,
         "avg_brier": avg_brier,
         "avg_accuracy": avg_acc,
@@ -838,8 +849,15 @@ def main() -> None:
         print("\n--evaluate-only: skipping model training and artifact saving.")
         return
 
-    # Train final model (on 2018-2024 data)
+    # Train final model on all prior seasons (cutoff is computed inside)
     calibrated_model, scaler, iso_reg, raw_lr, final_xgb = train_final_model(X, y, dates)
+
+    # Same training window used by train_final_model — for metadata.
+    _current_year = pd.Timestamp.now().year
+    _train_mask = dates.dt.year < _current_year
+    _train_dates = dates[_train_mask]
+    train_min_iso = _train_dates.min().date().isoformat()
+    train_max_iso = _train_dates.max().date().isoformat()
 
     # Feature importance
     print_feature_importance(calibrated_model, FEATURE_COLUMNS)
@@ -853,6 +871,8 @@ def main() -> None:
         cv_results,
         FEATURE_COLUMNS,
         xgb_model=final_xgb,
+        train_min_iso=train_min_iso,
+        train_max_iso=train_max_iso,
     )
 
     print("\n" + "=" * 65)
