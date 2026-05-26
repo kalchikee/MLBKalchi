@@ -253,7 +253,42 @@ export async function processResults(date: string): Promise<{
 
 // ─── Season stats helper ──────────────────────────────────────────────────────
 
+// Read season stats from data/grading_history.json (the nightly recap
+// workflow writes this file). The DB-backed predictions table is not the
+// source of truth: the morning workflow restores the DB cache without ever
+// running results processing, so `predictions.actual_winner` is always NULL
+// in CI. The grading_history.json file is committed back by the recap
+// workflow and is the authoritative season record.
+function readSeasonStatsFromFile(): SeasonStats | null {
+  try {
+    // Lazy import to avoid loading fs in modules that don't need it
+    const { readFileSync, existsSync } = require('fs') as typeof import('fs');
+    const { resolve } = require('path') as typeof import('path');
+    const filePath = resolve(process.cwd(), 'data', 'grading_history.json');
+    if (!existsSync(filePath)) return null;
+    const data = JSON.parse(readFileSync(filePath, 'utf8')) as {
+      graded?: { correct: boolean }[];
+    };
+    const graded = data.graded ?? [];
+    if (graded.length === 0) return null;
+    const correct = graded.filter(g => g.correct).length;
+    return {
+      totalGames: graded.length,
+      correctPredictions: correct,
+      accuracy: correct / graded.length,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export function computeSeasonStats(): SeasonStats {
+  // Prefer file-based grading history — it's persisted across CI runs and
+  // populated by the nightly recap workflow. Fall back to DB if the file
+  // doesn't exist yet (first run, fresh repo).
+  const fromFile = readSeasonStatsFromFile();
+  if (fromFile) return fromFile;
+
   try {
     const db = getDb();
     const stmt = db.prepare(
