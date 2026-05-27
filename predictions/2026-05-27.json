@@ -1,0 +1,151 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-27",
+  "generatedAt": "2026-05-27T11:17:23.991Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-27-COL-LAD",
+      "home": "LAD",
+      "away": "COL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.8049937809990105,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823947,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 5.1089,
+        "totalRuns": 9.8721
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-STL-MIL",
+      "home": "MIL",
+      "away": "STL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6648723279441837,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823783,
+        "venue": "American Family Field",
+        "runLine": 2.5075999999999996,
+        "totalRuns": 9.854
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-HOU-TEX",
+      "home": "TEX",
+      "away": "HOU",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.7507081369880582,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822897,
+        "venue": "Globe Life Field",
+        "runLine": 0.9954000000000001,
+        "totalRuns": 9.8964
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-TB-BAL",
+      "home": "BAL",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.5870044243844581,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824836,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": 0.023299999999999876,
+        "totalRuns": 9.8289
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-PHI-SD",
+      "home": "SD",
+      "away": "PHI",
+      "pickedTeam": "PHI",
+      "pickedSide": "away",
+      "modelProb": 0.6106465911915235,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823295,
+        "venue": "Petco Park",
+        "runLine": -0.38039999999999985,
+        "totalRuns": 9.0214
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-ATL-BOS",
+      "home": "BOS",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.715584018061546,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824756,
+        "venue": "Fenway Park",
+        "runLine": -1.0776000000000003,
+        "totalRuns": 10.2326
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-WSH-CLE",
+      "home": "CLE",
+      "away": "WSH",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.5807939935387748,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824432,
+        "venue": "Progressive Field",
+        "runLine": -2.1551,
+        "totalRuns": 9.230699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-NYY-KC",
+      "home": "KC",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.787971378403398,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824104,
+        "venue": "Kauffman Stadium",
+        "runLine": -2.4205,
+        "totalRuns": 9.3621
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-27-CIN-NYM",
+      "home": "NYM",
+      "away": "CIN",
+      "pickedTeam": "CIN",
+      "pickedSide": "away",
+      "modelProb": 0.5935344590489041,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823626,
+        "venue": "Citi Field",
+        "runLine": -3.2441999999999998,
+        "totalRuns": 9.3214
+      }
+    }
+  ]
+}
