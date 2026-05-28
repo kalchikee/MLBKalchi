@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-28",
+  "generatedAt": "2026-05-28T11:17:32.713Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-28-CHC-PIT",
+      "home": "PIT",
+      "away": "CHC",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6586426014328478,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823378,
+        "venue": "PNC Park",
+        "runLine": 1.7449999999999997,
+        "totalRuns": 8.9694
+      }
+    }
+  ]
+}
