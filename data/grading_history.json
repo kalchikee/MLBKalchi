@@ -3079,6 +3079,20 @@
       "homeScore": 4,
       "awayScore": 2,
       "gradedAt": "2026-05-28T10:27:47.889Z"
+    },
+    {
+      "date": "2026-05-28",
+      "gameId": "mlb-2026-05-28-CHC-PIT",
+      "gamePk": 823378,
+      "away": "CHC",
+      "home": "PIT",
+      "pickedTeam": "PIT",
+      "modelProb": 0.6586426014328478,
+      "actualWinner": "CHC",
+      "correct": false,
+      "homeScore": 2,
+      "awayScore": 7,
+      "gradedAt": "2026-05-29T10:21:23.555Z"
     }
   ]
 }
