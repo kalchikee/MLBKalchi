@@ -1,0 +1,135 @@
+{
+  "sport": "MLB",
+  "date": "2026-05-29",
+  "generatedAt": "2026-05-29T11:10:15.286Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-05-29-SD-WSH",
+      "home": "WSH",
+      "away": "SD",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.5973124218038094,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822732,
+        "venue": "Nationals Park",
+        "runLine": 5.049799999999999,
+        "totalRuns": 10.1906
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-PHI-LAD",
+      "home": "LAD",
+      "away": "PHI",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6791940190180901,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823946,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 4.7015,
+        "totalRuns": 9.8341
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-MIN-PIT",
+      "home": "PIT",
+      "away": "MIN",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.5891151946631081,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823377,
+        "venue": "PNC Park",
+        "runLine": 1.8891999999999998,
+        "totalRuns": 9.186399999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-ATL-CIN",
+      "home": "CIN",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6343154168498304,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824515,
+        "venue": "Great American Ball Park",
+        "runLine": 0.4874999999999998,
+        "totalRuns": 10.3915
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-NYY-OAK",
+      "home": "OAK",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6007226298411312,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825002,
+        "venue": "Sutter Health Park",
+        "runLine": -0.7275,
+        "totalRuns": 9.0579
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-CHC-STL",
+      "home": "STL",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6199879560738647,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823055,
+        "venue": "Busch Stadium",
+        "runLine": -1.0309999999999997,
+        "totalRuns": 9.061599999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-LAA-TB",
+      "home": "TB",
+      "away": "LAA",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.6846046439950829,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822978,
+        "venue": "Tropicana Field",
+        "runLine": -1.4078000000000004,
+        "totalRuns": 8.8488
+      }
+    },
+    {
+      "gameId": "mlb-2026-05-29-MIA-NYM",
+      "home": "NYM",
+      "away": "MIA",
+      "pickedTeam": "MIA",
+      "pickedSide": "away",
+      "modelProb": 0.6047467904237471,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823623,
+        "venue": "Citi Field",
+        "runLine": -1.4768999999999997,
+        "totalRuns": 9.017900000000001
+      }
+    }
+  ]
+}
