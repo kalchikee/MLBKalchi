@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-01",
+  "generatedAt": "2026-06-01T12:03:30.002Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-01-NYM-SEA",
+      "home": "SEA",
+      "away": "NYM",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.6853763569533602,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823131,
+        "venue": "T-Mobile Park",
+        "runLine": 3.4476999999999998,
+        "totalRuns": 9.4375
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-01-KC-CIN",
+      "home": "CIN",
+      "away": "KC",
+      "pickedTeam": "CIN",
+      "pickedSide": "home",
+      "modelProb": 0.725284816322517,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824510,
+        "venue": "Great American Ball Park",
+        "runLine": 1.8182,
+        "totalRuns": 10.4616
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-01-COL-LAA",
+      "home": "LAA",
+      "away": "COL",
+      "pickedTeam": "LAA",
+      "pickedSide": "home",
+      "modelProb": 0.7923131590399913,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824027,
+        "venue": "Angel Stadium",
+        "runLine": 1.6110000000000002,
+        "totalRuns": 9.1532
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-01-LAD-ARI",
+      "home": "ARI",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6667102158309867,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825078,
+        "venue": "Chase Field",
+        "runLine": -4.345,
+        "totalRuns": 10.1262
+      }
+    }
+  ]
+}
