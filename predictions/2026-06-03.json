@@ -1,0 +1,167 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-03",
+  "generatedAt": "2026-06-03T11:41:22.702Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-03-NYM-SEA",
+      "home": "SEA",
+      "away": "NYM",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.6569028149083997,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823130,
+        "venue": "T-Mobile Park",
+        "runLine": 3.7085,
+        "totalRuns": 9.392299999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-CLE-NYY",
+      "home": "NYY",
+      "away": "CLE",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.762034935224021,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823540,
+        "venue": "Yankee Stadium",
+        "runLine": 3.2527999999999997,
+        "totalRuns": 10.0156
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-TOR-ATL",
+      "home": "ATL",
+      "away": "TOR",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6846835430287274,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824917,
+        "venue": "Truist Park",
+        "runLine": 2.1716,
+        "totalRuns": 9.7598
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-SF-MIL",
+      "home": "MIL",
+      "away": "SF",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7135381335306827,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823780,
+        "venue": "American Family Field",
+        "runLine": 1.0420999999999996,
+        "totalRuns": 9.7431
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-SD-PHI",
+      "home": "PHI",
+      "away": "SD",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.6514891650300438,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823456,
+        "venue": "Citizens Bank Park",
+        "runLine": 0.7701000000000002,
+        "totalRuns": 10.068100000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-DET-TB",
+      "home": "TB",
+      "away": "DET",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.6159757168158798,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822973,
+        "venue": "Tropicana Field",
+        "runLine": 0.020199999999999996,
+        "totalRuns": 8.976600000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-COL-LAA",
+      "home": "LAA",
+      "away": "COL",
+      "pickedTeam": "LAA",
+      "pickedSide": "home",
+      "modelProb": 0.6126017656177861,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824024,
+        "venue": "Angel Stadium",
+        "runLine": -0.44709999999999983,
+        "totalRuns": 9.149899999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-BAL-BOS",
+      "home": "BOS",
+      "away": "BAL",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.6762841008071697,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824755,
+        "venue": "Fenway Park",
+        "runLine": -0.5826000000000002,
+        "totalRuns": 10.2822
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-PIT-HOU",
+      "home": "HOU",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6567714542460992,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824188,
+        "venue": "Daikin Park",
+        "runLine": -2.2276,
+        "totalRuns": 9.4266
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-03-LAD-ARI",
+      "home": "ARI",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.8108788544008887,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825077,
+        "venue": "Chase Field",
+        "runLine": -2.3056999999999994,
+        "totalRuns": 9.6535
+      }
+    }
+  ]
+}
