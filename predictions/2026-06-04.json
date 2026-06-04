@@ -1,0 +1,135 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-04",
+  "generatedAt": "2026-06-04T11:08:01.952Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-04-OAK-CHC",
+      "home": "CHC",
+      "away": "OAK",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6862132733342802,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824672,
+        "venue": "Wrigley Field",
+        "runLine": 2.2947999999999995,
+        "totalRuns": 10.200199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-TOR-ATL",
+      "home": "ATL",
+      "away": "TOR",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.7341539313086168,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824919,
+        "venue": "Truist Park",
+        "runLine": 2.2312,
+        "totalRuns": 9.7316
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-CLE-NYY",
+      "home": "NYY",
+      "away": "CLE",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7024132859247029,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823542,
+        "venue": "Yankee Stadium",
+        "runLine": 2.2016999999999998,
+        "totalRuns": 9.823699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-SF-MIL",
+      "home": "MIL",
+      "away": "SF",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6579945205613736,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823779,
+        "venue": "American Family Field",
+        "runLine": 1.7646000000000006,
+        "totalRuns": 9.811399999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-SD-PHI",
+      "home": "PHI",
+      "away": "SD",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.680952622323543,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823457,
+        "venue": "Citizens Bank Park",
+        "runLine": 0.9919000000000002,
+        "totalRuns": 10.058499999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-BAL-BOS",
+      "home": "BOS",
+      "away": "BAL",
+      "pickedTeam": "BAL",
+      "pickedSide": "away",
+      "modelProb": 0.6047353808403235,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824753,
+        "venue": "Fenway Park",
+        "runLine": -0.9367000000000001,
+        "totalRuns": 10.2363
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-PIT-HOU",
+      "home": "HOU",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.5978060124650943,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824185,
+        "venue": "Daikin Park",
+        "runLine": -1.5648,
+        "totalRuns": 9.343
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-04-LAD-ARI",
+      "home": "ARI",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.7783647273759591,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825076,
+        "venue": "Chase Field",
+        "runLine": -3.4433,
+        "totalRuns": 9.672899999999998
+      }
+    }
+  ]
+}
