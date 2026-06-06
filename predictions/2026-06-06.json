@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-06",
+  "generatedAt": "2026-06-06T10:41:32.651Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-06-BOS-NYY",
+      "home": "NYY",
+      "away": "BOS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6321354402254918,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823539,
+        "venue": "Yankee Stadium",
+        "runLine": 1.0731000000000002,
+        "totalRuns": 9.9449
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-06-KC-MIN",
+      "home": "MIN",
+      "away": "KC",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.6455674873807455,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823697,
+        "venue": "Target Field",
+        "runLine": 0.7897000000000007,
+        "totalRuns": 9.5705
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-06-LAA-LAD",
+      "home": "LAD",
+      "away": "LAA",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.7389240474577906,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823942,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -0.23019999999999996,
+        "totalRuns": 9.1492
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-06-TB-MIA",
+      "home": "MIA",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.6324603965532989,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823859,
+        "venue": "loanDepot park",
+        "runLine": -0.5820999999999996,
+        "totalRuns": 8.9621
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-06-NYM-SD",
+      "home": "SD",
+      "away": "NYM",
+      "pickedTeam": "NYM",
+      "pickedSide": "away",
+      "modelProb": 0.6518492808758609,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823292,
+        "venue": "Petco Park",
+        "runLine": -1.717,
+        "totalRuns": 8.734
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-06-BAL-TOR",
+      "home": "TOR",
+      "away": "BAL",
+      "pickedTeam": "BAL",
+      "pickedSide": "away",
+      "modelProb": 0.5864249165181983,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822808,
+        "venue": "Rogers Centre",
+        "runLine": -2.5733,
+        "totalRuns": 9.4731
+      }
+    }
+  ]
+}
