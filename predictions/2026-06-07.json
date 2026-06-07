@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-07",
+  "generatedAt": "2026-06-07T10:49:07.500Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-07-BOS-NYY",
+      "home": "NYY",
+      "away": "BOS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7451401777694849,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823537,
+        "venue": "Yankee Stadium",
+        "runLine": 0.8536000000000001,
+        "totalRuns": 9.9808
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-07-TB-MIA",
+      "home": "MIA",
+      "away": "TB",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.6030715152664793,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823857,
+        "venue": "loanDepot park",
+        "runLine": -0.5800000000000001,
+        "totalRuns": 8.9976
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-07-SF-CHC",
+      "home": "CHC",
+      "away": "SF",
+      "pickedTeam": "SF",
+      "pickedSide": "away",
+      "modelProb": 0.5884928708600703,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824670,
+        "venue": "Wrigley Field",
+        "runLine": -0.6969000000000003,
+        "totalRuns": 9.7701
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-07-PIT-ATL",
+      "home": "ATL",
+      "away": "PIT",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6765251956814627,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824916,
+        "venue": "Truist Park",
+        "runLine": -0.7908999999999997,
+        "totalRuns": 9.736899999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-07-WSH-ARI",
+      "home": "ARI",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.6198922367623494,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825074,
+        "venue": "Chase Field",
+        "runLine": -3.9766999999999997,
+        "totalRuns": 9.8443
+      }
+    }
+  ]
+}
