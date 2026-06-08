@@ -1,0 +1,39 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-08",
+  "generatedAt": "2026-06-08T11:40:03.431Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-08-NYY-CLE",
+      "home": "CLE",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6295730959753817,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824427,
+        "venue": "Progressive Field",
+        "runLine": -1.8243999999999998,
+        "totalRuns": 9.145399999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-08-MIL-OAK",
+      "home": "OAK",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6592981259730977,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824998,
+        "venue": "Las Vegas Ballpark",
+        "runLine": -2.3564,
+        "totalRuns": 9.349599999999999
+      }
+    }
+  ]
+}
