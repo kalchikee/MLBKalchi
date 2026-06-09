@@ -4031,6 +4031,34 @@
       "homeScore": 5,
       "awayScore": 1,
       "gradedAt": "2026-06-08T10:35:36.529Z"
+    },
+    {
+      "date": "2026-06-08",
+      "gameId": "mlb-2026-06-08-NYY-CLE",
+      "gamePk": 824427,
+      "away": "NYY",
+      "home": "CLE",
+      "pickedTeam": "NYY",
+      "modelProb": 0.6295730959753817,
+      "actualWinner": "NYY",
+      "correct": true,
+      "homeScore": 5,
+      "awayScore": 7,
+      "gradedAt": "2026-06-09T10:15:03.940Z"
+    },
+    {
+      "date": "2026-06-08",
+      "gameId": "mlb-2026-06-08-MIL-OAK",
+      "gamePk": 824998,
+      "away": "MIL",
+      "home": "OAK",
+      "pickedTeam": "MIL",
+      "modelProb": 0.6592981259730977,
+      "actualWinner": "MIL",
+      "correct": true,
+      "homeScore": 14,
+      "awayScore": 15,
+      "gradedAt": "2026-06-09T10:15:03.940Z"
     }
   ]
 }
