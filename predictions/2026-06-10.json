@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-10",
+  "generatedAt": "2026-06-10T11:19:29.658Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-10-CHC-COL",
+      "home": "COL",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6878600712386034,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824348,
+        "venue": "Coors Field",
+        "runLine": 2.2463000000000006,
+        "totalRuns": 12.339500000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-10-ATL-CWS",
+      "home": "CWS",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.5850862606938343,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824590,
+        "venue": "Rate Field",
+        "runLine": 1.4826999999999995,
+        "totalRuns": 9.6349
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-10-LAD-PIT",
+      "home": "PIT",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.7446548740223675,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823372,
+        "venue": "PNC Park",
+        "runLine": -0.3291000000000004,
+        "totalRuns": 9.0801
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-10-MIL-OAK",
+      "home": "OAK",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6568929133404033,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824996,
+        "venue": "Las Vegas Ballpark",
+        "runLine": -0.46750000000000025,
+        "totalRuns": 9.3753
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-10-NYY-CLE",
+      "home": "CLE",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.5858259971078359,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824428,
+        "venue": "Progressive Field",
+        "runLine": -1.1463,
+        "totalRuns": 9.2047
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-10-STL-NYM",
+      "home": "NYM",
+      "away": "STL",
+      "pickedTeam": "STL",
+      "pickedSide": "away",
+      "modelProb": 0.6286048046461639,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823618,
+        "venue": "Citi Field",
+        "runLine": -3.0679,
+        "totalRuns": 9.3095
+      }
+    }
+  ]
+}
