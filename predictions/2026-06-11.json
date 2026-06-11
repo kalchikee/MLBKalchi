@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-11",
+  "generatedAt": "2026-06-11T11:36:36.715Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-11-ATL-CWS",
+      "home": "CWS",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.5815346679696796,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824589,
+        "venue": "Rate Field",
+        "runLine": 2.2759,
+        "totalRuns": 9.6663
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-11-TEX-KC",
+      "home": "KC",
+      "away": "TEX",
+      "pickedTeam": "KC",
+      "pickedSide": "home",
+      "modelProb": 0.5845132817780754,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824101,
+        "venue": "Kauffman Stadium",
+        "runLine": 1.4154999999999998,
+        "totalRuns": 9.4155
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-11-STL-NYM",
+      "home": "NYM",
+      "away": "STL",
+      "pickedTeam": "STL",
+      "pickedSide": "away",
+      "modelProb": 0.6038283612996722,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823619,
+        "venue": "Citi Field",
+        "runLine": -4.6089,
+        "totalRuns": 9.5399
+      }
+    }
+  ]
+}
