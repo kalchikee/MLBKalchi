@@ -4199,6 +4199,34 @@
       "homeScore": 2,
       "awayScore": 9,
       "gradedAt": "2026-06-11T10:32:13.807Z"
+    },
+    {
+      "date": "2026-06-11",
+      "gameId": "mlb-2026-06-11-TEX-KC",
+      "gamePk": 824101,
+      "away": "TEX",
+      "home": "KC",
+      "pickedTeam": "KC",
+      "modelProb": 0.5845132817780754,
+      "actualWinner": "TEX",
+      "correct": false,
+      "homeScore": 2,
+      "awayScore": 4,
+      "gradedAt": "2026-06-12T10:31:00.380Z"
+    },
+    {
+      "date": "2026-06-11",
+      "gameId": "mlb-2026-06-11-STL-NYM",
+      "gamePk": 823619,
+      "away": "STL",
+      "home": "NYM",
+      "pickedTeam": "STL",
+      "modelProb": 0.6038283612996722,
+      "actualWinner": "NYM",
+      "correct": false,
+      "homeScore": 5,
+      "awayScore": 4,
+      "gradedAt": "2026-06-12T10:31:00.380Z"
     }
   ]
 }
