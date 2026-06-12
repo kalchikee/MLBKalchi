@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-12",
+  "generatedAt": "2026-06-12T11:20:42.091Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-12-SD-BAL",
+      "home": "BAL",
+      "away": "SD",
+      "pickedTeam": "BAL",
+      "pickedSide": "home",
+      "modelProb": 0.6790545522816106,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824826,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": 3.8080000000000003,
+        "totalRuns": 9.854800000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-12-PHI-MIL",
+      "home": "MIL",
+      "away": "PHI",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.8095780031341104,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823778,
+        "venue": "American Family Field",
+        "runLine": 2.6098,
+        "totalRuns": 9.926
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-12-CHC-SF",
+      "home": "SF",
+      "away": "CHC",
+      "pickedTeam": "SF",
+      "pickedSide": "home",
+      "modelProb": 0.6181851093512402,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823211,
+        "venue": "Oracle Park",
+        "runLine": 1.4047,
+        "totalRuns": 8.4887
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-12-MIA-PIT",
+      "home": "PIT",
+      "away": "MIA",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6127053746494998,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823370,
+        "venue": "PNC Park",
+        "runLine": 0.7523,
+        "totalRuns": 9.0887
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-12-NYY-TOR",
+      "home": "TOR",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6579225508714626,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822803,
+        "venue": "Rogers Centre",
+        "runLine": -0.9622999999999999,
+        "totalRuns": 9.505299999999998
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-12-LAD-CWS",
+      "home": "CWS",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6020859066273232,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824588,
+        "venue": "Rate Field",
+        "runLine": -1.0971000000000002,
+        "totalRuns": 9.536100000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-12-ATL-NYM",
+      "home": "NYM",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6178884309777354,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823617,
+        "venue": "Citi Field",
+        "runLine": -1.7830999999999997,
+        "totalRuns": 9.0793
+      }
+    }
+  ]
+}
