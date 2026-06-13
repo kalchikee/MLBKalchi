@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-13",
+  "generatedAt": "2026-06-13T10:51:35.785Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-13-COL-OAK",
+      "home": "OAK",
+      "away": "COL",
+      "pickedTeam": "OAK",
+      "pickedSide": "home",
+      "modelProb": 0.7626390636638447,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824995,
+        "venue": "Las Vegas Ballpark",
+        "runLine": 2.3255000000000003,
+        "totalRuns": 9.3923
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-13-PHI-MIL",
+      "home": "MIL",
+      "away": "PHI",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.698060168100498,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823776,
+        "venue": "American Family Field",
+        "runLine": 2.2918999999999996,
+        "totalRuns": 9.7685
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-13-TB-LAA",
+      "home": "LAA",
+      "away": "TB",
+      "pickedTeam": "LAA",
+      "pickedSide": "home",
+      "modelProb": 0.6754152178787346,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824019,
+        "venue": "Angel Stadium",
+        "runLine": 1.3699000000000003,
+        "totalRuns": 8.8213
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-13-LAD-CWS",
+      "home": "CWS",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.686539913478381,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824587,
+        "venue": "Rate Field",
+        "runLine": -0.018899999999999473,
+        "totalRuns": 9.5409
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-13-NYY-TOR",
+      "home": "TOR",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6561176537563216,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822802,
+        "venue": "Rogers Centre",
+        "runLine": -0.19669999999999987,
+        "totalRuns": 9.4561
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-13-ATL-NYM",
+      "home": "NYM",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6415850069662437,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823616,
+        "venue": "Citi Field",
+        "runLine": -0.9633999999999996,
+        "totalRuns": 8.9538
+      }
+    }
+  ]
+}
