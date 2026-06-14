@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-14",
+  "generatedAt": "2026-06-14T11:01:28.386Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-14-COL-OAK",
+      "home": "OAK",
+      "away": "COL",
+      "pickedTeam": "OAK",
+      "pickedSide": "home",
+      "modelProb": 0.6459242710782003,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824994,
+        "venue": "Las Vegas Ballpark",
+        "runLine": 3.3164000000000002,
+        "totalRuns": 9.5652
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-14-PHI-MIL",
+      "home": "MIL",
+      "away": "PHI",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.68454299069457,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823777,
+        "venue": "American Family Field",
+        "runLine": 2.4913999999999996,
+        "totalRuns": 9.969999999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-14-NYY-TOR",
+      "home": "TOR",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.7049625350001025,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822801,
+        "venue": "Rogers Centre",
+        "runLine": -0.6547000000000001,
+        "totalRuns": 9.4599
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-14-ATL-NYM",
+      "home": "NYM",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.7626007204975271,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823615,
+        "venue": "Citi Field",
+        "runLine": -1.2926999999999995,
+        "totalRuns": 9.1093
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-14-LAD-CWS",
+      "home": "CWS",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6701663858508257,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824586,
+        "venue": "Rate Field",
+        "runLine": -2.0126,
+        "totalRuns": 9.642
+      }
+    }
+  ]
+}
