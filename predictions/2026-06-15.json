@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-15",
+  "generatedAt": "2026-06-15T12:05:17.343Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-15-SD-STL",
+      "home": "STL",
+      "away": "SD",
+      "pickedTeam": "STL",
+      "pickedSide": "home",
+      "modelProb": 0.6455734877246424,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823046,
+        "venue": "Busch Stadium",
+        "runLine": 4.2987,
+        "totalRuns": 9.5057
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-15-KC-WSH",
+      "home": "WSH",
+      "away": "KC",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.6782334674437956,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822724,
+        "venue": "Nationals Park",
+        "runLine": 2.1908000000000003,
+        "totalRuns": 9.4956
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-15-NYM-CIN",
+      "home": "CIN",
+      "away": "NYM",
+      "pickedTeam": "CIN",
+      "pickedSide": "home",
+      "modelProb": 0.6520629266428244,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824505,
+        "venue": "Great American Ball Park",
+        "runLine": 0.19639999999999969,
+        "totalRuns": 10.318200000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-15-DET-HOU",
+      "home": "HOU",
+      "away": "DET",
+      "pickedTeam": "DET",
+      "pickedSide": "away",
+      "modelProb": 0.6145301633756874,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824181,
+        "venue": "Daikin Park",
+        "runLine": -0.39229999999999965,
+        "totalRuns": 9.341899999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-15-MIA-PHI",
+      "home": "PHI",
+      "away": "MIA",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.6304501565957741,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823452,
+        "venue": "Citizens Bank Park",
+        "runLine": -1.0786999999999995,
+        "totalRuns": 10.1387
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-15-COL-CHC",
+      "home": "CHC",
+      "away": "COL",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.7482255077484907,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824666,
+        "venue": "Wrigley Field",
+        "runLine": -1.8657,
+        "totalRuns": 9.7569
+      }
+    }
+  ]
+}
