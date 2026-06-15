@@ -4409,6 +4409,76 @@
       "homeScore": 1,
       "awayScore": 3,
       "gradedAt": "2026-06-14T10:10:31.872Z"
+    },
+    {
+      "date": "2026-06-14",
+      "gameId": "mlb-2026-06-14-COL-OAK",
+      "gamePk": 824994,
+      "away": "COL",
+      "home": "OAK",
+      "pickedTeam": "OAK",
+      "modelProb": 0.6459242710782003,
+      "actualWinner": "COL",
+      "correct": false,
+      "homeScore": 9,
+      "awayScore": 23,
+      "gradedAt": "2026-06-15T11:03:29.253Z"
+    },
+    {
+      "date": "2026-06-14",
+      "gameId": "mlb-2026-06-14-PHI-MIL",
+      "gamePk": 823777,
+      "away": "PHI",
+      "home": "MIL",
+      "pickedTeam": "MIL",
+      "modelProb": 0.68454299069457,
+      "actualWinner": "MIL",
+      "correct": true,
+      "homeScore": 4,
+      "awayScore": 0,
+      "gradedAt": "2026-06-15T11:03:29.253Z"
+    },
+    {
+      "date": "2026-06-14",
+      "gameId": "mlb-2026-06-14-NYY-TOR",
+      "gamePk": 822801,
+      "away": "NYY",
+      "home": "TOR",
+      "pickedTeam": "NYY",
+      "modelProb": 0.7049625350001025,
+      "actualWinner": "NYY",
+      "correct": true,
+      "homeScore": 3,
+      "awayScore": 8,
+      "gradedAt": "2026-06-15T11:03:29.253Z"
+    },
+    {
+      "date": "2026-06-14",
+      "gameId": "mlb-2026-06-14-ATL-NYM",
+      "gamePk": 823615,
+      "away": "ATL",
+      "home": "NYM",
+      "pickedTeam": "ATL",
+      "modelProb": 0.7626007204975271,
+      "actualWinner": "NYM",
+      "correct": false,
+      "homeScore": 8,
+      "awayScore": 1,
+      "gradedAt": "2026-06-15T11:03:29.253Z"
+    },
+    {
+      "date": "2026-06-14",
+      "gameId": "mlb-2026-06-14-LAD-CWS",
+      "gamePk": 824586,
+      "away": "LAD",
+      "home": "CWS",
+      "pickedTeam": "LAD",
+      "modelProb": 0.6701663858508257,
+      "actualWinner": "CWS",
+      "correct": false,
+      "homeScore": 6,
+      "awayScore": 4,
+      "gradedAt": "2026-06-15T11:03:29.253Z"
     }
   ]
 }
