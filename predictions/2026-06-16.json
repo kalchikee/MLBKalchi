@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-16",
+  "generatedAt": "2026-06-16T11:49:41.367Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-16-CLE-MIL",
+      "home": "MIL",
+      "away": "CLE",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6753449235265739,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823775,
+        "venue": "American Family Field",
+        "runLine": 4.5108,
+        "totalRuns": 10.2246
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-16-PIT-OAK",
+      "home": "OAK",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6047845482656011,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824991,
+        "venue": "Sutter Health Park",
+        "runLine": 3.5915,
+        "totalRuns": 9.2949
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-16-TB-LAD",
+      "home": "LAD",
+      "away": "TB",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6108955962886649,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823939,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.9372,
+        "totalRuns": 9.392199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-16-CWS-NYY",
+      "home": "NYY",
+      "away": "CWS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.5952501507422565,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823535,
+        "venue": "Yankee Stadium",
+        "runLine": 0.5339999999999998,
+        "totalRuns": 9.863800000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-16-SF-ATL",
+      "home": "ATL",
+      "away": "SF",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.7677029414718687,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824912,
+        "venue": "Truist Park",
+        "runLine": 0.28169999999999984,
+        "totalRuns": 9.7349
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-16-COL-CHC",
+      "home": "CHC",
+      "away": "COL",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6099204378848452,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824667,
+        "venue": "Wrigley Field",
+        "runLine": -1.2220000000000004,
+        "totalRuns": 9.740400000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-16-LAA-ARI",
+      "home": "ARI",
+      "away": "LAA",
+      "pickedTeam": "LAA",
+      "pickedSide": "away",
+      "modelProb": 0.63920759930911,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825070,
+        "venue": "Chase Field",
+        "runLine": -2.4562999999999997,
+        "totalRuns": 9.4479
+      }
+    }
+  ]
+}
