@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-17",
+  "generatedAt": "2026-06-17T11:38:03.749Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-17-SD-STL",
+      "home": "STL",
+      "away": "SD",
+      "pickedTeam": "STL",
+      "pickedSide": "home",
+      "modelProb": 0.5922844981376919,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823044,
+        "venue": "Busch Stadium",
+        "runLine": 4.2165,
+        "totalRuns": 9.4793
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-17-TB-LAD",
+      "home": "LAD",
+      "away": "TB",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.8249667812918698,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823940,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.9228000000000005,
+        "totalRuns": 9.3284
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-17-KC-WSH",
+      "home": "WSH",
+      "away": "KC",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.6392070756769795,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822721,
+        "venue": "Nationals Park",
+        "runLine": 2.2457,
+        "totalRuns": 9.4641
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-17-CWS-NYY",
+      "home": "NYY",
+      "away": "CWS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7486279307873576,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823536,
+        "venue": "Yankee Stadium",
+        "runLine": 1.7153,
+        "totalRuns": 9.812899999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-17-SF-ATL",
+      "home": "ATL",
+      "away": "SF",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6240619451023334,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824913,
+        "venue": "Truist Park",
+        "runLine": -0.3681000000000001,
+        "totalRuns": 9.6213
+      }
+    }
+  ]
+}
