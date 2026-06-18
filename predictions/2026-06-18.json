@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-18",
+  "generatedAt": "2026-06-18T11:26:46.890Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-18-CLE-MIL",
+      "home": "MIL",
+      "away": "CLE",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6374725753012997,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823772,
+        "venue": "American Family Field",
+        "runLine": 4.7166,
+        "totalRuns": 10.2254
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-18-CWS-NYY",
+      "home": "NYY",
+      "away": "CWS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7494704712205841,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823533,
+        "venue": "Yankee Stadium",
+        "runLine": 2.2420999999999998,
+        "totalRuns": 9.8731
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-18-NYM-PHI",
+      "home": "PHI",
+      "away": "NYM",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.5896971506625956,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823448,
+        "venue": "Citizens Bank Park",
+        "runLine": 2.2255000000000003,
+        "totalRuns": 10.2453
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-18-BAL-SEA",
+      "home": "SEA",
+      "away": "BAL",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.6192812626866746,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823125,
+        "venue": "T-Mobile Park",
+        "runLine": 0.09550000000000036,
+        "totalRuns": 9.073699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-18-SF-ATL",
+      "home": "ATL",
+      "away": "SF",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6060964649395573,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824911,
+        "venue": "Truist Park",
+        "runLine": -2.31,
+        "totalRuns": 9.6326
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-18-MIN-TEX",
+      "home": "TEX",
+      "away": "MIN",
+      "pickedTeam": "MIN",
+      "pickedSide": "away",
+      "modelProb": 0.6388140177927553,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822889,
+        "venue": "Globe Life Field",
+        "runLine": -3.2359999999999998,
+        "totalRuns": 10.021799999999999
+      }
+    }
+  ]
+}
