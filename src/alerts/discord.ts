@@ -4,6 +4,7 @@
 import fetch from 'node-fetch';
 import { logger } from '../logger.js';
 import {
+  getConfidenceBuckets,
   getPredictionsByDate,
   initDb,
 } from '../db/database.js';
@@ -138,6 +139,22 @@ export async function sendMorningBriefing(date: string): Promise<void> {
       value: `**${pct(season.accuracy)}** · ${season.correctPredictions}/${season.totalGames} predictions correct this season`,
       inline: false,
     });
+
+    // Per-confidence-bucket calibration: shows how the model's declared
+    // probability tracks reality at each tier (e.g. of picks tagged
+    // 70-80%, how many actually won). Empty buckets are filtered out
+    // server-side so the embed stays compact early-season.
+    const buckets = getConfidenceBuckets();
+    if (buckets.length > 0) {
+      const lines = buckets.map(b =>
+        `**${b.label}** · ${b.correct}/${b.total} (${pct(b.accuracy)})`
+      );
+      fields.push({
+        name: '🎯 Calibration by confidence',
+        value: lines.join('\n'),
+        inline: false,
+      });
+    }
   }
 
   // ── All games, sorted by conviction ───────────────────────────────────────
