@@ -183,6 +183,24 @@ export async function sendMorningBriefing(date: string): Promise<void> {
     inline: false,
   });
 
+  // Surface broken Vegas integration. When every prediction has
+  // vegas_prob=null, the kalshi-safety Vegas-disagreement filter can't
+  // protect against picks where the model strongly disagrees with sharp
+  // money. This has silently been the case since THE_ODDS_API_KEY went
+  // empty in early May; the visible note prevents that from happening
+  // again unnoticed.
+  const allMissingVegas = predictions.every(p => p.vegas_prob == null);
+  if (allMissingVegas && predictions.length > 0) {
+    fields.push({
+      name: '⚠️ Vegas API disabled',
+      value:
+        'No vegasProb on any pick today — `THE_ODDS_API_KEY` is missing or empty. ' +
+        'kalshi-safety\'s Vegas-disagreement filter is OFF until the secret is refreshed. ' +
+        'Fix: `gh secret set THE_ODDS_API_KEY --repo kalchikee/MLBKalchi`',
+      inline: false,
+    });
+  }
+
   const embed: DiscordEmbed = {
     title: `⚾ MLB Oracle — ${date}`,
     description: `**${predictions.length} games** · **${highConv.length}** high-conviction (65%+)`,

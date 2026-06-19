@@ -189,7 +189,17 @@ export async function fetchOddsApiLines(): Promise<Map<string, OddsApiLine>> {
   const apiKey = process.env.THE_ODDS_API_KEY;
 
   if (!apiKey) {
-    logger.warn('THE_ODDS_API_KEY not set — skipping live odds fetch');
+    // Surface this as ERROR-level, not WARN — it has been silently no-opping
+    // for 2+ months without anyone noticing because the line buried in the
+    // workflow log looked like a passive warning. Without Vegas lines,
+    // every MLB pick has vegasProb=null and kalshi-safety can't apply the
+    // Vegas-disagreement filter that protects against bets where the
+    // model strongly disagrees with sharp money.
+    logger.error(
+      'THE_ODDS_API_KEY missing or empty — Vegas integration DISABLED. '
+      + 'Set the secret: `gh secret set THE_ODDS_API_KEY --repo kalchikee/MLBKalchi`. '
+      + 'Until fixed, predictions ship without vegasProb and edge.',
+    );
     return new Map();
   }
 
