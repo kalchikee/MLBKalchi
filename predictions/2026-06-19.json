@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-19",
+  "generatedAt": "2026-06-19T11:36:04.948Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-19-BAL-LAD",
+      "home": "LAD",
+      "away": "BAL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6321605059895357,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823936,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.597,
+        "totalRuns": 9.4984
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-19-CIN-NYY",
+      "home": "NYY",
+      "away": "CIN",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.8191841309337287,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823534,
+        "venue": "Yankee Stadium",
+        "runLine": 2.6584,
+        "totalRuns": 9.9332
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-19-CWS-DET",
+      "home": "DET",
+      "away": "CWS",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6425258085874872,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824264,
+        "venue": "Comerica Park",
+        "runLine": 0.8620999999999999,
+        "totalRuns": 8.9709
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-19-BOS-SEA",
+      "home": "SEA",
+      "away": "BOS",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.6183019659943925,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823124,
+        "venue": "T-Mobile Park",
+        "runLine": 0.07110000000000039,
+        "totalRuns": 9.077300000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-19-MIL-ATL",
+      "home": "ATL",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6268805741567587,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824910,
+        "venue": "Truist Park",
+        "runLine": -2.9703000000000004,
+        "totalRuns": 9.8207
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-19-WSH-TB",
+      "home": "TB",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.5903098820645456,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822966,
+        "venue": "Tropicana Field",
+        "runLine": -2.9385,
+        "totalRuns": 9.0485
+      }
+    }
+  ]
+}
