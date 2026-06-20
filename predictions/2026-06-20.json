@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-20",
+  "generatedAt": "2026-06-20T10:51:44.833Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-20-TOR-CHC",
+      "home": "CHC",
+      "away": "TOR",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6308117112468774,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824665,
+        "venue": "Wrigley Field",
+        "runLine": 4.8742,
+        "totalRuns": 10.661
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-20-CIN-NYY",
+      "home": "NYY",
+      "away": "CIN",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.803670504776494,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823532,
+        "venue": "Yankee Stadium",
+        "runLine": 3.8869,
+        "totalRuns": 10.1339
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-20-LAA-OAK",
+      "home": "OAK",
+      "away": "LAA",
+      "pickedTeam": "OAK",
+      "pickedSide": "home",
+      "modelProb": 0.5923356029733885,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824988,
+        "venue": "Sutter Health Park",
+        "runLine": 3.4890000000000003,
+        "totalRuns": 9.3736
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-20-BAL-LAD",
+      "home": "LAD",
+      "away": "BAL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.7837293466002208,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823937,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 1.5562999999999998,
+        "totalRuns": 9.3897
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-20-NYM-PHI",
+      "home": "PHI",
+      "away": "NYM",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.5834149301611082,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823447,
+        "venue": "Citizens Bank Park",
+        "runLine": 1.0324999999999998,
+        "totalRuns": 10.097100000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-20-WSH-TB",
+      "home": "TB",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.5912903514789061,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822967,
+        "venue": "Tropicana Field",
+        "runLine": -1.9962,
+        "totalRuns": 8.9146
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-20-MIN-ARI",
+      "home": "ARI",
+      "away": "MIN",
+      "pickedTeam": "MIN",
+      "pickedSide": "away",
+      "modelProb": 0.6408967840754587,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825068,
+        "venue": "Chase Field",
+        "runLine": -3.0175,
+        "totalRuns": 9.5867
+      }
+    }
+  ]
+}
