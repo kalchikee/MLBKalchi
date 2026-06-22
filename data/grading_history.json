@@ -4983,6 +4983,48 @@
       "homeScore": 8,
       "awayScore": 16,
       "gradedAt": "2026-06-21T10:15:05.809Z"
+    },
+    {
+      "date": "2026-06-21",
+      "gameId": "mlb-2026-06-21-CIN-NYY",
+      "gamePk": 823531,
+      "away": "CIN",
+      "home": "NYY",
+      "pickedTeam": "NYY",
+      "modelProb": 0.6688546217750572,
+      "actualWinner": "CIN",
+      "correct": false,
+      "homeScore": 1,
+      "awayScore": 4,
+      "gradedAt": "2026-06-22T10:54:21.961Z"
+    },
+    {
+      "date": "2026-06-21",
+      "gameId": "mlb-2026-06-21-BAL-LAD",
+      "gamePk": 823934,
+      "away": "BAL",
+      "home": "LAD",
+      "pickedTeam": "LAD",
+      "modelProb": 0.6520849882762306,
+      "actualWinner": "BAL",
+      "correct": false,
+      "homeScore": 1,
+      "awayScore": 12,
+      "gradedAt": "2026-06-22T10:54:21.961Z"
+    },
+    {
+      "date": "2026-06-21",
+      "gameId": "mlb-2026-06-21-NYM-PHI",
+      "gamePk": 823449,
+      "away": "NYM",
+      "home": "PHI",
+      "pickedTeam": "PHI",
+      "modelProb": 0.7011788031307475,
+      "actualWinner": "PHI",
+      "correct": true,
+      "homeScore": 6,
+      "awayScore": 2,
+      "gradedAt": "2026-06-22T10:54:21.961Z"
     }
   ]
 }
