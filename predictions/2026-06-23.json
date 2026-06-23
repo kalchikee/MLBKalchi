@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-23",
+  "generatedAt": "2026-06-23T11:06:37.875Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-23-BOS-COL",
+      "home": "COL",
+      "away": "BOS",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.6083552386257929,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824340,
+        "venue": "Coors Field",
+        "runLine": 5.5255,
+        "totalRuns": 13.233699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-23-LAD-MIN",
+      "home": "MIN",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.5846957504213138,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823690,
+        "venue": "Target Field",
+        "runLine": 3.0852,
+        "totalRuns": 9.5048
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-23-TEX-MIA",
+      "home": "MIA",
+      "away": "TEX",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.595946952194351,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823849,
+        "venue": "loanDepot park",
+        "runLine": 0.8771000000000004,
+        "totalRuns": 9.0091
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-23-MIL-CIN",
+      "home": "CIN",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6074954313383016,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824501,
+        "venue": "Great American Ball Park",
+        "runLine": -1.6851000000000003,
+        "totalRuns": 10.4945
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-23-KC-TB",
+      "home": "TB",
+      "away": "KC",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.631131752459181,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822963,
+        "venue": "Tropicana Field",
+        "runLine": -2.2342,
+        "totalRuns": 8.8238
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-23-CHC-NYM",
+      "home": "NYM",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6729966109613027,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823614,
+        "venue": "Citi Field",
+        "runLine": -3.7142,
+        "totalRuns": 9.2614
+      }
+    }
+  ]
+}
