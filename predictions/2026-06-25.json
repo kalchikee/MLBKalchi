@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-25",
+  "generatedAt": "2026-06-25T11:00:54.354Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-25-TEX-TOR",
+      "home": "TOR",
+      "away": "TEX",
+      "pickedTeam": "TOR",
+      "pickedSide": "home",
+      "modelProb": 0.5836616079656581,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822797,
+        "venue": "Rogers Centre",
+        "runLine": 1.0728999999999997,
+        "totalRuns": 9.451699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-25-ARI-STL",
+      "home": "STL",
+      "away": "ARI",
+      "pickedTeam": "STL",
+      "pickedSide": "home",
+      "modelProb": 0.5851750423206314,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823042,
+        "venue": "Busch Stadium",
+        "runLine": -0.06599999999999984,
+        "totalRuns": 9.002600000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-25-PHI-WSH",
+      "home": "WSH",
+      "away": "PHI",
+      "pickedTeam": "PHI",
+      "pickedSide": "away",
+      "modelProb": 0.6058661798546239,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822717,
+        "venue": "Nationals Park",
+        "runLine": -0.2732000000000001,
+        "totalRuns": 9.2412
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-25-HOU-DET",
+      "home": "DET",
+      "away": "HOU",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.597365131862588,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824258,
+        "venue": "Comerica Park",
+        "runLine": -0.6042999999999994,
+        "totalRuns": 9.0027
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-25-NYY-BOS",
+      "home": "BOS",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.7673954289426363,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824747,
+        "venue": "Fenway Park",
+        "runLine": -2.1237999999999992,
+        "totalRuns": 10.2706
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-25-CHC-NYM",
+      "home": "NYM",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6429558830490478,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823612,
+        "venue": "Citi Field",
+        "runLine": -3.4930000000000003,
+        "totalRuns": 9.2674
+      }
+    }
+  ]
+}
