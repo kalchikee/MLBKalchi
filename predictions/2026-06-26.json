@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-26",
+  "generatedAt": "2026-06-26T11:04:16.175Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-26-CIN-PIT",
+      "home": "PIT",
+      "away": "CIN",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.7192699596584318,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823363,
+        "venue": "PNC Park",
+        "runLine": 3.7379000000000002,
+        "totalRuns": 9.2887
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-26-COL-MIN",
+      "home": "MIN",
+      "away": "COL",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.6401208686695122,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823688,
+        "venue": "Target Field",
+        "runLine": 2.2171000000000003,
+        "totalRuns": 9.5563
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-26-ARI-TB",
+      "home": "TB",
+      "away": "ARI",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.5935676596721258,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822962,
+        "venue": "Tropicana Field",
+        "runLine": -0.11190000000000033,
+        "totalRuns": 8.8889
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-26-LAD-SD",
+      "home": "SD",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.604002185699076,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823285,
+        "venue": "Petco Park",
+        "runLine": -1.3866,
+        "totalRuns": 8.8902
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-26-NYY-BOS",
+      "home": "BOS",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.5856202254912943,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824743,
+        "venue": "Fenway Park",
+        "runLine": -1.8481000000000005,
+        "totalRuns": 10.2835
+      }
+    }
+  ]
+}
