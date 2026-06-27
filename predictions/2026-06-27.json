@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-27",
+  "generatedAt": "2026-06-27T10:42:44.431Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-27-HOU-DET",
+      "home": "DET",
+      "away": "HOU",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6663358540778898,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824257,
+        "venue": "Comerica Park",
+        "runLine": 0.7517999999999994,
+        "totalRuns": 9.006
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-27-COL-MIN",
+      "home": "MIN",
+      "away": "COL",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.5892436093592369,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823689,
+        "venue": "Target Field",
+        "runLine": 0.6425000000000001,
+        "totalRuns": 9.4439
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-27-ATL-SF",
+      "home": "SF",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6415554738175926,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823207,
+        "venue": "Oracle Park",
+        "runLine": 0.01810000000000045,
+        "totalRuns": 8.7257
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-27-LAD-SD",
+      "home": "SD",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6617374429177809,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823283,
+        "venue": "Petco Park",
+        "runLine": -0.20319999999999983,
+        "totalRuns": 8.7254
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-27-OAK-LAA",
+      "home": "LAA",
+      "away": "OAK",
+      "pickedTeam": "LAA",
+      "pickedSide": "home",
+      "modelProb": 0.6102509199715072,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824015,
+        "venue": "Angel Stadium",
+        "runLine": -1.6879,
+        "totalRuns": 9.2451
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-27-CHC-MIL",
+      "home": "MIL",
+      "away": "CHC",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6673333057468462,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823770,
+        "venue": "American Family Field",
+        "runLine": -1.9819999999999998,
+        "totalRuns": 9.84
+      }
+    }
+  ]
+}
