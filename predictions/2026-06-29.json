@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-29",
+  "generatedAt": "2026-06-29T11:43:34.639Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-29-SD-CHC",
+      "home": "CHC",
+      "away": "SD",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6583648840353586,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824662,
+        "venue": "Wrigley Field",
+        "runLine": 4.2489,
+        "totalRuns": 10.4729
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-29-MIA-COL",
+      "home": "COL",
+      "away": "MIA",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.6128445838984227,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824339,
+        "venue": "Coors Field",
+        "runLine": 1.8336999999999994,
+        "totalRuns": 12.8777
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-29-CIN-MIL",
+      "home": "MIL",
+      "away": "CIN",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6492196600873454,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823771,
+        "venue": "American Family Field",
+        "runLine": 0.6171000000000006,
+        "totalRuns": 9.7187
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-29-PIT-PHI",
+      "home": "PHI",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6544954736764774,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823444,
+        "venue": "Citizens Bank Park",
+        "runLine": 0.06820000000000004,
+        "totalRuns": 10.013200000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-29-NYM-TOR",
+      "home": "TOR",
+      "away": "NYM",
+      "pickedTeam": "TOR",
+      "pickedSide": "home",
+      "modelProb": 0.6263517993485568,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822792,
+        "venue": "Rogers Centre",
+        "runLine": 0.07830000000000048,
+        "totalRuns": 9.4679
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-29-TEX-CLE",
+      "home": "CLE",
+      "away": "TEX",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.6113623994050483,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824420,
+        "venue": "Progressive Field",
+        "runLine": -0.8045999999999998,
+        "totalRuns": 9.1522
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-29-WSH-BOS",
+      "home": "BOS",
+      "away": "WSH",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.6388749180023381,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824741,
+        "venue": "Fenway Park",
+        "runLine": -0.9126000000000003,
+        "totalRuns": 10.200199999999999
+      }
+    }
+  ]
+}
