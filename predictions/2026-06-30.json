@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-06-30",
+  "generatedAt": "2026-06-30T11:05:11.242Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-06-30-SD-CHC",
+      "home": "CHC",
+      "away": "SD",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6843428063720198,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824661,
+        "venue": "Wrigley Field",
+        "runLine": 4.4026,
+        "totalRuns": 10.4334
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-30-CIN-MIL",
+      "home": "MIL",
+      "away": "CIN",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.5894950828005358,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823768,
+        "venue": "American Family Field",
+        "runLine": 1.2024000000000008,
+        "totalRuns": 9.766
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-30-MIA-COL",
+      "home": "COL",
+      "away": "MIA",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.6123409398061838,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824338,
+        "venue": "Coors Field",
+        "runLine": 1.0057999999999998,
+        "totalRuns": 12.8204
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-30-PIT-PHI",
+      "home": "PHI",
+      "away": "PIT",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.6039781043111574,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823445,
+        "venue": "Citizens Bank Park",
+        "runLine": -0.9164000000000003,
+        "totalRuns": 10.1216
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-30-CWS-BAL",
+      "home": "BAL",
+      "away": "CWS",
+      "pickedTeam": "CWS",
+      "pickedSide": "away",
+      "modelProb": 0.5838692384229061,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824819,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -0.9667000000000003,
+        "totalRuns": 9.6847
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-30-MIN-HOU",
+      "home": "HOU",
+      "away": "MIN",
+      "pickedTeam": "MIN",
+      "pickedSide": "away",
+      "modelProb": 0.6149395549534293,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824175,
+        "venue": "Daikin Park",
+        "runLine": -1.9862999999999995,
+        "totalRuns": 9.3509
+      }
+    },
+    {
+      "gameId": "mlb-2026-06-30-LAD-OAK",
+      "home": "OAK",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6516795293186513,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824984,
+        "venue": "Sutter Health Park",
+        "runLine": -2.2309999999999994,
+        "totalRuns": 9.0384
+      }
+    }
+  ]
+}
