@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-01",
+  "generatedAt": "2026-07-01T11:09:45.731Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-01-SD-CHC",
+      "home": "CHC",
+      "away": "SD",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6564165547259802,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824660,
+        "venue": "Wrigley Field",
+        "runLine": 4.4005,
+        "totalRuns": 10.4941
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-01-CIN-MIL",
+      "home": "MIL",
+      "away": "CIN",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7419619527150563,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823767,
+        "venue": "American Family Field",
+        "runLine": 2.7626999999999997,
+        "totalRuns": 10.030100000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-01-WSH-BOS",
+      "home": "BOS",
+      "away": "WSH",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.6353239327294556,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824740,
+        "venue": "Fenway Park",
+        "runLine": -1.7681000000000004,
+        "totalRuns": 10.2775
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-01-TB-KC",
+      "home": "KC",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.5830785571418153,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824094,
+        "venue": "Kauffman Stadium",
+        "runLine": -2.4993,
+        "totalRuns": 9.4199
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-01-LAD-OAK",
+      "home": "OAK",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.654530758400397,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824985,
+        "venue": "Sutter Health Park",
+        "runLine": -3.5242999999999998,
+        "totalRuns": 9.2953
+      }
+    }
+  ]
+}
