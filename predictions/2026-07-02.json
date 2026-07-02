@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-02",
+  "generatedAt": "2026-07-02T10:56:44.156Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-02-SD-LAD",
+      "home": "LAD",
+      "away": "SD",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6392897361652646,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823935,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 4.0791,
+        "totalRuns": 9.7691
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-02-CIN-MIL",
+      "home": "MIL",
+      "away": "CIN",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6971703549285294,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823765,
+        "venue": "American Family Field",
+        "runLine": 2.3442000000000003,
+        "totalRuns": 9.9672
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-02-LAA-SEA",
+      "home": "SEA",
+      "away": "LAA",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.6223186692727517,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823119,
+        "venue": "T-Mobile Park",
+        "runLine": 0.6138000000000003,
+        "totalRuns": 9.1084
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-02-CWS-CLE",
+      "home": "CLE",
+      "away": "CWS",
+      "pickedTeam": "CWS",
+      "pickedSide": "away",
+      "modelProb": 0.6438970898225322,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824416,
+        "venue": "Progressive Field",
+        "runLine": -2.6471000000000005,
+        "totalRuns": 9.2421
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-02-TB-KC",
+      "home": "KC",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.6279701100422563,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824093,
+        "venue": "Kauffman Stadium",
+        "runLine": -3.9171,
+        "totalRuns": 9.5431
+      }
+    }
+  ]
+}
