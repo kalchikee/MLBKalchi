@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-07",
+  "generatedAt": "2026-07-07T11:04:01.505Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-07-OAK-DET",
+      "home": "DET",
+      "away": "OAK",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6917601885145532,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824254,
+        "venue": "Comerica Park",
+        "runLine": 2.6239,
+        "totalRuns": 9.0501
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-07-SEA-MIA",
+      "home": "MIA",
+      "away": "SEA",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.5885833256853743,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823847,
+        "venue": "loanDepot park",
+        "runLine": 2.4422,
+        "totalRuns": 9.0264
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-07-ATL-PIT",
+      "home": "PIT",
+      "away": "ATL",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6547493002865052,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823361,
+        "venue": "PNC Park",
+        "runLine": 2.4137,
+        "totalRuns": 9.2623
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-07-CLE-MIN",
+      "home": "MIN",
+      "away": "CLE",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.602687831665965,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823687,
+        "venue": "Target Field",
+        "runLine": 2.2072000000000003,
+        "totalRuns": 9.6554
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-07-HOU-WSH",
+      "home": "WSH",
+      "away": "HOU",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.6493949059699793,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822713,
+        "venue": "Nationals Park",
+        "runLine": 0.4641000000000002,
+        "totalRuns": 9.3795
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-07-COL-LAD",
+      "home": "LAD",
+      "away": "COL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.8044948972224216,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823929,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.2755000000000001,
+        "totalRuns": 9.3475
+      }
+    }
+  ]
+}
