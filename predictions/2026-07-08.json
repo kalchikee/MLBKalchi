@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-08",
+  "generatedAt": "2026-07-08T10:44:02.539Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-08-LAA-TEX",
+      "home": "TEX",
+      "away": "LAA",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.640839549818813,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822880,
+        "venue": "Globe Life Field",
+        "runLine": 3.0675,
+        "totalRuns": 10.197700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-08-CLE-MIN",
+      "home": "MIN",
+      "away": "CLE",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.6000037523107875,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823684,
+        "venue": "Target Field",
+        "runLine": 2.3552,
+        "totalRuns": 9.6838
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-08-OAK-DET",
+      "home": "DET",
+      "away": "OAK",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.596959664113704,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824253,
+        "venue": "Comerica Park",
+        "runLine": 1.1253999999999995,
+        "totalRuns": 8.8124
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-08-COL-LAD",
+      "home": "LAD",
+      "away": "COL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6171535643941463,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823928,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.5387000000000004,
+        "totalRuns": 9.3391
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-08-MIL-STL",
+      "home": "STL",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6316743290038596,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823032,
+        "venue": "Busch Stadium",
+        "runLine": -0.10489999999999977,
+        "totalRuns": 9.0993
+      }
+    }
+  ]
+}
