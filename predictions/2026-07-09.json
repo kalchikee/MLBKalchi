@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-09",
+  "generatedAt": "2026-07-09T11:03:51.322Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-09-OAK-DET",
+      "home": "DET",
+      "away": "OAK",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.7246324786720821,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824251,
+        "venue": "Comerica Park",
+        "runLine": 0.9706999999999999,
+        "totalRuns": 8.7481
+      }
+    }
+  ]
+}
