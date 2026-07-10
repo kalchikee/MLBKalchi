@@ -6495,6 +6495,20 @@
       "homeScore": 5,
       "awayScore": 1,
       "gradedAt": "2026-07-09T10:09:50.936Z"
+    },
+    {
+      "date": "2026-07-09",
+      "gameId": "mlb-2026-07-09-OAK-DET",
+      "gamePk": 824251,
+      "away": "OAK",
+      "home": "DET",
+      "pickedTeam": "DET",
+      "modelProb": 0.7246324786720821,
+      "actualWinner": "DET",
+      "correct": true,
+      "homeScore": 4,
+      "awayScore": 1,
+      "gradedAt": "2026-07-10T10:07:48.703Z"
     }
   ]
 }
