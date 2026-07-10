@@ -1,0 +1,151 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-10",
+  "generatedAt": "2026-07-10T11:04:06.151Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-10-CLE-MIA",
+      "home": "MIA",
+      "away": "CLE",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.6114734579382275,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823845,
+        "venue": "loanDepot park",
+        "runLine": 3.2481000000000004,
+        "totalRuns": 9.2851
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-NYY-WSH",
+      "home": "WSH",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.592149905924392,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822709,
+        "venue": "Nationals Park",
+        "runLine": 3.1248,
+        "totalRuns": 9.609
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-ARI-LAD",
+      "home": "LAD",
+      "away": "ARI",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.8033201701804563,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823927,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.7948,
+        "totalRuns": 9.6206
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-BOS-NYM",
+      "home": "NYM",
+      "away": "BOS",
+      "pickedTeam": "NYM",
+      "pickedSide": "home",
+      "modelProb": 0.6176142195568897,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823604,
+        "venue": "Citi Field",
+        "runLine": 2.1028999999999995,
+        "totalRuns": 9.1695
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-SEA-TB",
+      "home": "TB",
+      "away": "SEA",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.6021153672471073,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822955,
+        "venue": "Tropicana Field",
+        "runLine": 1.0083000000000002,
+        "totalRuns": 8.9589
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-MIL-PIT",
+      "home": "PIT",
+      "away": "MIL",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6100343255866615,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823357,
+        "venue": "PNC Park",
+        "runLine": 0.4485999999999999,
+        "totalRuns": 9.056999999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-ATL-STL",
+      "home": "STL",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.6644437775816472,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823033,
+        "venue": "Busch Stadium",
+        "runLine": 0.027000000000000135,
+        "totalRuns": 9.0886
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-OAK-CWS",
+      "home": "CWS",
+      "away": "OAK",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.614633552847463,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824575,
+        "venue": "Rate Field",
+        "runLine": -0.7092999999999998,
+        "totalRuns": 9.4997
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-10-CHC-CIN",
+      "home": "CIN",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6813632436578398,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824493,
+        "venue": "Great American Ball Park",
+        "runLine": -5.2863999999999995,
+        "totalRuns": 11.003799999999998
+      }
+    }
+  ]
+}
