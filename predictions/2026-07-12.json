@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-12",
+  "generatedAt": "2026-07-12T10:32:25.696Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-12-OAK-CWS",
+      "home": "CWS",
+      "away": "OAK",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.6183619389707039,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824574,
+        "venue": "Rate Field",
+        "runLine": 2.1544000000000003,
+        "totalRuns": 9.705
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-12-ARI-LAD",
+      "home": "LAD",
+      "away": "ARI",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6014805847933431,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823925,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 1.4253999999999998,
+        "totalRuns": 9.3612
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-12-TOR-SD",
+      "home": "SD",
+      "away": "TOR",
+      "pickedTeam": "TOR",
+      "pickedSide": "away",
+      "modelProb": 0.6131416343179525,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823274,
+        "venue": "Petco Park",
+        "runLine": -0.18409999999999993,
+        "totalRuns": 8.957899999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-12-HOU-TEX",
+      "home": "TEX",
+      "away": "HOU",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.5876489115631095,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822876,
+        "venue": "Globe Life Field",
+        "runLine": -1.0020999999999995,
+        "totalRuns": 10.008099999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-12-CHC-CIN",
+      "home": "CIN",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6017348465120542,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824491,
+        "venue": "Great American Ball Park",
+        "runLine": -1.6951999999999998,
+        "totalRuns": 10.436
+      }
+    }
+  ]
+}
