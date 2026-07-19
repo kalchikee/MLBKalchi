@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-19",
+  "generatedAt": "2026-07-19T10:32:31.781Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-19-LAD-NYY",
+      "home": "NYY",
+      "away": "LAD",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6019355028332132,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823521,
+        "venue": "Yankee Stadium",
+        "runLine": 2.0057,
+        "totalRuns": 9.648900000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-19-LAD-NYY",
+      "home": "NYY",
+      "away": "LAD",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6001561178818691,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823523,
+        "venue": "Yankee Stadium",
+        "runLine": 1.9724,
+        "totalRuns": 9.5804
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-19-TEX-ATL",
+      "home": "ATL",
+      "away": "TEX",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6319346464087254,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824897,
+        "venue": "Truist Park",
+        "runLine": 0.5208000000000004,
+        "totalRuns": 9.667200000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-19-DET-LAA",
+      "home": "LAA",
+      "away": "DET",
+      "pickedTeam": "DET",
+      "pickedSide": "away",
+      "modelProb": 0.6916377609264026,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824007,
+        "venue": "Angel Stadium",
+        "runLine": -1.3847999999999994,
+        "totalRuns": 9.094999999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-19-WSH-OAK",
+      "home": "OAK",
+      "away": "WSH",
+      "pickedTeam": "WSH",
+      "pickedSide": "away",
+      "modelProb": 0.7099904937063124,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824978,
+        "venue": "Sutter Health Park",
+        "runLine": -2.6848,
+        "totalRuns": 9.0444
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-19-PIT-CLE",
+      "home": "CLE",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.6862056266105939,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824411,
+        "venue": "Progressive Field",
+        "runLine": -3.9596999999999998,
+        "totalRuns": 9.5535
+      }
+    }
+  ]
+}
