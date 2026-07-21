@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-21",
+  "generatedAt": "2026-07-21T10:44:53.455Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-21-MIN-CLE",
+      "home": "CLE",
+      "away": "MIN",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.6185637562369385,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824409,
+        "venue": "Progressive Field",
+        "runLine": 1.0141,
+        "totalRuns": 9.1417
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-21-CIN-SEA",
+      "home": "SEA",
+      "away": "CIN",
+      "pickedTeam": "CIN",
+      "pickedSide": "away",
+      "modelProb": 0.5899885522975603,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823114,
+        "venue": "T-Mobile Park",
+        "runLine": 0.5850999999999997,
+        "totalRuns": 9.107700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-21-SF-KC",
+      "home": "KC",
+      "away": "SF",
+      "pickedTeam": "SF",
+      "pickedSide": "away",
+      "modelProb": 0.5861742412894094,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824085,
+        "venue": "Kauffman Stadium",
+        "runLine": 0.21389999999999976,
+        "totalRuns": 9.3477
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-21-SD-ATL",
+      "home": "ATL",
+      "away": "SD",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6716790689340767,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824895,
+        "venue": "Truist Park",
+        "runLine": -0.15640000000000054,
+        "totalRuns": 9.723600000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-21-OAK-ARI",
+      "home": "ARI",
+      "away": "OAK",
+      "pickedTeam": "ARI",
+      "pickedSide": "home",
+      "modelProb": 0.6002173298775659,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825056,
+        "venue": "Chase Field",
+        "runLine": -0.4821,
+        "totalRuns": 9.472100000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-21-TB-TOR",
+      "home": "TOR",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.600154190053942,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822787,
+        "venue": "Rogers Centre",
+        "runLine": -1.8191000000000002,
+        "totalRuns": 9.4141
+      }
+    }
+  ]
+}
