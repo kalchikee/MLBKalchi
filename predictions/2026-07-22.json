@@ -1,0 +1,183 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-22",
+  "generatedAt": "2026-07-22T10:45:30.430Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-22-NYM-MIL",
+      "home": "MIL",
+      "away": "NYM",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7616255848517536,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823761,
+        "venue": "American Family Field",
+        "runLine": 2.6726,
+        "totalRuns": 9.972999999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-MIN-CLE",
+      "home": "CLE",
+      "away": "MIN",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.5839952121622439,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824408,
+        "venue": "Progressive Field",
+        "runLine": 1.5399999999999996,
+        "totalRuns": 9.019
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-BAL-BOS",
+      "home": "BOS",
+      "away": "BAL",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.5812070522225176,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824732,
+        "venue": "Fenway Park",
+        "runLine": 1.2942,
+        "totalRuns": 10.3122
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-SD-ATL",
+      "home": "ATL",
+      "away": "SD",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.5877430286717296,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824896,
+        "venue": "Truist Park",
+        "runLine": 0.8869999999999996,
+        "totalRuns": 9.8046
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-BAL-BOS",
+      "home": "BOS",
+      "away": "BAL",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.5965728860798102,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824735,
+        "venue": "Fenway Park",
+        "runLine": 0.1612,
+        "totalRuns": 10.165
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-CIN-SEA",
+      "home": "SEA",
+      "away": "CIN",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.6917147534800203,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823110,
+        "venue": "T-Mobile Park",
+        "runLine": 0.06200000000000028,
+        "totalRuns": 9.097000000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-LAD-PHI",
+      "home": "PHI",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.5938952205717631,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823438,
+        "venue": "Citizens Bank Park",
+        "runLine": -0.6247999999999996,
+        "totalRuns": 9.927800000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-OAK-ARI",
+      "home": "ARI",
+      "away": "OAK",
+      "pickedTeam": "OAK",
+      "pickedSide": "away",
+      "modelProb": 0.5939825556801961,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825055,
+        "venue": "Chase Field",
+        "runLine": -0.8700999999999999,
+        "totalRuns": 9.610299999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-PIT-NYY",
+      "home": "NYY",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.5914798869353213,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823519,
+        "venue": "Yankee Stadium",
+        "runLine": -3.2616,
+        "totalRuns": 9.971
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-TB-TOR",
+      "home": "TOR",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.6167736083942408,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822784,
+        "venue": "Rogers Centre",
+        "runLine": -3.2402000000000006,
+        "totalRuns": 9.647400000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-22-PIT-NYY",
+      "home": "NYY",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.5820022410958936,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823518,
+        "venue": "Yankee Stadium",
+        "runLine": -3.4082999999999997,
+        "totalRuns": 9.968499999999999
+      }
+    }
+  ]
+}
