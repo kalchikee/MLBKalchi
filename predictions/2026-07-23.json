@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-23",
+  "generatedAt": "2026-07-23T10:46:28.982Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-23-MIN-CLE",
+      "home": "CLE",
+      "away": "MIN",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.5852171773506936,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824406,
+        "venue": "Progressive Field",
+        "runLine": 1.0695999999999994,
+        "totalRuns": 9.1988
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-23-SD-ATL",
+      "home": "ATL",
+      "away": "SD",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.8074063327025685,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824893,
+        "venue": "Truist Park",
+        "runLine": 0.4870000000000001,
+        "totalRuns": 9.73
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-23-KC-DET",
+      "home": "DET",
+      "away": "KC",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6413535254884075,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824247,
+        "venue": "Comerica Park",
+        "runLine": 0.15859999999999985,
+        "totalRuns": 8.946
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-23-TB-TOR",
+      "home": "TOR",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.6619018993109247,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822785,
+        "venue": "Rogers Centre",
+        "runLine": -3.8207000000000004,
+        "totalRuns": 9.7689
+      }
+    }
+  ]
+}
