@@ -7349,6 +7349,62 @@
       "homeScore": 3,
       "awayScore": 5,
       "gradedAt": "2026-07-23T09:48:27.802Z"
+    },
+    {
+      "date": "2026-07-23",
+      "gameId": "mlb-2026-07-23-MIN-CLE",
+      "gamePk": 824406,
+      "away": "MIN",
+      "home": "CLE",
+      "pickedTeam": "CLE",
+      "modelProb": 0.5852171773506936,
+      "actualWinner": "MIN",
+      "correct": false,
+      "homeScore": 1,
+      "awayScore": 3,
+      "gradedAt": "2026-07-24T09:47:38.247Z"
+    },
+    {
+      "date": "2026-07-23",
+      "gameId": "mlb-2026-07-23-SD-ATL",
+      "gamePk": 824893,
+      "away": "SD",
+      "home": "ATL",
+      "pickedTeam": "ATL",
+      "modelProb": 0.8074063327025685,
+      "actualWinner": "ATL",
+      "correct": true,
+      "homeScore": 6,
+      "awayScore": 5,
+      "gradedAt": "2026-07-24T09:47:38.247Z"
+    },
+    {
+      "date": "2026-07-23",
+      "gameId": "mlb-2026-07-23-KC-DET",
+      "gamePk": 824247,
+      "away": "KC",
+      "home": "DET",
+      "pickedTeam": "DET",
+      "modelProb": 0.6413535254884075,
+      "actualWinner": "DET",
+      "correct": true,
+      "homeScore": 4,
+      "awayScore": 3,
+      "gradedAt": "2026-07-24T09:47:38.247Z"
+    },
+    {
+      "date": "2026-07-23",
+      "gameId": "mlb-2026-07-23-TB-TOR",
+      "gamePk": 822785,
+      "away": "TB",
+      "home": "TOR",
+      "pickedTeam": "TB",
+      "modelProb": 0.6619018993109247,
+      "actualWinner": "TOR",
+      "correct": false,
+      "homeScore": 3,
+      "awayScore": 1,
+      "gradedAt": "2026-07-24T09:47:38.247Z"
     }
   ]
 }
