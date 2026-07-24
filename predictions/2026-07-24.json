@@ -1,0 +1,135 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-24",
+  "generatedAt": "2026-07-24T10:43:06.843Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-24-SEA-TEX",
+      "home": "TEX",
+      "away": "SEA",
+      "pickedTeam": "SEA",
+      "pickedSide": "away",
+      "modelProb": 0.5835380465081896,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822872,
+        "venue": "Globe Life Field",
+        "runLine": 1.4281000000000006,
+        "totalRuns": 9.9863
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-KC-DET",
+      "home": "DET",
+      "away": "KC",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.7164414887433419,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824248,
+        "venue": "Comerica Park",
+        "runLine": 1.1210000000000004,
+        "totalRuns": 9.0556
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-HOU-CWS",
+      "home": "CWS",
+      "away": "HOU",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.6242406486717895,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824573,
+        "venue": "Rate Field",
+        "runLine": 0.8606999999999996,
+        "totalRuns": 9.4969
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-NYY-PHI",
+      "home": "PHI",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.5868924112686575,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823434,
+        "venue": "Citizens Bank Park",
+        "runLine": 0.6534000000000004,
+        "totalRuns": 9.9836
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-LAA-SF",
+      "home": "SF",
+      "away": "LAA",
+      "pickedTeam": "SF",
+      "pickedSide": "home",
+      "modelProb": 0.5807727057096089,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823196,
+        "venue": "Oracle Park",
+        "runLine": -0.20720000000000027,
+        "totalRuns": 8.7364
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-COL-MIL",
+      "home": "MIL",
+      "away": "COL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.5992311571031429,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823759,
+        "venue": "American Family Field",
+        "runLine": -0.7872000000000003,
+        "totalRuns": 9.8292
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-OAK-MIN",
+      "home": "MIN",
+      "away": "OAK",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.6814952203872436,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823680,
+        "venue": "Target Field",
+        "runLine": -1.8639000000000001,
+        "totalRuns": 9.3259
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-24-LAD-NYM",
+      "home": "NYM",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6487991463017877,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823601,
+        "venue": "Citi Field",
+        "runLine": -2.7298,
+        "totalRuns": 9.1872
+      }
+    }
+  ]
+}
