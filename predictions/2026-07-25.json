@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-25",
+  "generatedAt": "2026-07-25T10:32:45.443Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-25-CLE-TB",
+      "home": "TB",
+      "away": "CLE",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.5911566075782274,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822948,
+        "venue": "Tropicana Field",
+        "runLine": 1.1096,
+        "totalRuns": 8.9958
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-25-ARI-WSH",
+      "home": "WSH",
+      "away": "ARI",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.6276002744409201,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822704,
+        "venue": "Nationals Park",
+        "runLine": 0.9028,
+        "totalRuns": 9.4132
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-25-LAA-SF",
+      "home": "SF",
+      "away": "LAA",
+      "pickedTeam": "SF",
+      "pickedSide": "home",
+      "modelProb": 0.6940616776859991,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823197,
+        "venue": "Oracle Park",
+        "runLine": 0.2668999999999997,
+        "totalRuns": 8.7173
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-25-COL-MIL",
+      "home": "MIL",
+      "away": "COL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.646107571379704,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823758,
+        "venue": "American Family Field",
+        "runLine": -0.5693999999999999,
+        "totalRuns": 9.734
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-25-ATL-BAL",
+      "home": "BAL",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.5971018116129911,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824811,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -2.1629,
+        "totalRuns": 9.8433
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-25-LAD-NYM",
+      "home": "NYM",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6622077084464102,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823600,
+        "venue": "Citi Field",
+        "runLine": -2.683,
+        "totalRuns": 9.1336
+      }
+    }
+  ]
+}
