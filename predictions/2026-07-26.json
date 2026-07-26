@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-26",
+  "generatedAt": "2026-07-26T10:34:32.256Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-26-TOR-BOS",
+      "home": "BOS",
+      "away": "TOR",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.5875223019731264,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824730,
+        "venue": "Fenway Park",
+        "runLine": 3.3739999999999997,
+        "totalRuns": 10.370000000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-26-SEA-TEX",
+      "home": "TEX",
+      "away": "SEA",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.5990550387854435,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822870,
+        "venue": "Globe Life Field",
+        "runLine": 2.0219,
+        "totalRuns": 10.0117
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-26-KC-DET",
+      "home": "DET",
+      "away": "KC",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.7077898556018547,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824246,
+        "venue": "Comerica Park",
+        "runLine": 0.8401999999999994,
+        "totalRuns": 8.9756
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-26-COL-MIL",
+      "home": "MIL",
+      "away": "COL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7495422021389483,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823755,
+        "venue": "American Family Field",
+        "runLine": -0.14890000000000025,
+        "totalRuns": 9.779499999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-26-LAD-NYM",
+      "home": "NYM",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6753167565669248,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823599,
+        "venue": "Citi Field",
+        "runLine": -3.2259,
+        "totalRuns": 9.2725
+      }
+    }
+  ]
+}
