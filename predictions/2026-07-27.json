@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-27",
+  "generatedAt": "2026-07-27T11:05:47.029Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-27-TOR-WSH",
+      "home": "WSH",
+      "away": "TOR",
+      "pickedTeam": "WSH",
+      "pickedSide": "home",
+      "modelProb": 0.7329182098634818,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822705,
+        "venue": "Nationals Park",
+        "runLine": 4.654300000000001,
+        "totalRuns": 9.8987
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-27-BOS-OAK",
+      "home": "OAK",
+      "away": "BOS",
+      "pickedTeam": "BOS",
+      "pickedSide": "away",
+      "modelProb": 0.6967873068329973,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824977,
+        "venue": "Sutter Health Park",
+        "runLine": 0.5603000000000007,
+        "totalRuns": 9.101700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-27-CLE-CIN",
+      "home": "CIN",
+      "away": "CLE",
+      "pickedTeam": "CIN",
+      "pickedSide": "home",
+      "modelProb": 0.6643780894186826,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824490,
+        "venue": "Great American Ball Park",
+        "runLine": 0.21859999999999946,
+        "totalRuns": 10.392199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-27-PHI-MIA",
+      "home": "MIA",
+      "away": "PHI",
+      "pickedTeam": "PHI",
+      "pickedSide": "away",
+      "modelProb": 0.5808899062352637,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823839,
+        "venue": "loanDepot park",
+        "runLine": -0.5489999999999995,
+        "totalRuns": 8.7926
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-27-ARI-PIT",
+      "home": "PIT",
+      "away": "ARI",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6075228118614531,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823353,
+        "venue": "PNC Park",
+        "runLine": -0.8268,
+        "totalRuns": 8.8182
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-27-MIL-SF",
+      "home": "SF",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6143227457503994,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823195,
+        "venue": "Oracle Park",
+        "runLine": -1.9708999999999999,
+        "totalRuns": 8.8075
+      }
+    }
+  ]
+}
