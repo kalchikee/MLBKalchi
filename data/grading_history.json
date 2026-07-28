@@ -7671,6 +7671,76 @@
       "homeScore": 8,
       "awayScore": 3,
       "gradedAt": "2026-07-27T10:18:35.767Z"
+    },
+    {
+      "date": "2026-07-27",
+      "gameId": "mlb-2026-07-27-TOR-WSH",
+      "gamePk": 822705,
+      "away": "TOR",
+      "home": "WSH",
+      "pickedTeam": "WSH",
+      "modelProb": 0.7329182098634818,
+      "actualWinner": "TOR",
+      "correct": false,
+      "homeScore": 2,
+      "awayScore": 3,
+      "gradedAt": "2026-07-28T09:52:54.362Z"
+    },
+    {
+      "date": "2026-07-27",
+      "gameId": "mlb-2026-07-27-BOS-OAK",
+      "gamePk": 824977,
+      "away": "BOS",
+      "home": "OAK",
+      "pickedTeam": "BOS",
+      "modelProb": 0.6967873068329973,
+      "actualWinner": "BOS",
+      "correct": true,
+      "homeScore": 2,
+      "awayScore": 4,
+      "gradedAt": "2026-07-28T09:52:54.362Z"
+    },
+    {
+      "date": "2026-07-27",
+      "gameId": "mlb-2026-07-27-PHI-MIA",
+      "gamePk": 823839,
+      "away": "PHI",
+      "home": "MIA",
+      "pickedTeam": "PHI",
+      "modelProb": 0.5808899062352637,
+      "actualWinner": "MIA",
+      "correct": false,
+      "homeScore": 8,
+      "awayScore": 7,
+      "gradedAt": "2026-07-28T09:52:54.362Z"
+    },
+    {
+      "date": "2026-07-27",
+      "gameId": "mlb-2026-07-27-ARI-PIT",
+      "gamePk": 823353,
+      "away": "ARI",
+      "home": "PIT",
+      "pickedTeam": "PIT",
+      "modelProb": 0.6075228118614531,
+      "actualWinner": "PIT",
+      "correct": true,
+      "homeScore": 3,
+      "awayScore": 2,
+      "gradedAt": "2026-07-28T09:52:54.362Z"
+    },
+    {
+      "date": "2026-07-27",
+      "gameId": "mlb-2026-07-27-MIL-SF",
+      "gamePk": 823195,
+      "away": "MIL",
+      "home": "SF",
+      "pickedTeam": "MIL",
+      "modelProb": 0.6143227457503994,
+      "actualWinner": "SF",
+      "correct": false,
+      "homeScore": 3,
+      "awayScore": 0,
+      "gradedAt": "2026-07-28T09:52:54.362Z"
     }
   ]
 }
