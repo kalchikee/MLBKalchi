@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-29",
+  "generatedAt": "2026-07-29T10:54:09.199Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-29-KC-MIN",
+      "home": "MIN",
+      "away": "KC",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.6284671505920594,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823677,
+        "venue": "Target Field",
+        "runLine": 3.4538,
+        "totalRuns": 9.893
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-29-BAL-DET",
+      "home": "DET",
+      "away": "BAL",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6433170689036332,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824242,
+        "venue": "Comerica Park",
+        "runLine": 1.1690000000000005,
+        "totalRuns": 9.051
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-29-ATL-NYM",
+      "home": "NYM",
+      "away": "ATL",
+      "pickedTeam": "ATL",
+      "pickedSide": "away",
+      "modelProb": 0.612742348739577,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823598,
+        "venue": "Citi Field",
+        "runLine": 0.37180000000000035,
+        "totalRuns": 8.993
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-29-BOS-OAK",
+      "home": "OAK",
+      "away": "BOS",
+      "pickedTeam": "BOS",
+      "pickedSide": "away",
+      "modelProb": 0.6531741970061664,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824973,
+        "venue": "Sutter Health Park",
+        "runLine": -0.35770000000000035,
+        "totalRuns": 9.0841
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-29-MIL-SF",
+      "home": "SF",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6632061661024302,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823192,
+        "venue": "Oracle Park",
+        "runLine": -2.5555,
+        "totalRuns": 8.9231
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-29-CHC-STL",
+      "home": "STL",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6181835728742294,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823022,
+        "venue": "Busch Stadium",
+        "runLine": -3.0996,
+        "totalRuns": 9.0588
+      }
+    }
+  ]
+}
