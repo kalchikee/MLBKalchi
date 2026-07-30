@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-07-30",
+  "generatedAt": "2026-07-30T10:45:41.459Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-07-30-SEA-LAD",
+      "home": "LAD",
+      "away": "SEA",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.5832201208612655,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823921,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.5114,
+        "totalRuns": 9.4556
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-30-KC-MIN",
+      "home": "MIN",
+      "away": "KC",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.5851411948428462,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823674,
+        "venue": "Target Field",
+        "runLine": 1.5396999999999998,
+        "totalRuns": 9.6059
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-30-TEX-TB",
+      "home": "TB",
+      "away": "TEX",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.658134075437994,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822946,
+        "venue": "Tropicana Field",
+        "runLine": 0.5804999999999998,
+        "totalRuns": 8.9043
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-30-BOS-OAK",
+      "home": "OAK",
+      "away": "BOS",
+      "pickedTeam": "BOS",
+      "pickedSide": "away",
+      "modelProb": 0.5963780001492343,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824974,
+        "venue": "Sutter Health Park",
+        "runLine": 0.5021999999999993,
+        "totalRuns": 9.043
+      }
+    },
+    {
+      "gameId": "mlb-2026-07-30-CHC-STL",
+      "home": "STL",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6262743280253747,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823023,
+        "venue": "Busch Stadium",
+        "runLine": -3.3866,
+        "totalRuns": 9.2308
+      }
+    }
+  ]
+}
