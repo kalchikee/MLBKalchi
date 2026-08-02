@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-02",
+  "generatedAt": "2026-08-02T10:33:21.199Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-02-TEX-HOU",
+      "home": "HOU",
+      "away": "TEX",
+      "pickedTeam": "HOU",
+      "pickedSide": "home",
+      "modelProb": 0.5948307637438001,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824163,
+        "venue": "Daikin Park",
+        "runLine": 2.7729,
+        "totalRuns": 9.3841
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-02-DET-OAK",
+      "home": "OAK",
+      "away": "DET",
+      "pickedTeam": "DET",
+      "pickedSide": "away",
+      "modelProb": 0.6084625220375732,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824971,
+        "venue": "Sutter Health Park",
+        "runLine": -2.1641000000000004,
+        "totalRuns": 8.8647
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-02-MIL-LAA",
+      "home": "LAA",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.7546892115696778,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823996,
+        "venue": "Angel Stadium",
+        "runLine": -3.3921,
+        "totalRuns": 9.348500000000001
+      }
+    }
+  ]
+}
