@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-03",
+  "generatedAt": "2026-08-03T11:06:18.304Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-03-STL-NYY",
+      "home": "NYY",
+      "away": "STL",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6822694488756539,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823520,
+        "venue": "Yankee Stadium",
+        "runLine": 0.02740000000000009,
+        "totalRuns": 9.7788
+      }
+    }
+  ]
+}
