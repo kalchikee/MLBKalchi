@@ -8203,6 +8203,20 @@
       "homeScore": 3,
       "awayScore": 0,
       "gradedAt": "2026-08-03T10:17:46.507Z"
+    },
+    {
+      "date": "2026-08-03",
+      "gameId": "mlb-2026-08-03-STL-NYY",
+      "gamePk": 823520,
+      "away": "STL",
+      "home": "NYY",
+      "pickedTeam": "NYY",
+      "modelProb": 0.6822694488756539,
+      "actualWinner": "STL",
+      "correct": false,
+      "homeScore": 7,
+      "awayScore": 13,
+      "gradedAt": "2026-08-04T09:54:02.032Z"
     }
   ]
 }
