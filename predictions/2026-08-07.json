@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-07",
+  "generatedAt": "2026-08-07T10:20:39.150Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-07-OAK-BOS",
+      "home": "BOS",
+      "away": "OAK",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.85,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824727,
+        "venue": "Fenway Park",
+        "runLine": 3.1706999999999996,
+        "totalRuns": 10.1687
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-07-MIN-MIL",
+      "home": "MIL",
+      "away": "MIN",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6301926952329078,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823750,
+        "venue": "American Family Field",
+        "runLine": 1.3937999999999997,
+        "totalRuns": 9.769200000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-07-LAA-MIA",
+      "home": "MIA",
+      "away": "LAA",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.5937558497454666,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823836,
+        "venue": "loanDepot park",
+        "runLine": 0.8747999999999996,
+        "totalRuns": 8.943999999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-07-CLE-CWS",
+      "home": "CWS",
+      "away": "CLE",
+      "pickedTeam": "CLE",
+      "pickedSide": "away",
+      "modelProb": 0.5921970110271673,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824566,
+        "venue": "Rate Field",
+        "runLine": 0.4962,
+        "totalRuns": 9.5402
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-07-DET-SF",
+      "home": "SF",
+      "away": "DET",
+      "pickedTeam": "DET",
+      "pickedSide": "away",
+      "modelProb": 0.6111631372079889,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823191,
+        "venue": "Oracle Park",
+        "runLine": -2.4093000000000004,
+        "totalRuns": 8.8603
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-07-CHC-KC",
+      "home": "KC",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6474820788784474,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824081,
+        "venue": "Kauffman Stadium",
+        "runLine": -3.3779999999999997,
+        "totalRuns": 9.6328
+      }
+    }
+  ]
+}
