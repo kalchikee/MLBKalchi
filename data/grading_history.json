@@ -8385,6 +8385,76 @@
       "homeScore": 4,
       "awayScore": 1,
       "gradedAt": "2026-08-06T09:54:31.930Z"
+    },
+    {
+      "date": "2026-08-06",
+      "gameId": "mlb-2026-08-06-CWS-BOS",
+      "gamePk": 824729,
+      "away": "CWS",
+      "home": "BOS",
+      "pickedTeam": "BOS",
+      "modelProb": 0.6427461403937939,
+      "actualWinner": "BOS",
+      "correct": true,
+      "homeScore": 12,
+      "awayScore": 11,
+      "gradedAt": "2026-08-07T09:21:20.145Z"
+    },
+    {
+      "date": "2026-08-06",
+      "gameId": "mlb-2026-08-06-OAK-CIN",
+      "gamePk": 824481,
+      "away": "OAK",
+      "home": "CIN",
+      "pickedTeam": "CIN",
+      "modelProb": 0.6067719225915281,
+      "actualWinner": "CIN",
+      "correct": true,
+      "homeScore": 6,
+      "awayScore": 5,
+      "gradedAt": "2026-08-07T09:21:20.145Z"
+    },
+    {
+      "date": "2026-08-06",
+      "gameId": "mlb-2026-08-06-LAA-BAL",
+      "gamePk": 824804,
+      "away": "LAA",
+      "home": "BAL",
+      "pickedTeam": "BAL",
+      "modelProb": 0.6912805843449301,
+      "actualWinner": "LAA",
+      "correct": false,
+      "homeScore": 1,
+      "awayScore": 4,
+      "gradedAt": "2026-08-07T09:21:20.145Z"
+    },
+    {
+      "date": "2026-08-06",
+      "gameId": "mlb-2026-08-06-WSH-PHI",
+      "gamePk": 823430,
+      "away": "WSH",
+      "home": "PHI",
+      "pickedTeam": "PHI",
+      "modelProb": 0.690099833735524,
+      "actualWinner": "PHI",
+      "correct": true,
+      "homeScore": 7,
+      "awayScore": 3,
+      "gradedAt": "2026-08-07T09:21:20.145Z"
+    },
+    {
+      "date": "2026-08-06",
+      "gameId": "mlb-2026-08-06-MIN-KC",
+      "gamePk": 824080,
+      "away": "MIN",
+      "home": "KC",
+      "pickedTeam": "KC",
+      "modelProb": 0.5915929905839638,
+      "actualWinner": "MIN",
+      "correct": false,
+      "homeScore": 3,
+      "awayScore": 4,
+      "gradedAt": "2026-08-07T09:21:20.145Z"
     }
   ]
 }
