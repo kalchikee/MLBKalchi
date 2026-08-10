@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-10",
+  "generatedAt": "2026-08-10T10:30:08.445Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-10-NYM-ATL",
+      "home": "ATL",
+      "away": "NYM",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.661248244234388,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824887,
+        "venue": "Truist Park",
+        "runLine": 0.9634999999999998,
+        "totalRuns": 9.7583
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-10-KC-LAD",
+      "home": "LAD",
+      "away": "KC",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.8242723253273382,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823918,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.8950999999999993,
+        "totalRuns": 9.3109
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-10-MIL-SD",
+      "home": "SD",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6036679100883385,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823265,
+        "venue": "Petco Park",
+        "runLine": 0.4136999999999995,
+        "totalRuns": 8.8769
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-10-TB-OAK",
+      "home": "OAK",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.668969391679328,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824969,
+        "venue": "Sutter Health Park",
+        "runLine": -1.9554,
+        "totalRuns": 9.123000000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-10-BOS-TOR",
+      "home": "TOR",
+      "away": "BOS",
+      "pickedTeam": "BOS",
+      "pickedSide": "away",
+      "modelProb": 0.6195697340253253,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822780,
+        "venue": "Rogers Centre",
+        "runLine": -2.1648,
+        "totalRuns": 9.3084
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-10-HOU-SF",
+      "home": "SF",
+      "away": "HOU",
+      "pickedTeam": "HOU",
+      "pickedSide": "away",
+      "modelProb": 0.5893672893557236,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823189,
+        "venue": "Oracle Park",
+        "runLine": -4.1202,
+        "totalRuns": 9.285599999999999
+      }
+    }
+  ]
+}
