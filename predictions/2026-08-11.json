@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-11",
+  "generatedAt": "2026-08-11T10:20:19.447Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-11-KC-LAD",
+      "home": "LAD",
+      "away": "KC",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6337823352281717,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823917,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.9865000000000004,
+        "totalRuns": 9.258099999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-11-MIL-SD",
+      "home": "SD",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.7269056067046133,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823264,
+        "venue": "Petco Park",
+        "runLine": 0.5192000000000005,
+        "totalRuns": 8.873000000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-11-PHI-STL",
+      "home": "STL",
+      "away": "PHI",
+      "pickedTeam": "PHI",
+      "pickedSide": "away",
+      "modelProb": 0.5886527520195688,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823019,
+        "venue": "Busch Stadium",
+        "runLine": -0.6753,
+        "totalRuns": 9.0181
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-11-TEX-LAA",
+      "home": "LAA",
+      "away": "TEX",
+      "pickedTeam": "TEX",
+      "pickedSide": "away",
+      "modelProb": 0.6310223196400496,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823997,
+        "venue": "Angel Stadium",
+        "runLine": -0.8538000000000006,
+        "totalRuns": 9.1634
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-11-TB-OAK",
+      "home": "OAK",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.7063053496252933,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824970,
+        "venue": "Sutter Health Park",
+        "runLine": -1.4378000000000002,
+        "totalRuns": 9.0164
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-11-COL-ARI",
+      "home": "ARI",
+      "away": "COL",
+      "pickedTeam": "COL",
+      "pickedSide": "away",
+      "modelProb": 0.5923670246087218,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825046,
+        "venue": "Chase Field",
+        "runLine": -1.7496999999999998,
+        "totalRuns": 9.6893
+      }
+    }
+  ]
+}
