@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-12",
+  "generatedAt": "2026-08-12T10:24:46.164Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-12-CLE-DET",
+      "home": "DET",
+      "away": "CLE",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6020211963294245,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824241,
+        "venue": "Comerica Park",
+        "runLine": 1.9694000000000003,
+        "totalRuns": 9.029
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-12-KC-LAD",
+      "home": "LAD",
+      "away": "KC",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6816543515945084,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823916,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 1.8849000000000005,
+        "totalRuns": 9.3885
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-12-PHI-STL",
+      "home": "STL",
+      "away": "PHI",
+      "pickedTeam": "PHI",
+      "pickedSide": "away",
+      "modelProb": 0.5842481064171532,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823017,
+        "venue": "Busch Stadium",
+        "runLine": -0.03440000000000065,
+        "totalRuns": 9.090399999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-12-TB-OAK",
+      "home": "OAK",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.7626553953435358,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824967,
+        "venue": "Sutter Health Park",
+        "runLine": -2.8802000000000003,
+        "totalRuns": 9.0678
+      }
+    }
+  ]
+}
