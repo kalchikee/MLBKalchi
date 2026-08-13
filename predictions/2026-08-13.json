@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-13T10:25:29.171Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-13-CIN-CWS",
+      "home": "CWS",
+      "away": "CIN",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.7168245012371443,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824561,
+        "venue": "Rate Field",
+        "runLine": 2.2033,
+        "totalRuns": 9.6267
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-13-SEA-NYY",
+      "home": "NYY",
+      "away": "SEA",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6624073557912532,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823508,
+        "venue": "Yankee Stadium",
+        "runLine": 1.4797000000000002,
+        "totalRuns": 9.886700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-13-BOS-TOR",
+      "home": "TOR",
+      "away": "BOS",
+      "pickedTeam": "BOS",
+      "pickedSide": "away",
+      "modelProb": 0.7367186383981212,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822776,
+        "venue": "Rogers Centre",
+        "runLine": -2.6529000000000003,
+        "totalRuns": 9.5115
+      }
+    }
+  ]
+}
