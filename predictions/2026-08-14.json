@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-14",
+  "generatedAt": "2026-08-14T10:23:30.792Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-14-STL-CHC",
+      "home": "CHC",
+      "away": "STL",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6746741791690429,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824643,
+        "venue": "Wrigley Field",
+        "runLine": 2.5854999999999997,
+        "totalRuns": 10.0473
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-14-SEA-HOU",
+      "home": "HOU",
+      "away": "SEA",
+      "pickedTeam": "HOU",
+      "pickedSide": "home",
+      "modelProb": 0.5833500463784164,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824159,
+        "venue": "Daikin Park",
+        "runLine": 1.4136000000000002,
+        "totalRuns": 9.3948
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-14-CWS-DET",
+      "home": "DET",
+      "away": "CWS",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.6733854145180439,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824237,
+        "venue": "Comerica Park",
+        "runLine": 0.6501000000000001,
+        "totalRuns": 8.9715
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-14-NYY-TOR",
+      "home": "TOR",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.686385564208281,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822777,
+        "venue": "Rogers Centre",
+        "runLine": 0.5754000000000001,
+        "totalRuns": 9.4294
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-14-MIL-LAD",
+      "home": "LAD",
+      "away": "MIL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6333509039223372,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823913,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -0.1808999999999994,
+        "totalRuns": 9.3903
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-14-KC-LAA",
+      "home": "LAA",
+      "away": "KC",
+      "pickedTeam": "KC",
+      "pickedSide": "away",
+      "modelProb": 0.5952164703418222,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823993,
+        "venue": "Angel Stadium",
+        "runLine": -0.2507999999999999,
+        "totalRuns": 9.1228
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-14-BOS-PIT",
+      "home": "PIT",
+      "away": "BOS",
+      "pickedTeam": "BOS",
+      "pickedSide": "away",
+      "modelProb": 0.5915767892533409,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823346,
+        "venue": "PNC Park",
+        "runLine": -1.7171000000000003,
+        "totalRuns": 8.8781
+      }
+    }
+  ]
+}
