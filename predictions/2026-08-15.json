@@ -1,0 +1,39 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-15",
+  "generatedAt": "2026-08-15T10:06:26.363Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-15-STL-CHC",
+      "home": "CHC",
+      "away": "STL",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.5902254907546544,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824644,
+        "venue": "Wrigley Field",
+        "runLine": 2.9453000000000005,
+        "totalRuns": 10.182500000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-15-NYY-TOR",
+      "home": "TOR",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.72433334310558,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822775,
+        "venue": "Rogers Centre",
+        "runLine": 0.5211999999999994,
+        "totalRuns": 9.338000000000001
+      }
+    }
+  ]
+}
