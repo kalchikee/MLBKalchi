@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-16",
+  "generatedAt": "2026-08-16T10:06:21.607Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-16-TEX-OAK",
+      "home": "OAK",
+      "away": "TEX",
+      "pickedTeam": "TEX",
+      "pickedSide": "away",
+      "modelProb": 0.5884764446798787,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824965,
+        "venue": "Sutter Health Park",
+        "runLine": 1.8972999999999995,
+        "totalRuns": 9.1319
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-16-SD-CLE",
+      "home": "CLE",
+      "away": "SD",
+      "pickedTeam": "SD",
+      "pickedSide": "away",
+      "modelProb": 0.5804986188333772,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824397,
+        "venue": "Progressive Field",
+        "runLine": 0.1943999999999999,
+        "totalRuns": 9.2514
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-16-CWS-DET",
+      "home": "DET",
+      "away": "CWS",
+      "pickedTeam": "CWS",
+      "pickedSide": "away",
+      "modelProb": 0.5960418158044551,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824236,
+        "venue": "Comerica Park",
+        "runLine": -1.1494999999999997,
+        "totalRuns": 8.9391
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-16-MIA-CIN",
+      "home": "CIN",
+      "away": "MIA",
+      "pickedTeam": "MIA",
+      "pickedSide": "away",
+      "modelProb": 0.6199362341858907,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824477,
+        "venue": "Great American Ball Park",
+        "runLine": -2.0839,
+        "totalRuns": 10.4205
+      }
+    }
+  ]
+}
