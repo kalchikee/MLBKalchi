@@ -9085,6 +9085,34 @@
       "homeScore": 8,
       "awayScore": 4,
       "gradedAt": "2026-08-15T09:06:36.195Z"
+    },
+    {
+      "date": "2026-08-15",
+      "gameId": "mlb-2026-08-15-STL-CHC",
+      "gamePk": 824644,
+      "away": "STL",
+      "home": "CHC",
+      "pickedTeam": "CHC",
+      "modelProb": 0.5902254907546544,
+      "actualWinner": "STL",
+      "correct": false,
+      "homeScore": 4,
+      "awayScore": 8,
+      "gradedAt": "2026-08-16T09:07:11.857Z"
+    },
+    {
+      "date": "2026-08-15",
+      "gameId": "mlb-2026-08-15-NYY-TOR",
+      "gamePk": 822775,
+      "away": "NYY",
+      "home": "TOR",
+      "pickedTeam": "NYY",
+      "modelProb": 0.72433334310558,
+      "actualWinner": "TOR",
+      "correct": false,
+      "homeScore": 4,
+      "awayScore": 1,
+      "gradedAt": "2026-08-16T09:07:11.857Z"
     }
   ]
 }
