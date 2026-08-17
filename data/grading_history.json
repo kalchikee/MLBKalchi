@@ -9113,6 +9113,62 @@
       "homeScore": 4,
       "awayScore": 1,
       "gradedAt": "2026-08-16T09:07:11.857Z"
+    },
+    {
+      "date": "2026-08-16",
+      "gameId": "mlb-2026-08-16-TEX-OAK",
+      "gamePk": 824965,
+      "away": "TEX",
+      "home": "OAK",
+      "pickedTeam": "TEX",
+      "modelProb": 0.5884764446798787,
+      "actualWinner": "ATH",
+      "correct": false,
+      "homeScore": 5,
+      "awayScore": 2,
+      "gradedAt": "2026-08-17T09:14:40.157Z"
+    },
+    {
+      "date": "2026-08-16",
+      "gameId": "mlb-2026-08-16-SD-CLE",
+      "gamePk": 824397,
+      "away": "SD",
+      "home": "CLE",
+      "pickedTeam": "SD",
+      "modelProb": 0.5804986188333772,
+      "actualWinner": "SD",
+      "correct": true,
+      "homeScore": 0,
+      "awayScore": 5,
+      "gradedAt": "2026-08-17T09:14:40.157Z"
+    },
+    {
+      "date": "2026-08-16",
+      "gameId": "mlb-2026-08-16-CWS-DET",
+      "gamePk": 824236,
+      "away": "CWS",
+      "home": "DET",
+      "pickedTeam": "CWS",
+      "modelProb": 0.5960418158044551,
+      "actualWinner": "CWS",
+      "correct": true,
+      "homeScore": 5,
+      "awayScore": 7,
+      "gradedAt": "2026-08-17T09:14:40.157Z"
+    },
+    {
+      "date": "2026-08-16",
+      "gameId": "mlb-2026-08-16-MIA-CIN",
+      "gamePk": 824477,
+      "away": "MIA",
+      "home": "CIN",
+      "pickedTeam": "MIA",
+      "modelProb": 0.6199362341858907,
+      "actualWinner": "MIA",
+      "correct": true,
+      "homeScore": 1,
+      "awayScore": 7,
+      "gradedAt": "2026-08-17T09:14:40.157Z"
     }
   ]
 }
