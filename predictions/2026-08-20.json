@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-20",
+  "generatedAt": "2026-08-20T10:09:24.284Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-20-SEA-MIL",
+      "home": "MIL",
+      "away": "SEA",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.5827246687306037,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823747,
+        "venue": "American Family Field",
+        "runLine": 3.1304000000000003,
+        "totalRuns": 10.0264
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-20-LAA-HOU",
+      "home": "HOU",
+      "away": "LAA",
+      "pickedTeam": "HOU",
+      "pickedSide": "home",
+      "modelProb": 0.6154168872771116,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824153,
+        "venue": "Daikin Park",
+        "runLine": 0.8753000000000002,
+        "totalRuns": 9.316099999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-20-STL-CIN",
+      "home": "CIN",
+      "away": "STL",
+      "pickedTeam": "STL",
+      "pickedSide": "away",
+      "modelProb": 0.5898847478458462,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824474,
+        "venue": "Great American Ball Park",
+        "runLine": -1.9550999999999998,
+        "totalRuns": 10.3919
+      }
+    }
+  ]
+}
