@@ -9365,6 +9365,48 @@
       "homeScore": 4,
       "awayScore": 1,
       "gradedAt": "2026-08-20T09:11:28.390Z"
+    },
+    {
+      "date": "2026-08-20",
+      "gameId": "mlb-2026-08-20-SEA-MIL",
+      "gamePk": 823747,
+      "away": "SEA",
+      "home": "MIL",
+      "pickedTeam": "MIL",
+      "modelProb": 0.5827246687306037,
+      "actualWinner": "MIL",
+      "correct": true,
+      "homeScore": 7,
+      "awayScore": 4,
+      "gradedAt": "2026-08-21T09:13:07.014Z"
+    },
+    {
+      "date": "2026-08-20",
+      "gameId": "mlb-2026-08-20-LAA-HOU",
+      "gamePk": 824153,
+      "away": "LAA",
+      "home": "HOU",
+      "pickedTeam": "HOU",
+      "modelProb": 0.6154168872771116,
+      "actualWinner": "LAA",
+      "correct": false,
+      "homeScore": 3,
+      "awayScore": 18,
+      "gradedAt": "2026-08-21T09:13:07.014Z"
+    },
+    {
+      "date": "2026-08-20",
+      "gameId": "mlb-2026-08-20-STL-CIN",
+      "gamePk": 824474,
+      "away": "STL",
+      "home": "CIN",
+      "pickedTeam": "STL",
+      "modelProb": 0.5898847478458462,
+      "actualWinner": "STL",
+      "correct": true,
+      "homeScore": 9,
+      "awayScore": 10,
+      "gradedAt": "2026-08-21T09:13:07.014Z"
     }
   ]
 }
