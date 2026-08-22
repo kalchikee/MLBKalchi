@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-22",
+  "generatedAt": "2026-08-22T10:06:14.202Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-22-SF-BOS",
+      "home": "BOS",
+      "away": "SF",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.7741159805488893,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824718,
+        "venue": "Fenway Park",
+        "runLine": 4.5984,
+        "totalRuns": 10.6544
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-22-ATL-MIL",
+      "home": "MIL",
+      "away": "ATL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6708226621877251,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823743,
+        "venue": "American Family Field",
+        "runLine": 4.2254000000000005,
+        "totalRuns": 10.163
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-22-CLE-COL",
+      "home": "COL",
+      "away": "CLE",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.6113619294016601,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824316,
+        "venue": "Coors Field",
+        "runLine": 2.7012,
+        "totalRuns": 12.9992
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-22-CIN-ARI",
+      "home": "ARI",
+      "away": "CIN",
+      "pickedTeam": "ARI",
+      "pickedSide": "home",
+      "modelProb": 0.6945925738705747,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825044,
+        "venue": "Chase Field",
+        "runLine": 1.8291999999999997,
+        "totalRuns": 9.6124
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-22-OAK-HOU",
+      "home": "HOU",
+      "away": "OAK",
+      "pickedTeam": "HOU",
+      "pickedSide": "home",
+      "modelProb": 0.6726213658871523,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824151,
+        "venue": "Daikin Park",
+        "runLine": 0.4178999999999995,
+        "totalRuns": 9.2767
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-22-PIT-LAD",
+      "home": "LAD",
+      "away": "PIT",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6556485505077739,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823910,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -0.3664999999999994,
+        "totalRuns": 9.300699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-22-CHC-SEA",
+      "home": "SEA",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.5906348593619111,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823100,
+        "venue": "T-Mobile Park",
+        "runLine": -0.7355999999999998,
+        "totalRuns": 9.0562
+      }
+    }
+  ]
+}
