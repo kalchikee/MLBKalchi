@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-25",
+  "generatedAt": "2026-08-25T10:09:56.110Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-25-HOU-NYY",
+      "home": "NYY",
+      "away": "HOU",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6744378961983414,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823505,
+        "venue": "Yankee Stadium",
+        "runLine": 0.4327999999999994,
+        "totalRuns": 9.8464
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-25-CHC-ARI",
+      "home": "ARI",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6596605473225221,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825042,
+        "venue": "Chase Field",
+        "runLine": -2.1384000000000003,
+        "totalRuns": 9.7174
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-25-CLE-LAA",
+      "home": "LAA",
+      "away": "CLE",
+      "pickedTeam": "CLE",
+      "pickedSide": "away",
+      "modelProb": 0.6088348427423406,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823989,
+        "venue": "Angel Stadium",
+        "runLine": -2.2403,
+        "totalRuns": 9.2805
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-25-LAD-ATL",
+      "home": "ATL",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.5829151460697177,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824881,
+        "venue": "Truist Park",
+        "runLine": -2.9047,
+        "totalRuns": 9.8009
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-25-MIL-NYM",
+      "home": "NYM",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6920768993709934,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823585,
+        "venue": "Citi Field",
+        "runLine": -3.7383,
+        "totalRuns": 9.3447
+      }
+    }
+  ]
+}
