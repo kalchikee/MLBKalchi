@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-28",
+  "generatedAt": "2026-08-28T14:02:31.959Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-28-TEX-MIL",
+      "home": "MIL",
+      "away": "TEX",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7817368991977934,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823744,
+        "venue": "American Family Field",
+        "runLine": 4.0322000000000005,
+        "totalRuns": 10.164200000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-28-CIN-CHC",
+      "home": "CHC",
+      "away": "CIN",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.6180396989178036,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824638,
+        "venue": "Wrigley Field",
+        "runLine": 2.7973000000000003,
+        "totalRuns": 10.2681
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-28-BOS-NYY",
+      "home": "NYY",
+      "away": "BOS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.635748143622147,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823504,
+        "venue": "Yankee Stadium",
+        "runLine": -0.2770999999999999,
+        "totalRuns": 9.927700000000002
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-28-COL-ATL",
+      "home": "ATL",
+      "away": "COL",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6074642842033379,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824877,
+        "venue": "Truist Park",
+        "runLine": -1.7177000000000007,
+        "totalRuns": 9.7637
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-28-LAD-DET",
+      "home": "DET",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6288542856510058,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824231,
+        "venue": "Comerica Park",
+        "runLine": -2.1743,
+        "totalRuns": 9.0597
+      }
+    }
+  ]
+}
