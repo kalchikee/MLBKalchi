@@ -1,0 +1,135 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-30",
+  "generatedAt": "2026-08-30T10:10:45.705Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-30-CIN-CHC",
+      "home": "CHC",
+      "away": "CIN",
+      "pickedTeam": "CHC",
+      "pickedSide": "home",
+      "modelProb": 0.7509092037545536,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824636,
+        "venue": "Wrigley Field",
+        "runLine": 3.0535,
+        "totalRuns": 10.2857
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-TEX-MIL",
+      "home": "MIL",
+      "away": "TEX",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7106877292081045,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823740,
+        "venue": "American Family Field",
+        "runLine": 2.6971,
+        "totalRuns": 9.964500000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-PIT-STL",
+      "home": "STL",
+      "away": "PIT",
+      "pickedTeam": "PIT",
+      "pickedSide": "away",
+      "modelProb": 0.5938828207088724,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823010,
+        "venue": "Busch Stadium",
+        "runLine": 1.7833,
+        "totalRuns": 8.9871
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-SEA-TOR",
+      "home": "TOR",
+      "away": "SEA",
+      "pickedTeam": "SEA",
+      "pickedSide": "away",
+      "modelProb": 0.6139709001418988,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822766,
+        "venue": "Rogers Centre",
+        "runLine": 0.07749999999999968,
+        "totalRuns": 9.4317
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-COL-ATL",
+      "home": "ATL",
+      "away": "COL",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.5846510226379579,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824876,
+        "venue": "Truist Park",
+        "runLine": -0.5465,
+        "totalRuns": 9.7419
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-PHI-LAA",
+      "home": "LAA",
+      "away": "PHI",
+      "pickedTeam": "PHI",
+      "pickedSide": "away",
+      "modelProb": 0.6078238228151173,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823987,
+        "venue": "Angel Stadium",
+        "runLine": -0.9229000000000003,
+        "totalRuns": 9.1501
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-LAD-DET",
+      "home": "DET",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6169102710567178,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824232,
+        "venue": "Comerica Park",
+        "runLine": -0.9830999999999999,
+        "totalRuns": 8.978299999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-30-CWS-MIN",
+      "home": "MIN",
+      "away": "CWS",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.5824573711402559,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823662,
+        "venue": "Target Field",
+        "runLine": -1.0045000000000002,
+        "totalRuns": 9.4561
+      }
+    }
+  ]
+}
