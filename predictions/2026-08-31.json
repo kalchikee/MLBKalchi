@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-08-31",
+  "generatedAt": "2026-08-31T10:13:57.992Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-08-31-SEA-BOS",
+      "home": "BOS",
+      "away": "SEA",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.6143869393671537,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824719,
+        "venue": "Fenway Park",
+        "runLine": 0.9676999999999998,
+        "totalRuns": 10.244299999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-31-SF-ATL",
+      "home": "ATL",
+      "away": "SF",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.795436691943179,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824911,
+        "venue": "Truist Park",
+        "runLine": -1.0661000000000005,
+        "totalRuns": 9.5167
+      }
+    },
+    {
+      "gameId": "mlb-2026-08-31-NYY-LAA",
+      "home": "LAA",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.5808680911146559,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823982,
+        "venue": "Angel Stadium",
+        "runLine": -3.4381,
+        "totalRuns": 9.2655
+      }
+    }
+  ]
+}
