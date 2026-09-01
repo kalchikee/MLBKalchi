@@ -10247,6 +10247,48 @@
       "homeScore": 5,
       "awayScore": 1,
       "gradedAt": "2026-08-31T09:10:09.066Z"
+    },
+    {
+      "date": "2026-08-31",
+      "gameId": "mlb-2026-08-31-SEA-BOS",
+      "gamePk": 824719,
+      "away": "SEA",
+      "home": "BOS",
+      "pickedTeam": "BOS",
+      "modelProb": 0.6143869393671537,
+      "actualWinner": "BOS",
+      "correct": true,
+      "homeScore": 9,
+      "awayScore": 8,
+      "gradedAt": "2026-09-01T09:08:43.274Z"
+    },
+    {
+      "date": "2026-08-31",
+      "gameId": "mlb-2026-08-31-SF-ATL",
+      "gamePk": 824911,
+      "away": "SF",
+      "home": "ATL",
+      "pickedTeam": "ATL",
+      "modelProb": 0.795436691943179,
+      "actualWinner": "SF",
+      "correct": false,
+      "homeScore": 3,
+      "awayScore": 7,
+      "gradedAt": "2026-09-01T09:08:43.274Z"
+    },
+    {
+      "date": "2026-08-31",
+      "gameId": "mlb-2026-08-31-NYY-LAA",
+      "gamePk": 823982,
+      "away": "NYY",
+      "home": "LAA",
+      "pickedTeam": "NYY",
+      "modelProb": 0.5808680911146559,
+      "actualWinner": "LAA",
+      "correct": false,
+      "homeScore": 10,
+      "awayScore": 1,
+      "gradedAt": "2026-09-01T09:08:43.274Z"
     }
   ]
 }
