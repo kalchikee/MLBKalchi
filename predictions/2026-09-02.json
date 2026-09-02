@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-02",
+  "generatedAt": "2026-09-02T10:13:51.554Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-02-DET-MIN",
+      "home": "MIN",
+      "away": "DET",
+      "pickedTeam": "MIN",
+      "pickedSide": "home",
+      "modelProb": 0.5825807300459984,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823660,
+        "venue": "Target Field",
+        "runLine": 3.9033,
+        "totalRuns": 9.774700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-02-NYM-TB",
+      "home": "TB",
+      "away": "NYM",
+      "pickedTeam": "TB",
+      "pickedSide": "home",
+      "modelProb": 0.605396890115348,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822931,
+        "venue": "Tropicana Field",
+        "runLine": 2.3730999999999995,
+        "totalRuns": 9.1325
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-02-OAK-TEX",
+      "home": "TEX",
+      "away": "OAK",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.6618222288418012,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822851,
+        "venue": "Globe Life Field",
+        "runLine": 1.2555000000000005,
+        "totalRuns": 9.8839
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-02-MIL-CHC",
+      "home": "CHC",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6009972073049628,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824634,
+        "venue": "Wrigley Field",
+        "runLine": 1.0568999999999997,
+        "totalRuns": 10.0765
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-02-SD-CIN",
+      "home": "CIN",
+      "away": "SD",
+      "pickedTeam": "SD",
+      "pickedSide": "away",
+      "modelProb": 0.6022667079756874,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824470,
+        "venue": "Great American Ball Park",
+        "runLine": 0.4661999999999997,
+        "totalRuns": 10.4072
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-02-NYY-LAA",
+      "home": "LAA",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.7091698114851472,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823983,
+        "venue": "Angel Stadium",
+        "runLine": -2.5337000000000005,
+        "totalRuns": 9.1741
+      }
+    }
+  ]
+}
