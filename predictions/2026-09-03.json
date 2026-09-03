@@ -1,0 +1,39 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-03",
+  "generatedAt": "2026-09-03T10:13:28.886Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-03-STL-LAD",
+      "home": "LAD",
+      "away": "STL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6071378383123992,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823907,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -0.5738000000000003,
+        "totalRuns": 9.0472
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-03-SF-PIT",
+      "home": "PIT",
+      "away": "SF",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6051259786164814,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823337,
+        "venue": "PNC Park",
+        "runLine": -0.6737000000000002,
+        "totalRuns": 8.7335
+      }
+    }
+  ]
+}
