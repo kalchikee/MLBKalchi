@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-04",
+  "generatedAt": "2026-09-04T10:17:58.826Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-04-LAA-PIT",
+      "home": "PIT",
+      "away": "LAA",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6241708456901188,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823338,
+        "venue": "PNC Park",
+        "runLine": 1.8571999999999997,
+        "totalRuns": 9.169
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-04-WSH-LAD",
+      "home": "LAD",
+      "away": "WSH",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6107031991142495,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823905,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": -0.4444000000000008,
+        "totalRuns": 9.330400000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-04-MIL-CIN",
+      "home": "CIN",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6241572922898392,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824471,
+        "venue": "Great American Ball Park",
+        "runLine": -1.4084000000000003,
+        "totalRuns": 10.3408
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-04-NYY-SD",
+      "home": "SD",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6696690713911847,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823256,
+        "venue": "Petco Park",
+        "runLine": -2.2018,
+        "totalRuns": 8.8988
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-04-CHC-MIA",
+      "home": "MIA",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.616262391903918,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823824,
+        "venue": "loanDepot park",
+        "runLine": -2.4246,
+        "totalRuns": 9.0802
+      }
+    }
+  ]
+}
