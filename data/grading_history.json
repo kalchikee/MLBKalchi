@@ -10499,6 +10499,34 @@
       "homeScore": 3,
       "awayScore": 6,
       "gradedAt": "2026-09-03T09:08:04.534Z"
+    },
+    {
+      "date": "2026-09-03",
+      "gameId": "mlb-2026-09-03-STL-LAD",
+      "gamePk": 823907,
+      "away": "STL",
+      "home": "LAD",
+      "pickedTeam": "LAD",
+      "modelProb": 0.6071378383123992,
+      "actualWinner": "LAD",
+      "correct": true,
+      "homeScore": 3,
+      "awayScore": 2,
+      "gradedAt": "2026-09-04T09:10:08.004Z"
+    },
+    {
+      "date": "2026-09-03",
+      "gameId": "mlb-2026-09-03-SF-PIT",
+      "gamePk": 823337,
+      "away": "SF",
+      "home": "PIT",
+      "pickedTeam": "PIT",
+      "modelProb": 0.6051259786164814,
+      "actualWinner": "PIT",
+      "correct": true,
+      "homeScore": 5,
+      "awayScore": 2,
+      "gradedAt": "2026-09-04T09:10:08.004Z"
     }
   ]
 }
