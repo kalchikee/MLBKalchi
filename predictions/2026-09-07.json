@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-07",
+  "generatedAt": "2026-09-07T10:13:26.782Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-07-LAA-BOS",
+      "home": "BOS",
+      "away": "LAA",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.6369854449831621,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824715,
+        "venue": "Fenway Park",
+        "runLine": 0.5446,
+        "totalRuns": 10.232199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-07-CIN-LAD",
+      "home": "LAD",
+      "away": "CIN",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.5890898922830812,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823902,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.15839999999999943,
+        "totalRuns": 9.208400000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-07-NYM-MIA",
+      "home": "MIA",
+      "away": "NYM",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.597125591719297,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823820,
+        "venue": "loanDepot park",
+        "runLine": 0.08800000000000008,
+        "totalRuns": 8.938600000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-07-TOR-OAK",
+      "home": "OAK",
+      "away": "TOR",
+      "pickedTeam": "TOR",
+      "pickedSide": "away",
+      "modelProb": 0.6685391521680097,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824958,
+        "venue": "Sutter Health Park",
+        "runLine": -0.6291000000000002,
+        "totalRuns": 8.969100000000001
+      }
+    }
+  ]
+}
