@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-08",
+  "generatedAt": "2026-09-08T10:13:21.814Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-08-CIN-LAD",
+      "home": "LAD",
+      "away": "CIN",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.8065380360626458,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823901,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.7241,
+        "totalRuns": 9.3247
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-08-TOR-OAK",
+      "home": "OAK",
+      "away": "TOR",
+      "pickedTeam": "TOR",
+      "pickedSide": "away",
+      "modelProb": 0.6944098368148155,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824957,
+        "venue": "Sutter Health Park",
+        "runLine": 0.4886999999999997,
+        "totalRuns": 9.0501
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-08-COL-NYY",
+      "home": "NYY",
+      "away": "COL",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.8130201612851881,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823500,
+        "venue": "Yankee Stadium",
+        "runLine": 0.3754999999999997,
+        "totalRuns": 9.8843
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-08-CHC-MIL",
+      "home": "MIL",
+      "away": "CHC",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6048106615237733,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823738,
+        "venue": "American Family Field",
+        "runLine": -0.21720000000000006,
+        "totalRuns": 9.7652
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-08-NYM-MIA",
+      "home": "MIA",
+      "away": "NYM",
+      "pickedTeam": "MIA",
+      "pickedSide": "home",
+      "modelProb": 0.6231972144872973,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823821,
+        "venue": "loanDepot park",
+        "runLine": -0.3553000000000006,
+        "totalRuns": 8.9433
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-08-TB-ATL",
+      "home": "ATL",
+      "away": "TB",
+      "pickedTeam": "TB",
+      "pickedSide": "away",
+      "modelProb": 0.590377964161533,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824875,
+        "venue": "Truist Park",
+        "runLine": -1.0339,
+        "totalRuns": 9.6863
+      }
+    }
+  ]
+}
