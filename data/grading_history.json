@@ -10793,6 +10793,62 @@
       "homeScore": 10,
       "awayScore": 1,
       "gradedAt": "2026-09-07T09:10:03.093Z"
+    },
+    {
+      "date": "2026-09-07",
+      "gameId": "mlb-2026-09-07-LAA-BOS",
+      "gamePk": 824715,
+      "away": "LAA",
+      "home": "BOS",
+      "pickedTeam": "BOS",
+      "modelProb": 0.6369854449831621,
+      "actualWinner": "BOS",
+      "correct": true,
+      "homeScore": 5,
+      "awayScore": 2,
+      "gradedAt": "2026-09-08T09:08:24.451Z"
+    },
+    {
+      "date": "2026-09-07",
+      "gameId": "mlb-2026-09-07-CIN-LAD",
+      "gamePk": 823902,
+      "away": "CIN",
+      "home": "LAD",
+      "pickedTeam": "LAD",
+      "modelProb": 0.5890898922830812,
+      "actualWinner": "LAD",
+      "correct": true,
+      "homeScore": 6,
+      "awayScore": 3,
+      "gradedAt": "2026-09-08T09:08:24.451Z"
+    },
+    {
+      "date": "2026-09-07",
+      "gameId": "mlb-2026-09-07-NYM-MIA",
+      "gamePk": 823820,
+      "away": "NYM",
+      "home": "MIA",
+      "pickedTeam": "MIA",
+      "modelProb": 0.597125591719297,
+      "actualWinner": "NYM",
+      "correct": false,
+      "homeScore": 4,
+      "awayScore": 9,
+      "gradedAt": "2026-09-08T09:08:24.451Z"
+    },
+    {
+      "date": "2026-09-07",
+      "gameId": "mlb-2026-09-07-TOR-OAK",
+      "gamePk": 824958,
+      "away": "TOR",
+      "home": "OAK",
+      "pickedTeam": "TOR",
+      "modelProb": 0.6685391521680097,
+      "actualWinner": "ATH",
+      "correct": false,
+      "homeScore": 6,
+      "awayScore": 5,
+      "gradedAt": "2026-09-08T09:08:24.451Z"
     }
   ]
 }
