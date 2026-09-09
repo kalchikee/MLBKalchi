@@ -1,0 +1,71 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-09",
+  "generatedAt": "2026-09-09T10:13:04.379Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-09-CIN-LAD",
+      "home": "LAD",
+      "away": "CIN",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.768582768866194,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823900,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 1.0217,
+        "totalRuns": 9.357700000000001
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-09-LAA-BOS",
+      "home": "BOS",
+      "away": "LAA",
+      "pickedTeam": "BOS",
+      "pickedSide": "home",
+      "modelProb": 0.7537773863161438,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824713,
+        "venue": "Fenway Park",
+        "runLine": 0.7194000000000003,
+        "totalRuns": 10.2066
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-09-COL-NYY",
+      "home": "NYY",
+      "away": "COL",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.6611911792792527,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823497,
+        "venue": "Yankee Stadium",
+        "runLine": 0.3414999999999999,
+        "totalRuns": 9.8793
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-09-CLE-BAL",
+      "home": "BAL",
+      "away": "CLE",
+      "pickedTeam": "CLE",
+      "pickedSide": "away",
+      "modelProb": 0.6025957755898557,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824791,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -1.5133,
+        "totalRuns": 9.729299999999999
+      }
+    }
+  ]
+}
