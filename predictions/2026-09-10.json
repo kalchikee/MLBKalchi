@@ -1,0 +1,39 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-10",
+  "generatedAt": "2026-09-10T10:12:42.113Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-10-HOU-PHI",
+      "home": "PHI",
+      "away": "HOU",
+      "pickedTeam": "PHI",
+      "pickedSide": "home",
+      "modelProb": 0.7422523146149769,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823413,
+        "venue": "Citizens Bank Park",
+        "runLine": -0.19400000000000084,
+        "totalRuns": 10.1052
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-10-COL-NYY",
+      "home": "NYY",
+      "away": "COL",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7762151252408297,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823499,
+        "venue": "Yankee Stadium",
+        "runLine": -1.0705999999999998,
+        "totalRuns": 9.865400000000001
+      }
+    }
+  ]
+}
