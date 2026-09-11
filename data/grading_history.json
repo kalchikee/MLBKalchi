@@ -10989,6 +10989,34 @@
       "homeScore": 9,
       "awayScore": 5,
       "gradedAt": "2026-09-10T09:07:49.986Z"
+    },
+    {
+      "date": "2026-09-10",
+      "gameId": "mlb-2026-09-10-HOU-PHI",
+      "gamePk": 823413,
+      "away": "HOU",
+      "home": "PHI",
+      "pickedTeam": "PHI",
+      "modelProb": 0.7422523146149769,
+      "actualWinner": "HOU",
+      "correct": false,
+      "homeScore": 1,
+      "awayScore": 2,
+      "gradedAt": "2026-09-11T09:07:46.547Z"
+    },
+    {
+      "date": "2026-09-10",
+      "gameId": "mlb-2026-09-10-COL-NYY",
+      "gamePk": 823499,
+      "away": "COL",
+      "home": "NYY",
+      "pickedTeam": "NYY",
+      "modelProb": 0.7762151252408297,
+      "actualWinner": "NYY",
+      "correct": true,
+      "homeScore": 10,
+      "awayScore": 3,
+      "gradedAt": "2026-09-11T09:07:46.547Z"
     }
   ]
 }
