@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-12",
+  "generatedAt": "2026-09-12T10:10:39.140Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-12-CIN-MIL",
+      "home": "MIL",
+      "away": "CIN",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.7532057404188243,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823737,
+        "venue": "American Family Field",
+        "runLine": 3.0338999999999996,
+        "totalRuns": 9.9023
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-12-COL-DET",
+      "home": "DET",
+      "away": "COL",
+      "pickedTeam": "DET",
+      "pickedSide": "home",
+      "modelProb": 0.594873408106475,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824224,
+        "venue": "Comerica Park",
+        "runLine": -0.1407000000000007,
+        "totalRuns": 8.9741
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-12-LAD-MIA",
+      "home": "MIA",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6565994637637247,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823819,
+        "venue": "loanDepot park",
+        "runLine": -0.7054,
+        "totalRuns": 9.0394
+      }
+    }
+  ]
+}
