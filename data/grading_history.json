@@ -11087,6 +11087,48 @@
       "homeScore": 6,
       "awayScore": 5,
       "gradedAt": "2026-09-12T09:07:10.422Z"
+    },
+    {
+      "date": "2026-09-12",
+      "gameId": "mlb-2026-09-12-CIN-MIL",
+      "gamePk": 823737,
+      "away": "CIN",
+      "home": "MIL",
+      "pickedTeam": "MIL",
+      "modelProb": 0.7532057404188243,
+      "actualWinner": "MIL",
+      "correct": true,
+      "homeScore": 13,
+      "awayScore": 9,
+      "gradedAt": "2026-09-13T09:25:41.561Z"
+    },
+    {
+      "date": "2026-09-12",
+      "gameId": "mlb-2026-09-12-COL-DET",
+      "gamePk": 824224,
+      "away": "COL",
+      "home": "DET",
+      "pickedTeam": "DET",
+      "modelProb": 0.594873408106475,
+      "actualWinner": "DET",
+      "correct": true,
+      "homeScore": 11,
+      "awayScore": 7,
+      "gradedAt": "2026-09-13T09:25:41.561Z"
+    },
+    {
+      "date": "2026-09-12",
+      "gameId": "mlb-2026-09-12-LAD-MIA",
+      "gamePk": 823819,
+      "away": "LAD",
+      "home": "MIA",
+      "pickedTeam": "LAD",
+      "modelProb": 0.6565994637637247,
+      "actualWinner": "MIA",
+      "correct": false,
+      "homeScore": 4,
+      "awayScore": 3,
+      "gradedAt": "2026-09-13T09:25:41.561Z"
     }
   ]
 }
