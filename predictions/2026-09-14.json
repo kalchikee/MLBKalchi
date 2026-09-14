@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-14",
+  "generatedAt": "2026-09-14T10:13:04.221Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-14-CWS-CLE",
+      "home": "CLE",
+      "away": "CWS",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.6611718889012597,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824386,
+        "venue": "Progressive Field",
+        "runLine": 2.2817999999999996,
+        "totalRuns": 9.357199999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-14-NYY-MIN",
+      "home": "MIN",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.5957654684627902,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823656,
+        "venue": "Target Field",
+        "runLine": -0.5952000000000002,
+        "totalRuns": 9.325
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-14-LAD-CIN",
+      "home": "CIN",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.8207944943291282,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824465,
+        "venue": "Great American Ball Park",
+        "runLine": -2.3402000000000003,
+        "totalRuns": 10.5668
+      }
+    }
+  ]
+}
