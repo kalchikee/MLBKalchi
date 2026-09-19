@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-19",
+  "generatedAt": "2026-09-19T10:11:04.045Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-19-OAK-CLE",
+      "home": "CLE",
+      "away": "OAK",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.7336950690071905,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824380,
+        "venue": "Progressive Field",
+        "runLine": 2.3663999999999996,
+        "totalRuns": 9.1506
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-19-SF-LAD",
+      "home": "LAD",
+      "away": "SF",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6952527190915581,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823899,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.2507,
+        "totalRuns": 9.3903
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-19-MIA-SD",
+      "home": "SD",
+      "away": "MIA",
+      "pickedTeam": "SD",
+      "pickedSide": "home",
+      "modelProb": 0.5853010388814878,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823249,
+        "venue": "Petco Park",
+        "runLine": 0.29879999999999995,
+        "totalRuns": 9.004
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-19-NYY-ARI",
+      "home": "ARI",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6549461315441625,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825029,
+        "venue": "Chase Field",
+        "runLine": -1.404,
+        "totalRuns": 9.4908
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-19-MIL-BAL",
+      "home": "BAL",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.6178276475017065,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824788,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -3.0924,
+        "totalRuns": 9.922
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-19-CHC-CIN",
+      "home": "CIN",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.732097627528216,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824461,
+        "venue": "Great American Ball Park",
+        "runLine": -4.2865,
+        "totalRuns": 10.575099999999999
+      }
+    }
+  ]
+}
