@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-20",
+  "generatedAt": "2026-09-20T10:11:01.444Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-20-TOR-TEX",
+      "home": "TEX",
+      "away": "TOR",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.6571745423978784,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822844,
+        "venue": "Globe Life Field",
+        "runLine": 2.6049,
+        "totalRuns": 10.1595
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-20-OAK-CLE",
+      "home": "CLE",
+      "away": "OAK",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.8317330748985067,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824381,
+        "venue": "Progressive Field",
+        "runLine": 2.3635999999999995,
+        "totalRuns": 9.1664
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-20-SF-LAD",
+      "home": "LAD",
+      "away": "SF",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.6924071788655393,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823896,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 2.3377999999999997,
+        "totalRuns": 9.5284
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-20-NYY-ARI",
+      "home": "ARI",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6146890528924717,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 825028,
+        "venue": "Chase Field",
+        "runLine": -0.9353000000000007,
+        "totalRuns": 9.582699999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-20-SEA-COL",
+      "home": "COL",
+      "away": "SEA",
+      "pickedTeam": "COL",
+      "pickedSide": "home",
+      "modelProb": 0.5914041196195994,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824300,
+        "venue": "Coors Field",
+        "runLine": -1.7492999999999999,
+        "totalRuns": 12.6173
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-20-CHC-CIN",
+      "home": "CIN",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.7057243357671941,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824462,
+        "venue": "Great American Ball Park",
+        "runLine": -3.8550000000000004,
+        "totalRuns": 10.4702
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-20-MIL-BAL",
+      "home": "BAL",
+      "away": "MIL",
+      "pickedTeam": "MIL",
+      "pickedSide": "away",
+      "modelProb": 0.7547124877965816,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824789,
+        "venue": "Oriole Park at Camden Yards",
+        "runLine": -4.0212,
+        "totalRuns": 10.139
+      }
+    }
+  ]
+}
