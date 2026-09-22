@@ -1,0 +1,119 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-22",
+  "generatedAt": "2026-09-22T10:13:32.620Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-22-STL-PIT",
+      "home": "PIT",
+      "away": "STL",
+      "pickedTeam": "PIT",
+      "pickedSide": "home",
+      "modelProb": 0.6093935079706297,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823328,
+        "venue": "PNC Park",
+        "runLine": 2.804,
+        "totalRuns": 9.328
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-22-CIN-ATL",
+      "home": "ATL",
+      "away": "CIN",
+      "pickedTeam": "ATL",
+      "pickedSide": "home",
+      "modelProb": 0.6747267470820634,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824867,
+        "venue": "Truist Park",
+        "runLine": 2.5326,
+        "totalRuns": 9.6266
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-22-HOU-SEA",
+      "home": "SEA",
+      "away": "HOU",
+      "pickedTeam": "SEA",
+      "pickedSide": "home",
+      "modelProb": 0.688358677959259,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823089,
+        "venue": "T-Mobile Park",
+        "runLine": 2.401,
+        "totalRuns": 8.917
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-22-NYM-TEX",
+      "home": "TEX",
+      "away": "NYM",
+      "pickedTeam": "TEX",
+      "pickedSide": "home",
+      "modelProb": 0.612204159582453,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822840,
+        "venue": "Globe Life Field",
+        "runLine": 1.9349999999999996,
+        "totalRuns": 10.009599999999999
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-22-ARI-COL",
+      "home": "COL",
+      "away": "ARI",
+      "pickedTeam": "ARI",
+      "pickedSide": "away",
+      "modelProb": 0.5870366592173577,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824302,
+        "venue": "Coors Field",
+        "runLine": 0.7081999999999997,
+        "totalRuns": 12.8666
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-22-LAA-OAK",
+      "home": "OAK",
+      "away": "LAA",
+      "pickedTeam": "LAA",
+      "pickedSide": "away",
+      "modelProb": 0.5961846119347922,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824953,
+        "venue": "Sutter Health Park",
+        "runLine": 0.17739999999999956,
+        "totalRuns": 9.0582
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-22-CWS-KC",
+      "home": "KC",
+      "away": "CWS",
+      "pickedTeam": "CWS",
+      "pickedSide": "away",
+      "modelProb": 0.5990090163269293,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824061,
+        "venue": "Kauffman Stadium",
+        "runLine": -2.5246000000000004,
+        "totalRuns": 9.4058
+      }
+    }
+  ]
+}
