@@ -1,0 +1,103 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-25",
+  "generatedAt": "2026-09-25T10:13:08.850Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-25-STL-MIL",
+      "home": "MIL",
+      "away": "STL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6401133773635697,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823735,
+        "venue": "American Family Field",
+        "runLine": 3.2093,
+        "totalRuns": 10.0683
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-25-COL-CWS",
+      "home": "CWS",
+      "away": "COL",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.6990846985243405,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824544,
+        "venue": "Rate Field",
+        "runLine": 1.8106999999999998,
+        "totalRuns": 9.4775
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-25-HOU-OAK",
+      "home": "OAK",
+      "away": "HOU",
+      "pickedTeam": "HOU",
+      "pickedSide": "away",
+      "modelProb": 0.6332698193278175,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824947,
+        "venue": "Sutter Health Park",
+        "runLine": 0.25590000000000046,
+        "totalRuns": 9.0967
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-25-CLE-KC",
+      "home": "KC",
+      "away": "CLE",
+      "pickedTeam": "CLE",
+      "pickedSide": "away",
+      "modelProb": 0.6004877347886577,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824058,
+        "venue": "Kauffman Stadium",
+        "runLine": 0.0016999999999995907,
+        "totalRuns": 9.3255
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-25-LAD-SF",
+      "home": "SF",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.8079790672979899,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823167,
+        "venue": "Oracle Park",
+        "runLine": -2.7096999999999998,
+        "totalRuns": 8.9155
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-25-CHC-BOS",
+      "home": "BOS",
+      "away": "CHC",
+      "pickedTeam": "CHC",
+      "pickedSide": "away",
+      "modelProb": 0.6100496189606515,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824703,
+        "venue": "Fenway Park",
+        "runLine": -4.2978000000000005,
+        "totalRuns": 10.716
+      }
+    }
+  ]
+}
