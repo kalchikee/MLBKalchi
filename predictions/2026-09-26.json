@@ -1,0 +1,87 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-26",
+  "generatedAt": "2026-09-26T10:11:50.771Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-26-STL-MIL",
+      "home": "MIL",
+      "away": "STL",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6759406507049838,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823733,
+        "venue": "American Family Field",
+        "runLine": 3.5180000000000002,
+        "totalRuns": 10.1092
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-26-COL-CWS",
+      "home": "CWS",
+      "away": "COL",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.795552928415584,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824543,
+        "venue": "Rate Field",
+        "runLine": 2.9535000000000005,
+        "totalRuns": 9.5073
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-26-HOU-OAK",
+      "home": "OAK",
+      "away": "HOU",
+      "pickedTeam": "HOU",
+      "pickedSide": "away",
+      "modelProb": 0.6115841155793141,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 824949,
+        "venue": "Sutter Health Park",
+        "runLine": 1.1453000000000002,
+        "totalRuns": 9.1075
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-26-CIN-TOR",
+      "home": "TOR",
+      "away": "CIN",
+      "pickedTeam": "TOR",
+      "pickedSide": "home",
+      "modelProb": 0.5913442184565987,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 822759,
+        "venue": "Rogers Centre",
+        "runLine": -1.1263000000000005,
+        "totalRuns": 9.4709
+      }
+    },
+    {
+      "gameId": "mlb-2026-09-26-LAD-SF",
+      "home": "SF",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.7908295927654632,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 823165,
+        "venue": "Oracle Park",
+        "runLine": -3.5348,
+        "totalRuns": 8.9924
+      }
+    }
+  ]
+}
