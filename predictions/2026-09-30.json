@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-09-30",
+  "generatedAt": "2026-09-30T10:14:02.515Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-09-30-BOS-NYY",
+      "home": "NYY",
+      "away": "BOS",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.7008702055137416,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849848,
+        "venue": "Yankee Stadium",
+        "runLine": 2.5697,
+        "totalRuns": 9.886700000000001
+      }
+    }
+  ]
+}
