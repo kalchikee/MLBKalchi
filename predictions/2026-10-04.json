@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-10-04",
+  "generatedAt": "2026-10-04T11:24:15.422Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-10-04-ATL-LAD",
+      "home": "LAD",
+      "away": "ATL",
+      "pickedTeam": "LAD",
+      "pickedSide": "home",
+      "modelProb": 0.5865728226704156,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849823,
+        "venue": "UNIQLO Field at Dodger Stadium",
+        "runLine": 0.1698000000000004,
+        "totalRuns": 9.2948
+      }
+    }
+  ]
+}
