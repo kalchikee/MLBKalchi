@@ -12361,6 +12361,34 @@
       "homeScore": 9,
       "awayScore": 2,
       "gradedAt": "2026-10-01T09:09:43.809Z"
+    },
+    {
+      "date": "2026-10-03",
+      "gameId": "mlb-2026-10-03-ATL-LAD",
+      "gamePk": 849828,
+      "away": "ATL",
+      "home": "LAD",
+      "pickedTeam": "LAD",
+      "modelProb": 0.5874607732957763,
+      "actualWinner": "LAD",
+      "correct": true,
+      "homeScore": 5,
+      "awayScore": 3,
+      "gradedAt": "2026-10-04T10:53:16.452Z"
+    },
+    {
+      "date": "2026-10-03",
+      "gameId": "mlb-2026-10-03-CWS-CLE",
+      "gamePk": 849829,
+      "away": "CWS",
+      "home": "CLE",
+      "pickedTeam": "CLE",
+      "modelProb": 0.6045923569844759,
+      "actualWinner": "CWS",
+      "correct": false,
+      "homeScore": 0,
+      "awayScore": 3,
+      "gradedAt": "2026-10-04T10:53:16.452Z"
     }
   ]
 }
