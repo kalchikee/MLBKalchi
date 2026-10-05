@@ -1,0 +1,39 @@
+{
+  "sport": "MLB",
+  "date": "2026-10-05",
+  "generatedAt": "2026-10-05T10:16:32.597Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-10-05-CWS-CLE",
+      "home": "CLE",
+      "away": "CWS",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.6196090384035053,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849834,
+        "venue": "Progressive Field",
+        "runLine": 1.0357000000000003,
+        "totalRuns": 9.3163
+      }
+    },
+    {
+      "gameId": "mlb-2026-10-05-NYY-TB",
+      "home": "TB",
+      "away": "NYY",
+      "pickedTeam": "NYY",
+      "pickedSide": "away",
+      "modelProb": 0.6116198346545809,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849839,
+        "venue": "Tropicana Field",
+        "runLine": -0.001000000000000334,
+        "totalRuns": 8.9952
+      }
+    }
+  ]
+}
