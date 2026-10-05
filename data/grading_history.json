@@ -12389,6 +12389,20 @@
       "homeScore": 0,
       "awayScore": 3,
       "gradedAt": "2026-10-04T10:53:16.452Z"
+    },
+    {
+      "date": "2026-10-04",
+      "gameId": "mlb-2026-10-04-ATL-LAD",
+      "gamePk": 849823,
+      "away": "ATL",
+      "home": "LAD",
+      "pickedTeam": "LAD",
+      "modelProb": 0.5865728226704156,
+      "actualWinner": "ATL",
+      "correct": false,
+      "homeScore": 2,
+      "awayScore": 3,
+      "gradedAt": "2026-10-05T09:15:22.108Z"
     }
   ]
 }
