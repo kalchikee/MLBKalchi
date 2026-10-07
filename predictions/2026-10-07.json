@@ -1,0 +1,55 @@
+{
+  "sport": "MLB",
+  "date": "2026-10-07",
+  "generatedAt": "2026-10-07T10:13:19.766Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-10-07-TB-NYY",
+      "home": "NYY",
+      "away": "TB",
+      "pickedTeam": "NYY",
+      "pickedSide": "home",
+      "modelProb": 0.5889328156651427,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849838,
+        "venue": "Yankee Stadium",
+        "runLine": 2.1008,
+        "totalRuns": 9.8086
+      }
+    },
+    {
+      "gameId": "mlb-2026-10-07-CLE-CWS",
+      "home": "CWS",
+      "away": "CLE",
+      "pickedTeam": "CWS",
+      "pickedSide": "home",
+      "modelProb": 0.6047233082189156,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849833,
+        "venue": "Rate Field",
+        "runLine": 1.7455000000000003,
+        "totalRuns": 9.4213
+      }
+    },
+    {
+      "gameId": "mlb-2026-10-07-LAD-ATL",
+      "home": "ATL",
+      "away": "LAD",
+      "pickedTeam": "LAD",
+      "pickedSide": "away",
+      "modelProb": 0.6757244593532332,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849822,
+        "venue": "Truist Park",
+        "runLine": -1.7346999999999992,
+        "totalRuns": 9.744299999999999
+      }
+    }
+  ]
+}
