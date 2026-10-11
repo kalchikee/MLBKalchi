@@ -12473,6 +12473,20 @@
       "homeScore": 1,
       "awayScore": 4,
       "gradedAt": "2026-10-08T09:11:06.131Z"
+    },
+    {
+      "date": "2026-10-10",
+      "gameId": "mlb-2026-10-10-CWS-CLE",
+      "gamePk": 849831,
+      "away": "CWS",
+      "home": "CLE",
+      "pickedTeam": "CLE",
+      "modelProb": 0.5985756547341419,
+      "actualWinner": "CLE",
+      "correct": true,
+      "homeScore": 2,
+      "awayScore": 0,
+      "gradedAt": "2026-10-11T09:07:37.548Z"
     }
   ]
 }
