@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-10-15",
+  "generatedAt": "2026-10-15T10:12:18.011Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-10-15-TB-CLE",
+      "home": "CLE",
+      "away": "TB",
+      "pickedTeam": "CLE",
+      "pickedSide": "home",
+      "modelProb": 0.7288394141830895,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849818,
+        "venue": "Progressive Field",
+        "runLine": 1.7800000000000002,
+        "totalRuns": 9.231200000000001
+      }
+    }
+  ]
+}
