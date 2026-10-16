@@ -12487,6 +12487,20 @@
       "homeScore": 2,
       "awayScore": 0,
       "gradedAt": "2026-10-11T09:07:37.548Z"
+    },
+    {
+      "date": "2026-10-15",
+      "gameId": "mlb-2026-10-15-TB-CLE",
+      "gamePk": 849818,
+      "away": "TB",
+      "home": "CLE",
+      "pickedTeam": "CLE",
+      "modelProb": 0.7288394141830895,
+      "actualWinner": "CLE",
+      "correct": true,
+      "homeScore": 3,
+      "awayScore": 2,
+      "gradedAt": "2026-10-16T09:07:55.441Z"
     }
   ]
 }
