@@ -1,0 +1,23 @@
+{
+  "sport": "MLB",
+  "date": "2026-10-23",
+  "generatedAt": "2026-10-23T10:11:57.017Z",
+  "picks": [
+    {
+      "gameId": "mlb-2026-10-23-TB-MIL",
+      "home": "MIL",
+      "away": "TB",
+      "pickedTeam": "MIL",
+      "pickedSide": "home",
+      "modelProb": 0.6201380260108179,
+      "vegasProb": null,
+      "edge": null,
+      "extra": {
+        "gamePk": 849805,
+        "venue": "American Family Field",
+        "runLine": 2.7686000000000006,
+        "totalRuns": 10.0016
+      }
+    }
+  ]
+}
