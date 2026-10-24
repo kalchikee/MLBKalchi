@@ -12501,6 +12501,20 @@
       "homeScore": 3,
       "awayScore": 2,
       "gradedAt": "2026-10-16T09:07:55.441Z"
+    },
+    {
+      "date": "2026-10-23",
+      "gameId": "mlb-2026-10-23-TB-MIL",
+      "gamePk": 849805,
+      "away": "TB",
+      "home": "MIL",
+      "pickedTeam": "MIL",
+      "modelProb": 0.6201380260108179,
+      "actualWinner": "MIL",
+      "correct": true,
+      "homeScore": 3,
+      "awayScore": 2,
+      "gradedAt": "2026-10-24T09:06:43.395Z"
     }
   ]
 }
